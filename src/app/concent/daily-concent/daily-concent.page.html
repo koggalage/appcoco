@@ -1,0 +1,264 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title color="medium">Daily Concent Form</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-item-divider>
+    <ion-label color="medium">Bssic Info:</ion-label>
+  </ion-item-divider>
+
+  <ion-grid>
+
+    <ion-row>
+      <ion-label color="tertiary">Date:</ion-label>
+    </ion-row>
+    <ion-row>
+      <ion-input color="dark" class="ion-text-start" type="text" name="Date"
+        [(ngModel)]="dailyConcentSaveRequest.ConsentDatetime" readonly></ion-input>
+    </ion-row>
+
+    <ion-row>
+      <ion-label color="tertiary">Customer Id:</ion-label>
+    </ion-row>
+    <ion-row>
+      <ion-input color="dark" class="ion-text-start" type="text" value="{{customerInfo?.CustomerId}}" name="CustomerId"
+        readonly>
+      </ion-input>
+    </ion-row>
+
+    <ion-row>
+      <ion-label color="tertiary">Full Name:</ion-label>
+    </ion-row>
+    <ion-row>
+      <ion-input color="dark" class="ion-text-start" type="text" value="{{customerInfo?.FullName}}" name="FullName"
+        readonly>
+      </ion-input>
+    </ion-row>
+
+    <ion-row>
+      <ion-label color="tertiary">Gendar:</ion-label>
+    </ion-row>
+    <ion-row>
+      <ion-input *ngIf="customerInfo?.Gender == 'M'" color="dark" class="ion-text-start" type="text" value="Male"
+        name="Gender" readonly></ion-input>
+      <ion-input *ngIf="customerInfo?.Gender == 'F'" color="dark" class="ion-text-start" type="text" value="Female"
+        name="Gender" readonly></ion-input>
+    </ion-row>
+
+    <ion-row *ngIf="customerInfo?.Address">
+      <ion-label color="tertiary">Address:</ion-label>
+    </ion-row>
+    <ion-row *ngIf="customerInfo?.Address">
+      <ion-textarea rows="1" class="ion-text-start" type="text" value="{{customerInfo?.Address}}" name="Address"
+        readonly>
+      </ion-textarea>
+    </ion-row>
+
+
+  </ion-grid>
+
+  <ion-item-divider>
+    <ion-label color="medium">Required Info:</ion-label>
+  </ion-item-divider>
+
+  <form (ngSubmit)="dailyConcentForm.form.valid && onAddNewDailyConcent()" #dailyConcentForm="ngForm">
+
+    <ion-grid>
+
+      <ion-row>
+        <ion-label color="dark">Treatment:</ion-label>
+      </ion-row>
+      <ion-row>
+        <ion-textarea rows="1" type="text" [(ngModel)]="dailyConcentSaveRequest.NameOfTheTreatment" name="Treatment"
+          #Treatment="ngModel" required>
+        </ion-textarea>
+      </ion-row>
+
+      <ion-row *ngIf="dailyConcentForm.submitted && Treatment.invalid">
+        <ion-label class="error-msg">* Treatment is required.</ion-label>
+      </ion-row>
+
+      <ion-row>
+        <ion-label color="dark">Previous Treatments:</ion-label>
+      </ion-row>
+      <ion-row>
+        <ion-textarea rows="1" type="text" [(ngModel)]="dailyConcentSaveRequest.PreviousListOfTreatment"
+          name="PreviousTreatments">
+        </ion-textarea>
+      </ion-row>
+
+      <ion-row>
+        <ion-label>For Myself:</ion-label>
+      </ion-row>
+      <ion-row>
+        <ion-checkbox [(ngModel)]="myself" name="self"></ion-checkbox>
+      </ion-row>
+
+      <ion-row *ngIf="myself">
+        <ion-label color="dark">NIC Number:</ion-label>
+      </ion-row>
+      <ion-row *ngIf="myself && customerInfo.NIC">
+        <ion-input type="text" value="{{customerInfo?.NIC}}" name="NIC"></ion-input>
+      </ion-row>
+      <ion-row *ngIf="myself && !customerInfo.NIC">
+        <ion-input type="text" [(ngModel)]="dailyConcentSaveRequest.NIC" name="dailyNIC" #dailyNIC="ngModel" required>
+        </ion-input>
+      </ion-row>
+      <ion-row *ngIf="dailyConcentForm.submitted && !customerInfo.NIC && !dailyConcentSaveRequest.NIC && myself">
+        <ion-label class="error-msg">* NIC Number is required.</ion-label>
+      </ion-row>
+
+      <ion-row *ngIf="!myself">
+        <ion-label color="dark">Name of Relative:</ion-label>
+      </ion-row>
+
+      <ion-row *ngIf="!myself">
+        <ion-input type="text" [(ngModel)]="dailyConcentSaveRequest.RelativeName" name="RelativeName"
+          #RelativeName="ngModel" required></ion-input>
+      </ion-row>
+
+      <ion-row *ngIf="dailyConcentForm.submitted && !dailyConcentSaveRequest.RelativeName && !myself">
+        <ion-label class="error-msg">* Relative Name is required.</ion-label>
+      </ion-row>
+
+      <ion-row *ngIf="!myself">
+        <ion-label color="dark">Relationship:</ion-label>
+      </ion-row>
+
+      <ion-row *ngIf="!myself">
+        <ion-input type="text" [(ngModel)]="dailyConcentSaveRequest.Relationship" name="Relationship"
+          #Relationship="ngModel" required></ion-input>
+      </ion-row>
+
+      <ion-row *ngIf="dailyConcentForm.submitted && !dailyConcentSaveRequest.Relationship && !myself">
+        <ion-label class="error-msg">* Relationship is required.</ion-label>
+      </ion-row>
+
+    </ion-grid>
+
+    <ion-text color="primary">
+      <h4>Agreements</h4>
+    </ion-text>
+
+    <ion-list>
+      <ion-row>
+        <ion-label color="dark">Customer Signature:</ion-label>
+      </ion-row>
+      <ion-row>
+        <ion-img [src]="customerInfo?.SignatureURL"></ion-img>
+      </ion-row>
+
+      <ion-item>
+        <ion-label>Customer Agreed:</ion-label>
+        <ion-checkbox [(ngModel)]="dailyConcentSaveRequest.IsClientSigned" name="custAgreed" #custAgreed="ngModel"
+          required></ion-checkbox>
+      </ion-item>
+
+      <ion-row *ngIf="dailyConcentForm.submitted && custAgreed.invalid">
+        <ion-label class="error-msg">* Customer's Agreement is required.</ion-label>
+      </ion-row>
+
+      <ion-item-divider>
+        <ion-label color="danger">
+          <h4>* For Office Use Only</h4>
+        </ion-label>
+      </ion-item-divider>
+
+      <ion-item-divider>
+        <ion-label color="medium">Therapist's Agreement:</ion-label>
+      </ion-item-divider>
+
+      <ion-row>
+        <ion-searchbar name="empSearch" [(ngModel)]="empSearchText" (ionInput)="onSearchEmp($event)"></ion-searchbar>
+        <ion-list *ngIf='showEmployeeList'>
+          <ion-item (click)="setEmployeeSignature(emp)" *ngFor="let emp of empList">
+            Name: {{ emp.EmpName }} | Id: {{emp.EmpNo}}
+          </ion-item>
+        </ion-list>
+      </ion-row>
+
+      <ion-row *ngIf="isEmpSignatureNA">
+        <ion-label class="error-msg">* No signature is assigned to this user.</ion-label>
+      </ion-row>
+
+      <ion-row *ngIf="!isEmpSignatureNA">
+        <ion-label color="dark">Therapist's Signature:</ion-label>
+      </ion-row>
+      <ion-row *ngIf="!isEmpSignatureNA">
+        <ion-img [src]="empSignatureUrl"></ion-img>
+      </ion-row>
+      <ion-row *ngIf="dailyConcentForm.submitted && !isEmpSignatureNA && !empSignatureUrl">
+        <ion-label class="error-msg">* Therapist's Signature is required.</ion-label>
+      </ion-row>
+
+      <ion-item *ngIf="!isEmpSignatureNA">
+        <ion-label>Therapist Agreed:</ion-label>
+        <ion-checkbox [(ngModel)]="dailyConcentSaveRequest.IsTherapistSigned" name="empAgreed" #empAgreed="ngModel"
+          required></ion-checkbox>
+      </ion-item>
+
+      <ion-row *ngIf="dailyConcentForm.submitted && !dailyConcentSaveRequest.IsTherapistSigned">
+        <ion-label class="error-msg">* Therapist's Agreement is required.</ion-label>
+      </ion-row>
+
+
+      <ion-item-divider>
+        <ion-label color="medium">Medical Officer's Agreement:</ion-label>
+      </ion-item-divider>
+
+      <ion-row>
+        <ion-searchbar name="userSearch" [(ngModel)]="userSearchText" (ionInput)="onSearchUser($event)"></ion-searchbar>
+        <ion-list *ngIf='showUserList'>
+          <ion-item (click)="setUserSignature(user)" *ngFor="let user of userList">
+            Name: {{ user.EmpName }} | Id: {{user.EmpNo}}
+          </ion-item>
+        </ion-list>
+      </ion-row>
+
+      <ion-row *ngIf="isUserSignatureNA">
+        <ion-label class="error-msg">* No signature is assigned to this user.</ion-label>
+      </ion-row>
+
+      <ion-row *ngIf="!isUserSignatureNA">
+        <ion-label color="dark">Medical Officer's Signature:</ion-label>
+      </ion-row>
+
+      <ion-row *ngIf="!isUserSignatureNA">
+        <ion-img [src]="userSignatureUrl"></ion-img>
+      </ion-row>
+      <ion-row *ngIf="dailyConcentForm.submitted && !isUserSignatureNA && !userSignatureUrl">
+        <ion-label class="error-msg">* Medical Officer's Signature is required.</ion-label>
+      </ion-row>
+
+      <ion-item *ngIf="!isUserSignatureNA">
+        <ion-label>Medical Officer Agreed:</ion-label>
+        <ion-checkbox [(ngModel)]="dailyConcentSaveRequest.IsDoctorSinged" name="userAgreed" #userAgreed="ngModel"
+          required></ion-checkbox>
+      </ion-item>
+
+      <ion-row *ngIf="dailyConcentForm.submitted && !dailyConcentSaveRequest.IsDoctorSinged">
+        <ion-label class="error-msg">* Medical Officer's Agreement is required.</ion-label>
+      </ion-row>
+
+      <ion-item-divider>
+
+      </ion-item-divider>
+
+      <ion-row>
+        <ion-col>
+          <ion-button expand="block" type="submit" color="primary" expand="block">Save</ion-button>
+        </ion-col>
+      </ion-row>
+
+    </ion-list>
+
+
+
+  </form>
+</ion-content>

@@ -1,0 +1,35 @@
+ion-col {
+    padding-right: 5px;
+}
+
+ion-input, ion-textarea {
+            border-radius: 10px !important;
+            padding-right: 30px;
+            font-size: 0.9em;
+            border: 1px solid #f1f1f1 !important;
+            --background: rgb(219,219,219) !important;
+            /* height: 10%; */
+            /* width: 41%; */
+            // max-width: 50vw; // this is applying perfectly
+            // max-height: 10vh;
+}
+
+ion-row {
+     padding-top: 10px;
+}
+
+.error-msg {
+  color: red;
+  font-size: 13px;
+}
+
+#grid {
+  border: 1px solid #eee8d5;
+  border-radius: 20px 20px 20px 20px;
+  border-width: thick;
+}
+
+#header {
+  border-radius: 20px 20px 20px 20px;
+  border-width: thin;
+}

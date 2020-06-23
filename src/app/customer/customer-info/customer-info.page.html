@@ -1,0 +1,79 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Missing Customer Details</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <form (ngSubmit)="cusInfoForm.form.valid && onUpdateCustomer()" #cusInfoForm="ngForm">
+
+    <ion-grid>
+
+      <ion-row *ngIf="isFnameNotFilled">
+        <ion-label>Full Name:</ion-label>
+      </ion-row>
+      <ion-row *ngIf="isFnameNotFilled">
+        <ion-input maxlength="250" type="text" [(ngModel)]="customerInfo.FullName" name="FullName" #FullName="ngModel"
+          required>
+        </ion-input>
+      </ion-row>
+      <ion-row *ngIf="isFnameNotFilled && cusInfoForm.submitted && !customerInfo.FullName">
+        <ion-label class="error-msg">* FullName is required.</ion-label>
+      </ion-row>
+
+      <ion-row *ngIf="isMobileNotFilled">
+        <ion-label>Mobile:</ion-label>
+      </ion-row>
+      <ion-row *ngIf="isMobileNotFilled">
+        <ion-input maxlength="15" type="number" [(ngModel)]="customerInfo.MobileNo" name="MobileNo" #MobileNo="ngModel"
+          required>
+        </ion-input>
+      </ion-row>
+      <ion-row *ngIf="isMobileNotFilled && cusInfoForm.submitted && !customerInfo.MobileNo">
+        <ion-label class="error-msg">* Mobile Number is required.</ion-label>
+      </ion-row>
+
+      <ion-row *ngIf="isEmailNotFilled">
+        <ion-label>Email:</ion-label>
+      </ion-row>
+      <ion-row *ngIf="isEmailNotFilled">
+        <ion-input maxlength="50" type="email" [(ngModel)]="customerInfo.Email" name="Email" #Email="ngModel" email
+          required>
+        </ion-input>
+      </ion-row>
+      <ion-row *ngIf="isEmailNotFilled && cusInfoForm.submitted && !customerInfo.Email">
+        <ion-label *ngIf="Email.errors.required" class="error-msg">* Email is required.</ion-label>
+        <ion-label *ngIf="Email.errors.email" class="error-msg">* Email is invalid.</ion-label>
+      </ion-row>
+
+      <ion-item-divider></ion-item-divider>
+
+      <ion-row *ngIf="isNoSignature">
+        <ion-label>Signature:</ion-label>
+      </ion-row>
+      <ion-row *ngIf="isNoSignature">
+        <signature-pad id="signature" [options]="signaturePadOptions" (onEndEvent)="drawComplete()">
+        </signature-pad>
+      </ion-row>
+      <ion-row *ngIf="isNoSignature">
+        <ion-button type="button" color="danger" (click)="drawClear()" expand="block">Clear</ion-button>
+      </ion-row>
+
+      <ion-row *ngIf="isNoSignature && cusInfoForm.submitted && !customerInfo.SignatureURL">
+        <ion-label class="error-msg">* Signature is required.</ion-label>
+      </ion-row>
+
+      <ion-item-divider></ion-item-divider>
+
+      <ion-row>
+        <ion-col>
+          <ion-button expand="block" type="submit" color="primary" expand="block">Save</ion-button>
+        </ion-col>
+      </ion-row>
+
+    </ion-grid>
+
+  </form>
+
+</ion-content>

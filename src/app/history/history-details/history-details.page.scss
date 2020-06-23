@@ -1,0 +1,25 @@
+ion-slides {
+    margin-top: 5%;
+    background: #1d3e41;
+
+    img {
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+}
+
+ion-col {
+    padding-right: 5px;
+}
+
+ion-input, ion-textarea {
+            border-radius: 10px !important;
+            padding-right: 30px;
+            font-size: 0.9em;
+            border: 1px solid #f1f1f1 !important;
+            --background: rgb(219,219,219) !important;
+}
+
+ion-row {
+     padding-top: 10px;
+}

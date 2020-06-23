@@ -1,0 +1,110 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+
+    <ion-title color="primary">Daily Update</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-grid>
+
+    <ion-item-divider>
+      <ion-label color="medium">Bssic Info:</ion-label>
+    </ion-item-divider>
+
+    <ion-row>
+      <ion-label color="tertiary">Date:</ion-label>
+    </ion-row>
+    <ion-row>
+      <ion-input color="dark" class="ion-text-start" type="text" name="Date" value="{{date}}" readonly></ion-input>
+    </ion-row>
+
+    <ion-row>
+      <ion-label color="tertiary">Customer Id:</ion-label>
+    </ion-row>
+    <ion-row>
+      <ion-input color="dark" class="ion-text-start" type="text" value="{{customerInfo?.CustomerId}}" name="CustomerId"
+        readonly>
+      </ion-input>
+    </ion-row>
+
+    <ion-row>
+      <ion-label color="tertiary">Customer Name:</ion-label>
+    </ion-row>
+    <ion-row>
+      <ion-input color="dark" class="ion-text-start" type="text" value="{{customerInfo?.FullName}}" name="FullName"
+        readonly>
+      </ion-input>
+    </ion-row>
+
+  </ion-grid>
+
+  <form (ngSubmit)="dailyUpdateForm.form.valid && onAddNewDailyUpdate()" #dailyUpdateForm="ngForm">
+
+    <ion-grid>
+
+      <ion-item-divider>
+        <ion-label color="medium">Medical Officer's Update:</ion-label>
+      </ion-item-divider>
+
+      <ion-row>
+        <ion-label color="dark">Problem:</ion-label>
+      </ion-row>
+      <ion-row>
+        <ion-textarea rows="1" type="text" [(ngModel)]="dailyUpdateSaveRequest.Problem" name="Problem"
+          #Problem="ngModel" required>
+        </ion-textarea>
+      </ion-row>
+
+      <ion-row *ngIf="dailyUpdateForm.submitted && Problem.invalid">
+        <ion-label class="error-msg">* Problem is required.</ion-label>
+      </ion-row>
+
+      <ion-row>
+        <ion-label color="dark">Doctor Note:</ion-label>
+      </ion-row>
+      <ion-row>
+        <ion-textarea rows="1" type="text" [(ngModel)]="dailyUpdateSaveRequest.DoctorNote" name="DoctorNote"
+          #DoctorNote="ngModel" required>
+        </ion-textarea>
+      </ion-row>
+
+      <ion-row *ngIf="dailyUpdateForm.submitted && DoctorNote.invalid">
+        <ion-label class="error-msg">* Doctor Note is required.</ion-label>
+      </ion-row>
+
+
+      <ion-item-divider></ion-item-divider>
+
+      <ion-row>
+        <ion-col>
+          <ion-button (click)="TakePhotos()" expand="block" type="button" color="dark" expand="full">Take Photo
+          </ion-button>
+        </ion-col>
+      </ion-row>
+
+      <ion-slides [options]='sliderOptions'>
+
+        <ion-slide *ngFor="let url of dailyUpdateSaveRequest.TreatmentImageURLs">
+          <img src="{{url}}" tappable (click)="onImageClick(url)">
+        </ion-slide>
+      </ion-slides>
+
+      <ion-item-divider></ion-item-divider>
+
+      <ion-row>
+        <ion-col>
+          <ion-button expand="block" type="submit" color="primary" expand="block">Save</ion-button>
+        </ion-col>
+      </ion-row>
+
+
+    </ion-grid>
+
+  </form>
+
+</ion-content>

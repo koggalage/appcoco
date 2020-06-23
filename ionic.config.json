@@ -1,0 +1,7 @@
+{
+  "name": "ChristelCRMApp",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

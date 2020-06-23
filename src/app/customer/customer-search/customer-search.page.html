@@ -1,0 +1,109 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+
+        <ion-title color="primary">Customer Search</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+    <form (ngSubmit)="seachCustomers()">
+
+        <ion-grid>
+
+            <ion-row>
+                <ion-label>Customer Name:</ion-label>
+            </ion-row>
+            <ion-row>
+                <ion-input type="text" [(ngModel)]="customerSearchRequest.CustomerName" name="LName"></ion-input>
+            </ion-row>
+
+            <ion-row>
+                <ion-label>Registration No:</ion-label>
+            </ion-row>
+            <ion-row>
+                <ion-input type="text" [(ngModel)]="customerSearchRequest.CustomerId" name="CustomerId"></ion-input>
+            </ion-row>
+
+            <ion-row>
+                <ion-label>Mobile:</ion-label>
+            </ion-row>
+            <ion-row>
+                <ion-input type="number" [(ngModel)]="customerSearchRequest.MobileNo" name="MobileNo"></ion-input>
+            </ion-row>
+
+            <ion-item-divider>
+
+            </ion-item-divider>
+
+            <ion-row>
+                <ion-col>
+                    <ion-button expand="block" type="submit" color="primary" expand="block">Search</ion-button>
+                </ion-col>
+            </ion-row>
+
+            <ion-item-divider></ion-item-divider>
+
+        </ion-grid>
+
+    </form>
+
+    <ion-grid>
+
+        <ion-row *ngIf="isNotRegistered && isSearched">
+            <ion-label class="error-msg">*No customers found. Please Register as a new user or search again!</ion-label>
+        </ion-row>
+
+    </ion-grid>
+
+    <ion-grid id="grid" *ngIf="!isNotRegistered">
+        <ion-row id="header" text-center nowrap style="background-color:#92E4D5">
+
+            <ion-col>
+                Customer Id
+            </ion-col>
+            <ion-col>
+                Full Name
+            </ion-col>
+            <ion-col>
+                Mobile
+            </ion-col>
+
+        </ion-row>
+
+        <ion-row text-center nowrap *ngFor="let customer of customerInfo" (click)="redirectCustomer(customer)">
+
+            <ion-col>
+                {{customer.CustomerId}}
+            </ion-col>
+            <ion-col>
+                {{customer.FullName}}
+            </ion-col>
+            <ion-col>
+                {{customer.MobileNo}}
+            </ion-col>
+
+        </ion-row>
+    </ion-grid>
+
+    <!-- <table class="table table-hover ldc-creditor-table">
+        <thead>
+            <tr>
+                <th scope="col">Reg No</th>
+                <th scope="col">Full Name</th>
+                <th scope="col">Mobile</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let customer of customerInfo" (click)="redirectCustomer(customer)">
+                <td>{{customer.RegNo}}</td>
+                <td>{{customer.FullName}}</td>
+                <td>{{customer.MobileNo}}</td>
+            </tr>
+        </tbody>
+    </table> -->
+
+</ion-content>

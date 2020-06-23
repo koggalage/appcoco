@@ -1,0 +1,67 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title color="primary">Treatment History Details</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-grid>
+
+    <ion-row>
+      <ion-label color="tertiary">Date:</ion-label>
+    </ion-row>
+    <ion-row>
+      <ion-input color="dark" class="ion-text-start" type="text" name="Date" value="{{treatmentDetailsResponse?.Date}}"
+        readonly></ion-input>
+    </ion-row>
+
+    <ion-row>
+      <ion-label color="tertiary">Customer Id:</ion-label>
+    </ion-row>
+    <ion-row>
+      <ion-input color="dark" class="ion-text-start" type="text" value="{{treatmentDetailsResponse?.CustomerId}}"
+        name="CustomerId" readonly>
+      </ion-input>
+    </ion-row>
+
+    <ion-row>
+      <ion-label color="tertiary">Customer Name:</ion-label>
+    </ion-row>
+    <ion-row>
+      <ion-input color="dark" class="ion-text-start" type="text" value="{{treatmentDetailsResponse?.FullName}}"
+        name="FullName" readonly>
+      </ion-input>
+    </ion-row>
+
+    <ion-row>
+      <ion-label color="tertiary">Problem:</ion-label>
+    </ion-row>
+    <ion-row>
+      <ion-input color="dark" class="ion-text-start" type="text" value="{{treatmentDetailsResponse?.Problem}}"
+        name="Problem" readonly>
+      </ion-input>
+    </ion-row>
+
+    <ion-row>
+      <ion-label color="tertiary">Doctor Note:</ion-label>
+    </ion-row>
+    <ion-row>
+      <ion-input color="dark" class="ion-text-start" type="text" value="{{treatmentDetailsResponse?.DoctorNote}}"
+        name="DoctorNote" readonly>
+      </ion-input>
+    </ion-row>
+
+    <ion-row>
+      <ion-slides [options]='sliderOptions'>
+        <ion-slide *ngFor="let url of treatmentDetailsResponse.TreatmentImageURLs">
+          <img src="{{url}}" tappable (click)="onImageClick(url)">
+        </ion-slide>
+      </ion-slides>
+    </ion-row>
+
+  </ion-grid>
+
+
+
+</ion-content>

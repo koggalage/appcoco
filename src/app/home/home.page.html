@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar>
+
+    <ion-menu-button></ion-menu-button>
+
+    <ion-title>
+      Christell Skin Clinic
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+    <ion-item>
+      <ion-slides [options]="slideOptions" pager="true" #slider (ionSlidesDidLoad)="slidesDidLoad(slider)">
+        <ion-slide *ngFor="let img of images">
+          <img [src]="img.url">
+        </ion-slide>
+      </ion-slides>
+    </ion-item>
+  </ion-list>
+  <!-- <ion-button expand="block" onclick="location.href='/menu/customer-search'">Search Customer</ion-button> -->
+</ion-content>

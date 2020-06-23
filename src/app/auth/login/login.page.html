@@ -1,0 +1,39 @@
+<ion-content color="primary" padding>
+
+  <ion-grid>
+
+    <ion-row color="primary" justify-content-center>
+
+      <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
+
+        <div text-center>
+          <h3>Login</h3>
+        </div>
+
+        <div padding>
+
+          <ion-item>
+            <ion-input name="username" type="text" placeholder="Username" [(ngModel)]="login.Username" required>
+            </ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-input name="password" type="password" placeholder="Password" [(ngModel)]="login.Password" required>
+            </ion-input>
+          </ion-item>
+
+        </div>
+
+        <div padding>
+          <ion-button size="large" (click)="signIn()" expand="block">Login</ion-button>
+          <div *ngIf="isInvalidLogin" class="error-msg">Invalid Credentials. Please try again!</div>
+        </div>
+
+      </ion-col>
+
+    </ion-row>
+
+  </ion-grid>
+
+
+</ion-content>

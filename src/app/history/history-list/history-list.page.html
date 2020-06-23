@@ -1,0 +1,55 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title color="primary">Treatment History List</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-grid *ngFor="let data of treatmentDates">
+    <ion-row>
+
+      <mat-accordion>
+        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+
+          <mat-expansion-panel-header>
+
+            <mat-panel-title>
+              <h3> {{ data.Date | date }} </h3>
+            </mat-panel-title>
+
+            <mat-panel-description>
+              <ion-button text-center id="viewdetails" (click)="onDateClick(data.Tduid)" type="button" color="primary"
+                expand="block">
+                View Details
+              </ion-button>
+            </mat-panel-description>
+            
+          </mat-expansion-panel-header>
+
+          <ion-grid>
+            <ion-row>
+              <ion-label color="tertiary">Doctor's Note:</ion-label>
+            </ion-row>
+            <ion-row>
+              <ion-textarea rows="1" class="ion-text-start" type="text" value="{{data.DoctorNote}}" name="DoctorNote"
+                readonly>
+              </ion-textarea>
+            </ion-row>
+            <ion-row>
+              <ion-label color="tertiary">Appointment Id:</ion-label>
+            </ion-row>
+            <ion-row>
+              <ion-input class="ion-text-start" type="text" value="{{data.DoctorAppointmentId}}"
+                name="DoctorAppointmentId" readonly>
+              </ion-input>
+            </ion-row>
+          </ion-grid>
+
+        </mat-expansion-panel>
+      </mat-accordion>
+
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

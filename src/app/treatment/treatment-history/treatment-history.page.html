@@ -1,0 +1,50 @@
+<ion-header>
+  <ion-toolbar>
+      <ion-buttons slot="start">
+          <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+
+    <ion-title>TreatmentHistory</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-grid >
+    <ion-row>
+
+        <ion-col>
+            <div class="col">Transaction Date</div>
+        </ion-col>
+        <ion-col>
+            <div class="col">Total Amount</div>
+        </ion-col>
+        <ion-col>
+            <div class="col">SM Name</div>
+        </ion-col>
+        <ion-col>
+          <div class="col">Images</div>
+      </ion-col>
+
+    </ion-row>
+
+    <!-- *ngFor="let row of customerInfo" -->
+    <ion-row>
+
+        <ion-col>
+            <div class="col">{{treatmentHistory.RegNo}}</div>
+        </ion-col>
+        <ion-col>
+            <div class="col">{{treatmentHistory.FullName}}</div>
+        </ion-col>
+        <ion-col>
+            <div class="col">{{treatmentHistory.Mobile}}</div>
+        </ion-col>
+        <ion-col>
+            <div class="col">Images</div>
+        </ion-col>
+
+    </ion-row>
+
+</ion-grid>
+</ion-content>

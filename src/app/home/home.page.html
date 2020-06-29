@@ -1,4 +1,4 @@
-<ion-header>
+<!-- <ion-header>
   <ion-toolbar>
 
     <ion-menu-button></ion-menu-button>
@@ -18,6 +18,65 @@
         </ion-slide>
       </ion-slides>
     </ion-item>
-  </ion-list>
-  <!-- <ion-button expand="block" onclick="location.href='/menu/customer-search'">Search Customer</ion-button> -->
+  </ion-list> -->
+<ion-content>
+  <ion-grid padding class="home-header">
+    <ion-row class="main-wrapper">
+      <ion-col>
+        <ion-text class="text-wrapper ion-text-center" color="light">
+          <h2>Hi Chandika,</h2>
+          <p class="ion-no-margin">Select your preference</p>
+        </ion-text>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid padding class="home-body">
+    <ion-row class="card-wrapper">
+      <ion-col size="6">
+        <ion-card class="card card--no-bottom-margin">
+          <ion-card-content no-padding class="ion-text-center ion-padding-bottom">
+            <img class="ion-padding-top" src="../../assets/img/search_engine.svg" alt="">
+            <ion-label color="primary">Search</ion-label>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      <ion-col size="6">
+        <ion-card class="card card--no-bottom-margin">
+          <ion-card-content no-padding class="ion-text-center ion-padding-bottom">
+            <img class="ion-padding-top" src="../../assets/img/receptionist.svg" alt="">
+            <ion-label color="primary">Registration</ion-label>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="main-wrapper" no-margin>
+      <ion-col size="6">
+        <ion-card class="card">
+          <ion-card-content no-padding class="ion-text-center ion-padding-bottom">
+            <img class="ion-padding-top" src="../../assets/img/search_engine.svg" alt="">
+            <ion-label color="primary">Initial consent</ion-label>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      <ion-col size="6">
+        <ion-card class="card">
+          <ion-card-content no-padding class="ion-text-center ion-padding-bottom">
+            <img class="ion-padding-top" src="../../assets/img/receptionist.svg" alt="">
+            <ion-label color="primary">Daily consent</ion-label>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="button-wrapper">
+      <ion-col no-padding class="ion-margin-horizontal">
+        <ion-button size="large" expand="block" class="logout-btn" color="dark">
+          logout
+          <ion-icon slot="end" name="log-out" md="md-log-out"></ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

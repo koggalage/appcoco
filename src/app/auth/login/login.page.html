@@ -1,39 +1,34 @@
-<ion-content color="primary" padding>
+<ion-content padding class="background">
 
-  <ion-grid>
+  <ion-grid class="main-wrapper">
+    <ion-row class="content-wrapper">
+      <ion-col class="welcome-msg" size="12">
+        <img src="../../../assets/img/logo-small.svg">
+        <ion-text color="primary">
+          <h1>Welcome back!</h1>
+          <p class="ion-no-margin ion-margin-bottom">Login below to get started.</p>
+        </ion-text>
+      
+        <ion-item  class="ion-no-padding ion-margin-bottom">
+          <ion-label position="floating" color="primary">Username</ion-label>
+          <ion-input name="username" type="text" [(ngModel)]="login.Username" required color="dark"></ion-input>
+        </ion-item>
 
-    <ion-row color="primary" justify-content-center>
+        <ion-item  class="ion-no-padding ion-margin-bottom ion-padding-bottom">
+          <ion-label position="floating" color="primary">Password</ion-label>
+          <ion-input name="password" type="password" [(ngModel)]="login.Password" required color="dark"></ion-input>
+        </ion-item>
 
-      <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
-
-        <div text-center>
-          <h3>Login</h3>
-        </div>
-
-        <div padding>
-
-          <ion-item>
-            <ion-input name="username" type="text" placeholder="Username" [(ngModel)]="login.Username" required>
-            </ion-input>
-          </ion-item>
-
-          <ion-item>
-            <ion-input name="password" type="password" placeholder="Password" [(ngModel)]="login.Password" required>
-            </ion-input>
-          </ion-item>
-
-        </div>
-
-        <div padding>
-          <ion-button size="large" (click)="signIn()" expand="block">Login</ion-button>
-          <div *ngIf="isInvalidLogin" class="error-msg">Invalid Credentials. Please try again!</div>
-        </div>
+        
+        <ion-button size="large" (click)="signIn()" expand="block" class="login-btn" color="dark">Login</ion-button>
+        <div *ngIf="isInvalidLogin" class="error-msg">Invalid Credentials. Please try again!</div>
 
       </ion-col>
 
+      <ion-col class="bottom-img ion-text-center" size="12">
+        <img src="../../../assets/img/wellness.svg">
+      </ion-col>
     </ion-row>
-
   </ion-grid>
-
 
 </ion-content>

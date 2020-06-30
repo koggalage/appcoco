@@ -94,7 +94,7 @@ export class DailyConcentPage implements OnInit {
       .pipe(takeUntil(this.ngUnsubscription))
       .subscribe((value: boolean) => {
         if (value) {
-          this.router.navigateByUrl('menu/home');
+          this.router.navigateByUrl('/home');
         }
       }, (error: any) => {
         console.log(error);

@@ -50,7 +50,7 @@ export class HistoryListPage implements OnInit {
 
   onDateClick(tduid: number) {
     this.historyUIService.setTduid(tduid);
-    this.router.navigate(['menu/history-details']);
+    this.router.navigate(['/history-details']);
   }
 
 }

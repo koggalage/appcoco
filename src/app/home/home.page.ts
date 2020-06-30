@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 
 // temp
 import { IonSlides } from '@ionic/angular';
+import { AuthenticationService } from '../_services/authentication.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -17,7 +19,10 @@ export class HomePage {
     speed: 400,
   };
 
-  constructor() {
+  constructor(
+    private authenticationService: AuthenticationService,
+    private router: Router
+  ) {
     this.initializeItems();
   }
 
@@ -50,6 +55,11 @@ export class HomePage {
         "url": '../assets/img/img7.jpg'
       }
     ]
+  }
+
+  logout() {
+    this.authenticationService.logout();
+    this.router.navigate(['/']);
   }
 
 }

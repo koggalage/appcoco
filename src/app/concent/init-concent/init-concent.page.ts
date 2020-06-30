@@ -86,7 +86,7 @@ export class InitConcentPage implements OnInit {
       .subscribe((value: boolean) => {
         if (value) {
           console.log(value);
-          this.router.navigateByUrl('menu/daily-concent');
+          this.router.navigateByUrl('/daily-concent');
         }
       }, (error: any) => {
         console.log(error);

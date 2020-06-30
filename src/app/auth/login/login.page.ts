@@ -52,7 +52,7 @@ export class LoginPage implements OnInit {
           // this.getEmployeeList(6);
           // this.getUserList('Doctor');
 
-          this.router.navigateByUrl('menu/home');
+          this.router.navigateByUrl('/home');
         },
         error => {
           this.isInvalidLogin = true;

@@ -91,7 +91,7 @@ export class CustomerRegistrationPage implements OnInit {
           }
           //this.customerUIService.setCustomerId(this.customerInfo.CustomerId);
           this.customerUIService.setSelectedCustomer(this.customerInfo);
-          this.router.navigateByUrl('menu/init-concent');
+          this.router.navigateByUrl('/init-concent');
         } else {
           console.log("Registration Failed!");
         }

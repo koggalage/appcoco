@@ -69,7 +69,7 @@ export class CustomerSearchPage implements OnInit, OnDestroy {
 
     console.log('this.user.UserType', this.user.UserType);
     if (this.user.UserType == "Doctor") {
-      this.router.navigate(['menu/history-list']);
+      this.router.navigate(['/history-list']);
     } else {
       if (customer.FullName == null ||
         //customer.Lname == null ||
@@ -77,11 +77,11 @@ export class CustomerSearchPage implements OnInit, OnDestroy {
         customer.MobileNo.replace(/\s/g, "") == "" ||
         customer.Email == null ||
         customer.SignatureURL == null) {
-        this.router.navigate(['menu/customer-info']);
+        this.router.navigate(['/customer-info']);
       } else if (!customer.IsFilledInitConcern) {
-        this.router.navigate(['menu/init-concent']);
+        this.router.navigate(['/init-concent']);
       } else {
-        this.router.navigate(['menu/daily-concent']);
+        this.router.navigate(['/daily-concent']);
       }
 
     }

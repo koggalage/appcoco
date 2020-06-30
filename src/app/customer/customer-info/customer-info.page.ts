@@ -87,9 +87,9 @@ export class CustomerInfoPage implements OnInit {
             this.customerUIService.setSelectedCustomer(this.customerInfo);
           }
           if (!this.customerInfo.IsFilledInitConcern) {
-            this.router.navigateByUrl('menu/init-concent');
+            this.router.navigateByUrl('/init-concent');
           } else {
-            this.router.navigateByUrl('menu/daily-concent');
+            this.router.navigateByUrl('/daily-concent');
           }
         }
       }, (error: any) => {

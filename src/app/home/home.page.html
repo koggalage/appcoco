@@ -35,7 +35,8 @@
     <ion-row class="card-wrapper">
       <ion-col size="6">
         <ion-card class="card card--no-bottom-margin">
-          <ion-card-content no-padding class="ion-text-center ion-padding-bottom">
+          <ion-card-content routerLink="/customer-search" routerDirection="root" no-padding
+            class="ion-text-center ion-padding-bottom">
             <img class="ion-padding-top" src="../../assets/img/search_engine.svg" alt="">
             <ion-label color="primary">Search</ion-label>
           </ion-card-content>
@@ -43,7 +44,8 @@
       </ion-col>
       <ion-col size="6">
         <ion-card class="card card--no-bottom-margin">
-          <ion-card-content no-padding class="ion-text-center ion-padding-bottom">
+          <ion-card-content routerLink="/customer-registration" routerDirection="root" no-padding
+            class="ion-text-center ion-padding-bottom">
             <img class="ion-padding-top" src="../../assets/img/receptionist.svg" alt="">
             <ion-label color="primary">Registration</ion-label>
           </ion-card-content>
@@ -51,10 +53,14 @@
       </ion-col>
     </ion-row>
 
-    <ion-row class="main-wrapper" no-margin>
+    <!-- @Mithila -->
+    <!-- we don;t need these two items in home page. 
+      user needs to search for a customer 1st before navigating to these pages. -->
+
+    <!-- <ion-row class="main-wrapper" no-margin>
       <ion-col size="6">
         <ion-card class="card">
-          <ion-card-content no-padding class="ion-text-center ion-padding-bottom">
+          <ion-card-content routerLink="/init-concent" no-padding class="ion-text-center ion-padding-bottom">
             <img class="ion-padding-top" src="../../assets/img/search_engine.svg" alt="">
             <ion-label color="primary">Initial consent</ion-label>
           </ion-card-content>
@@ -62,17 +68,17 @@
       </ion-col>
       <ion-col size="6">
         <ion-card class="card">
-          <ion-card-content no-padding class="ion-text-center ion-padding-bottom">
+          <ion-card-content routerLink="/daily-concent" no-padding class="ion-text-center ion-padding-bottom">
             <img class="ion-padding-top" src="../../assets/img/receptionist.svg" alt="">
             <ion-label color="primary">Daily consent</ion-label>
           </ion-card-content>
         </ion-card>
       </ion-col>
-    </ion-row>
+    </ion-row> -->
 
     <ion-row class="button-wrapper">
       <ion-col no-padding class="ion-margin-horizontal">
-        <ion-button size="large" expand="block" class="logout-btn" color="dark">
+        <ion-button (click)="logout()" size="large" expand="block" class="logout-btn" color="dark">
           logout
           <ion-icon slot="end" name="log-out" md="md-log-out"></ion-icon>
         </ion-button>

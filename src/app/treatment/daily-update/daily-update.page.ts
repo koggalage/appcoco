@@ -88,7 +88,7 @@ export class DailyUpdatePage implements OnInit {
       .subscribe((value: boolean) => {
         if (value) {
           console.log(value);
-          this.router.navigateByUrl('menu/customer-search');
+          this.router.navigateByUrl('/customer-search');
         }
       }, (error: any) => {
         console.log(error);

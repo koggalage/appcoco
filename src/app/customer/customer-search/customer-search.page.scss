@@ -1,35 +1,89 @@
-ion-col {
-    padding-right: 5px;
+.header-toolbar {
+  border-bottom-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+
+  .title {
+    font-weight: 400;
+    font-size: 18px;
+    letter-spacing: 1px;
+  }
 }
 
-ion-input, ion-textarea {
-            border-radius: 10px !important;
-            padding-right: 30px;
-            font-size: 0.9em;
-            border: 1px solid #f1f1f1 !important;
-            --background: rgb(219,219,219) !important;
-            /* height: 10%; */
-            /* width: 41%; */
-            // max-width: 50vw; // this is applying perfectly
-            // max-height: 10vh;
+ion-item {
+  --background: transparent;
+  --border-color: var(--ion-color-primary, #FF4380);
 }
 
-ion-row {
-     padding-top: 10px;
+form {
+  display: flex;
+  flex-direction: column;
+  z-index: 2;
+  position: relative;
+}
+
+.search {
+  position: relative;
+  z-index: 2;
+}
+
+.search-btn {
+  --background: #FF759D;
+  letter-spacing: 2px;
+  width: 170px;
+  align-self: center;
 }
 
 .error-msg {
-  color: red;
-  font-size: 13px;
+  font-size: 11px;
 }
 
-#grid {
-  border: 1px solid #eee8d5;
-  border-radius: 20px 20px 20px 20px;
-  border-width: thick;
+.reset-text {
+  font-size: 12px;
+  letter-spacing: 1px;
+
+  span {
+    text-decoration: underline;
+  }
 }
 
-#header {
-  border-radius: 20px 20px 20px 20px;
-  border-width: thin;
+.search-header {
+  margin-left: 5px;
+  margin-right: 5px;
+
+  ion-label {
+    font-size: 14px;
+  }
+}
+
+.search-results {
+  margin-left: 0;
+  margin-right: 0;
+
+  ion-card-content {
+    padding: 10px 5px;
+  }
+
+  ion-col {
+    font-size: 12px;
+  }
+}
+
+.page-footer {
+  position: fixed;
+  height: 40%;
+  z-index: 1;
+  bottom: 0;
+
+  &:before {
+    position: absolute;
+    content: '';
+    background: url('../../../assets/img/search_engine.svg') no-repeat center;
+    opacity: 0.1;
+    background-size: cover;
+    width: 100%;
+    height: 110%;
+    top: 10%;
+    left: 0;
+    z-index: -1;
+  }
 }

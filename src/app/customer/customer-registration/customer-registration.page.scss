@@ -1,26 +1,91 @@
-ion-col {
-    padding-right: 5px;
+.header-toolbar {
+  border-bottom-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+
+  .title {
+    font-weight: 400;
+    font-size: 16px;
+  }
 }
 
-ion-input, ion-textarea {
-            border-radius: 10px !important;
-            padding-right: 30px;
-            font-size: 0.9em;
-            border: 1px solid #f1f1f1 !important;
-            --background: rgb(219,219,219) !important;
-            /* height: 10%; */
-            /* width: 41%; */
-            // max-width: 50vw; // this is applying perfectly
-            // max-height: 10vh;
+ion-item {
+  --background: transparent;
+  --border-color: var(--ion-color-primary, #FF4380);
 }
 
-ion-row {
-     padding-top: 10px;
+form {
+  height: 100%;
 }
-#signature {outline-style: double;}
 
+.slide-wrapper {
+  height: 100%;
+
+  ion-slide {
+    align-items: flex-start;
+  }
+}
+
+.radio-btn {
+
+  .radio-icon {
+    border-color: #FDA2C6;
+  }
+}
+
+.radio-btn-label {
+  font-size: 14px;
+}
+
+.sign-pad-wrapper {
+  width: calc(100% - 10px);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1), 0 3px 6px rgba(0, 0, 0, 0.15);
+  margin: 5px;
+}
+
+.slide {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  text-align: left;
+
+  .button-wrapper {
+    margin-top: auto;
+    padding-bottom: 16px;
+
+    .slide-btn {
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      font-weight: 500;
+      font-size: 18px;
+
+      ion-icon {
+        margin-left: auto;
+      }
+    }
+  }
+}
+
+.progress-bar {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  column-gap: 5px;
+  width: 100%;
+  margin-top: 1.5rem;
+
+  .bar-item {
+    height: 8px;
+    width: 100%;
+    border-radius: 100px;
+    background-color: rgba(#FF759D, 0.3);
+
+    &.filled {
+      background-color: #FF4380;
+    }
+  }
+}
 
 .error-msg {
-  color: red;
-  font-size: 13px;
+  text-align: left;
+  font-size: 12px;
 }

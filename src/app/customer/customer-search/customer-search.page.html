@@ -1,109 +1,87 @@
-<ion-header>
-    <ion-toolbar>
-        <ion-buttons slot="start">
-            <ion-menu-button></ion-menu-button>
+<ion-header class="ion-no-border">
+    <ion-toolbar color="primary" class="ion-no-border header-toolbar">
+        <ion-buttons color="dark" slot="start">
+            <ion-back-button></ion-back-button>
         </ion-buttons>
 
-        <ion-title color="primary">Customer Search</ion-title>
+        <ion-title color="light" class="title ion-text-center ion-padding-vertical">Customer search</ion-title>
     </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content padding class="main-wrapper">
+    <ion-grid>
+        <ion-row>
+            <ion-col>
+                <form (ngSubmit)="seachCustomers()">
+                    <ion-item class="ion-no-padding ion-margin-bottom">
+                        <ion-label position="stacked" color="primary">Customer Name</ion-label>
+                        <ion-input type="text" [(ngModel)]="customerSearchRequest.CustomerName" name="LName">
+                        </ion-input>
+                    </ion-item>
+                    <ion-item class="ion-no-padding ion-margin-bottom">
+                        <ion-label position="stacked" color="primary">Registration No</ion-label>
+                        <ion-input type="text" [(ngModel)]="customerSearchRequest.CustomerId" name="CustomerId">
+                        </ion-input>
+                    </ion-item>
+                    <ion-item class="ion-no-padding ion-margin-bottom">
+                        <ion-label position="stacked" color="primary">Mobile</ion-label>
+                        <ion-input type="number" [(ngModel)]="customerSearchRequest.MobileNo" name="MobileNo">
+                        </ion-input>
+                    </ion-item>
 
-    <form (ngSubmit)="seachCustomers()">
-
-        <ion-grid>
-
-            <ion-row>
-                <ion-label>Customer Name:</ion-label>
-            </ion-row>
-            <ion-row>
-                <ion-input type="text" [(ngModel)]="customerSearchRequest.CustomerName" name="LName"></ion-input>
-            </ion-row>
-
-            <ion-row>
-                <ion-label>Registration No:</ion-label>
-            </ion-row>
-            <ion-row>
-                <ion-input type="text" [(ngModel)]="customerSearchRequest.CustomerId" name="CustomerId"></ion-input>
-            </ion-row>
-
-            <ion-row>
-                <ion-label>Mobile:</ion-label>
-            </ion-row>
-            <ion-row>
-                <ion-input type="number" [(ngModel)]="customerSearchRequest.MobileNo" name="MobileNo"></ion-input>
-            </ion-row>
-
-            <ion-item-divider>
-
-            </ion-item-divider>
-
-            <ion-row>
-                <ion-col>
-                    <ion-button expand="block" type="submit" color="primary" expand="block">Search</ion-button>
-                </ion-col>
-            </ion-row>
-
-            <ion-item-divider></ion-item-divider>
-
-        </ion-grid>
-
-    </form>
+                    <ion-button class="search-btn ion-text-uppercase ion-margin-top ion-text-center" shape="round"
+                        type="submit">
+                        Search
+                        <ion-spinner slot="end" name="bubbles"></ion-spinner>
+                    </ion-button>
+                    <ion-text color="primary" class="reset-text ion-text-center">
+                        <p>or <span>reset fields</span></p>
+                    </ion-text>
+                    <ion-label *ngIf="isNotRegistered && isSearched" color="danger"
+                        class="error-msg ion-text-center ion-margin-start">No customers found.<br>Please Register as a
+                        new user or search again!</ion-label>
+                </form>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
 
     <ion-grid>
 
-        <ion-row *ngIf="isNotRegistered && isSearched">
-            <ion-label class="error-msg">*No customers found. Please Register as a new user or search again!</ion-label>
-        </ion-row>
-
     </ion-grid>
 
-    <ion-grid id="grid" *ngIf="!isNotRegistered">
-        <ion-row id="header" text-center nowrap style="background-color:#92E4D5">
-
+    <ion-grid class="search" *ngIf="!isNotRegistered">
+        <ion-row class="search-header">
             <ion-col>
-                Customer Id
+                <ion-label color="primary">Customer Id</ion-label>
             </ion-col>
             <ion-col>
-                Full Name
+                <ion-label color="primary">Full Name</ion-label>
             </ion-col>
-            <ion-col>
-                Mobile
+            <ion-col class="ion-text-end">
+                <ion-label color="primary" class="ion-text-end">Mobile</ion-label>
             </ion-col>
-
         </ion-row>
 
-        <ion-row text-center nowrap *ngFor="let customer of customerInfo" (click)="redirectCustomer(customer)">
+        <ion-card color="light" class="search-results" *ngFor="let customer of customerInfo" (click)="redirectCustomer(customer)">
+            <ion-card-content>
+                <ion-row nowrap>
 
-            <ion-col>
-                {{customer.CustomerId}}
-            </ion-col>
-            <ion-col>
-                {{customer.FullName}}
-            </ion-col>
-            <ion-col>
-                {{customer.MobileNo}}
-            </ion-col>
+                    <ion-col>
+                        {{customer.CustomerId}}
+                    </ion-col>
+                    <ion-col>
+                        {{customer.FullName}}
+                    </ion-col>
+                    <ion-col class="ion-text-end">
+                        {{customer.MobileNo}}
+                    </ion-col>
 
-        </ion-row>
+                </ion-row>
+            </ion-card-content>
+        </ion-card>
     </ion-grid>
-
-    <!-- <table class="table table-hover ldc-creditor-table">
-        <thead>
-            <tr>
-                <th scope="col">Reg No</th>
-                <th scope="col">Full Name</th>
-                <th scope="col">Mobile</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let customer of customerInfo" (click)="redirectCustomer(customer)">
-                <td>{{customer.RegNo}}</td>
-                <td>{{customer.FullName}}</td>
-                <td>{{customer.MobileNo}}</td>
-            </tr>
-        </tbody>
-    </table> -->
-
 </ion-content>
+
+<ion-footer class="page-footer ion-no-border">
+  
+</ion-footer>

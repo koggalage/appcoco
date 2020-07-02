@@ -5,19 +5,19 @@
 :root {
   /** primary **/
   --ion-color-primary: #FF4380;
-  --ion-color-primary-rgb: rgb(255, 67, 128);
+  --ion-color-primary-rgb: 255, 67, 128;
   --ion-color-primary-contrast: #ffffff;
   --ion-color-primary-contrast-rgb: 255, 255, 255;
   --ion-color-primary-shade: #FDA2C6;
   --ion-color-primary-tint: #FF759D;
 
   /** secondary **/
-  --ion-color-secondary: #0cd1e8;
-  --ion-color-secondary-rgb: 12, 209, 232;
+  --ion-color-secondary: #FDA2C6;
+  --ion-color-secondary-rgb: 253, 162, 198;
   --ion-color-secondary-contrast: #ffffff;
   --ion-color-secondary-contrast-rgb: 255, 255, 255;
-  --ion-color-secondary-shade: #0bb8cc;
-  --ion-color-secondary-tint: #24d6ea;
+  --ion-color-secondary-shade: #fcbad5;
+  --ion-color-secondary-tint: #fc65a1;
 
   /** tertiary **/
   --ion-color-tertiary: #7044ff;

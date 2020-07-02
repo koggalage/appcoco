@@ -21,7 +21,8 @@
 
         
         <ion-button size="large" (click)="signIn()" expand="block" class="login-btn" color="dark">Login</ion-button>
-        <div *ngIf="isInvalidLogin" class="error-msg">Invalid Credentials. Please try again!</div>
+        <ion-label *ngIf="isInvalidLogin" color="danger">Invalid Credentials. Please try again!</ion-label>
+        
 
       </ion-col>
 

@@ -1,154 +1,168 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
+<ion-header class="ion-no-border">
+  <ion-toolbar color="primary" class="ion-no-border header-toolbar">
+    <ion-buttons color="dark" slot="start">
+      <ion-back-button></ion-back-button>
     </ion-buttons>
 
-    <ion-title color="primary">Customer Registration</ion-title>
+    <ion-title color="light" class="title ion-text-center ion-padding-vertical">Customer registration</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content padding fullscreen scroll-y="false">
+
+
   <form (ngSubmit)="cusRegForm.form.valid && onAddNewCustomer()" #cusRegForm="ngForm">
+    <ion-slides no-padding class="slide-wrapper">
+      <ion-slide no-padding>
+        <div class="slide ion-padding-horizontal">
+          <div class="progress-bar">
+            <span class="bar-item filled"></span>
+            <span class="bar-item"></span>
+            <span class="bar-item"></span>
+          </div>
+          <ion-text color="primary" no-padding class="ion-padding-vertical ion-text-start">
+            <h4>Personal information</h4>
+          </ion-text>
+          <ion-item class="ion-no-padding">
+            <ion-label position="stacked" color="primary">Full name <span color="danger">*</span></ion-label>
+            <ion-input maxlength="250" type="text" [(ngModel)]="customerInfo.FullName" name="FullName"
+              #FullName="ngModel" required>
+            </ion-input>
+          </ion-item>
+          <ion-label no-margin color="danger" *ngIf="cusRegForm.submitted && FullName.invalid" class="ion-text-start">
+            <span class="error-msg">* Full name is required.</span>
+          </ion-label>
 
-    <ion-grid>
+          <ion-item class="ion-no-padding ion-margin-vertical">
+            <ion-label position="stacked" color="primary">Profession</ion-label>
+            <ion-input maxlength="50" type="text" [(ngModel)]="customerInfo.Profession" name="Profession">
+            </ion-input>
+          </ion-item>
 
-      <!-- <ion-row>
-        <ion-label>Customer Id:</ion-label>
-      </ion-row>
-      <ion-row>
-        <ion-input maxlength="10" type="text" [(ngModel)]="customerInfo.CustomerId" name="CustomerId"
-          #CustomerId="ngModel" required>
-        </ion-input>
-      </ion-row>
-      <ion-row *ngIf="cusRegForm.submitted && CustomerId.invalid">
-        <ion-label class="error-msg">* Customer Id is required.</ion-label>
-      </ion-row>
-      <ion-row *ngIf="cusRegForm.submitted && isCustomerIdExist">
-        <ion-label class="error-msg">* Customer Id is already exist in the Database.</ion-label>
-      </ion-row> -->
+          <ion-item no-margin class="ion-no-padding" lines="none">
+            <ion-label position="stacked" color="primary">Gender <span color="danger">*</span></ion-label>
+            <ion-radio-group [(ngModel)]="customerInfo.Gender" name="gender" #gender="ngModel" required>
+              <ion-row>
+                <ion-col>
+                  <ion-item lines="none" no-padding>
+                    <ion-label class="radio-btn-label" color="secondary">Male</ion-label>
+                    <ion-radio [value]="'Male'" mode="md" slot="start" color="secondary"></ion-radio>
+                  </ion-item>
+                </ion-col>
+                <ion-col>
+                  <ion-item lines="none" no-padding>
+                    <ion-label class="radio-btn-label" color="secondary">Female</ion-label>
+                    <ion-radio class="radio-btn" [value]="'Female'" mode="md" slot="start" color="secondary">
+                    </ion-radio>
+                  </ion-item>
+                </ion-col>
+              </ion-row>
+            </ion-radio-group>
+          </ion-item>
+          <ion-label color="danger" *ngIf="cusRegForm.submitted && gender.invalid">
+            <span class="error-msg">* Gender is required.</span>
+          </ion-label>
 
-      <ion-row>
-        <ion-label>Full Name:</ion-label>
-      </ion-row>
-      <ion-row>
-        <ion-input maxlength="250" type="text" [(ngModel)]="customerInfo.FullName" name="FullName" #FullName="ngModel"
-          required>
-        </ion-input>
-      </ion-row>
-      <ion-row *ngIf="cusRegForm.submitted && FullName.invalid">
-        <ion-label class="error-msg">* FullName is required.</ion-label>
-      </ion-row>
-
-      <ion-row>
-        <ion-label>Mobile:</ion-label>
-      </ion-row>
-      <ion-row>
-        <ion-input maxlength="15" type="number" [(ngModel)]="customerInfo.MobileNo" name="MobileNo" #MobileNo="ngModel"
-          required>
-        </ion-input>
-      </ion-row>
-      <ion-row *ngIf="cusRegForm.submitted && MobileNo.invalid">
-        <ion-label class="error-msg">* Mobile Number is required.</ion-label>
-      </ion-row>
-
-      <ion-row>
-        <ion-label>Email:</ion-label>
-      </ion-row>
-      <ion-row>
-        <ion-input maxlength="50" type="email" [(ngModel)]="customerInfo.Email" name="Email" #Email="ngModel" email
-          required>
-        </ion-input>
-      </ion-row>
-      <ion-row *ngIf="cusRegForm.submitted && Email.invalid">
-        <ion-label *ngIf="Email.errors.required" class="error-msg">* Email is required.</ion-label>
-        <ion-label *ngIf="Email.errors.email" class="error-msg">* Email is invalid.</ion-label>
-      </ion-row>
-
-      <ion-row>
-        <ion-label>Address:</ion-label>
-      </ion-row>
-      <ion-row>
-        <ion-textarea maxlength="350" rows="1" type="text" [(ngModel)]="customerInfo.Address" name="Address"
-          #Address="ngModel" required>
-        </ion-textarea>
-      </ion-row>
-      <ion-row *ngIf="cusRegForm.submitted && Address.invalid">
-        <ion-label class="error-msg">* Address is required.</ion-label>
-      </ion-row>
-
-      <!-- <ion-row>
-        <ion-label>NIC:</ion-label>
-      </ion-row>
-      <ion-row>
-        <ion-input type="text" [(ngModel)]="customerInfo.NIC" name="NIC" #NIC="ngModel" required>
-        </ion-input>
-      </ion-row>
-      <ion-row *ngIf="cusRegForm.submitted && NIC.invalid">
-        <ion-label class="error-msg">* NIC is required.</ion-label>
-      </ion-row> -->
-
-      <ion-row>
-        <ion-label>Profession:</ion-label>
-      </ion-row>
-      <ion-row>
-        <ion-input maxlength="50" type="text" [(ngModel)]="customerInfo.Profession" name="Profession"></ion-input>
-      </ion-row>
-
-      <ion-item-divider>
-
-      </ion-item-divider>
-
-      <ion-item>
-        <ion-radio-group [(ngModel)]="customerInfo.Gender" name="gender" #gender="ngModel" required>
-          <ion-row>
-            <ion-col>
-              <ion-label>Female:</ion-label>
-              <ion-radio [value]="'Female'"></ion-radio>
-            </ion-col>
-
-            <ion-col>
-              <ion-label>Male:</ion-label>
-              <ion-radio [value]="'Male'"></ion-radio>
+          <ion-row no-padding class="button-wrapper">
+            <ion-col no-padding>
+              <ion-button size="large" expand="block" class="slide-btn" color="primary">
+                Next
+                <ion-icon slot="end" ios="ios-arrow-forward"></ion-icon>
+              </ion-button>
             </ion-col>
           </ion-row>
-        </ion-radio-group>
-      </ion-item>
+        </div>
+      </ion-slide>
 
-      <ion-row *ngIf="cusRegForm.submitted && gender.invalid">
-        <ion-label class="error-msg">* Gender is required.</ion-label>
-      </ion-row>
+      <ion-slide>
+        <div class="slide ion-padding-horizontal">
+          <div class="progress-bar">
+            <span class="bar-item filled"></span>
+            <span class="bar-item filled"></span>
+            <span class="bar-item"></span>
+          </div>
+          <ion-text color="primary" no-padding class="ion-padding-vertical ion-text-start">
+            <h4>Contact information</h4>
+          </ion-text>
+          <ion-item class="ion-no-padding">
+            <ion-label position="stacked" color="primary">Mobile <span color="danger">*</span></ion-label>
+            <ion-input maxlength="15" type="number" [(ngModel)]="customerInfo.MobileNo" name="MobileNo"
+              #MobileNo="ngModel" required>
+            </ion-input>
+          </ion-item>
+          <ion-label color="danger" *ngIf="cusRegForm.submitted && MobileNo.invalid">
+            <span class="error-msg">* Mobile Number is required.</span>
+          </ion-label>
+          <ion-item class="ion-no-padding ion-margin-top">
+            <ion-label position="stacked" color="primary">Email <span color="danger">*</span></ion-label>
+            <ion-input maxlength="50" type="email" [(ngModel)]="customerInfo.Email" name="Email" #Email="ngModel" email
+              required>
+            </ion-input>
+          </ion-item>
+          <ion-label color="danger" *ngIf="cusRegForm.submitted && Email.invalid">
+            <span *ngIf="Email.errors.required" class="error-msg">* Email is required.</span>
+            <span *ngIf="Email.errors.email" class="error-msg">* Email is invalid.</span>
+          </ion-label>
 
-      <ion-item-divider>
+          <ion-item class="ion-no-padding ion-margin-top">
+            <ion-label position="stacked" color="primary">Address <span color="danger">*</span></ion-label>
+            <ion-textarea maxlength="350" rows="1" type="text" [(ngModel)]="customerInfo.Address" name="Address"
+              #Address="ngModel" required>
+            </ion-textarea>
+          </ion-item>
+          <ion-label color="danger" *ngIf="cusRegForm.submitted && Address.invalid">
+            <span class="error-msg">* Address is required.</span>
+          </ion-label>
 
-      </ion-item-divider>
+          <ion-row no-padding class="button-wrapper">
+            <ion-col no-padding>
+              <ion-button size="large" expand="block" class="slide-btn" color="primary">
+                Next
+                <ion-icon slot="end" ios="ios-arrow-forward"></ion-icon>
+              </ion-button>
+            </ion-col>
+          </ion-row>
+        </div>
+      </ion-slide>
 
-      <ion-row>
-        <ion-label>Signature:</ion-label>
-      </ion-row>
-      <ion-row>
-        <signature-pad id="signature" [options]="signaturePadOptions" (onEndEvent)="drawComplete()">
-        </signature-pad>
-      </ion-row>
-      <ion-row>
-        <ion-button type="button" color="danger" (click)="drawClear()" expand="block">Clear</ion-button>
-      </ion-row>
+      <ion-slide>
+        <div class="slide ion-padding-horizontal">
+          <div class="progress-bar">
+            <span class="bar-item filled"></span>
+            <span class="bar-item filled"></span>
+            <span class="bar-item filled"></span>
+          </div>
+          <ion-text color="primary" no-padding class="ion-padding-vertical ion-text-start">
+            <h4>Other information</h4>
+          </ion-text>
+          <ion-item class="ion-no-padding" lines="none">
+            <ion-label position="stacked" color="primary">Signature <span color="danger">*</span></ion-label>
+            <ion-card no-margin class="sign-pad-wrapper">
+              <signature-pad id="signature" [options]="signaturePadOptions" (onEndEvent)="drawComplete()">
+              </signature-pad>
+            </ion-card>
+            <ion-item class="ion-no-padding" lines="none">
+              <ion-chip outline color="secondary" (click)="drawClear()">
+                <ion-label>Clear</ion-label>
+              </ion-chip>
+            </ion-item>
+          </ion-item>
+          <ion-label class="ion-text-center" color="danger" *ngIf="cusRegForm.submitted && !customerInfo.SignatureURL">
+            <span class="error-msg">* Signature is required.</span>
+          </ion-label>
 
-      <ion-row *ngIf="cusRegForm.submitted && !customerInfo.SignatureURL">
-        <ion-label class="error-msg">* Signature is required.</ion-label>
-      </ion-row>
-
-      <ion-item-divider>
-
-      </ion-item-divider>
-
-      <ion-row>
-        <ion-col>
-          <ion-button type="submit" color="primary" expand="block">Save</ion-button>
-        </ion-col>
-      </ion-row>
-
-    </ion-grid>
-
+          <!-- <ion-button class="ion-margin-top" type="submit" color="primary" expand="block">Save</ion-button> -->
+          <ion-row no-padding class="button-wrapper">
+            <ion-col no-padding>
+              <ion-button size="large" expand="block" class="slide-btn" color="primary" type="submit">
+                Complete
+                <ion-icon slot="end" name="checkmark-circle-outline" md="md-checkmark-circle-outline"></ion-icon>
+              </ion-button>
+            </ion-col>
+          </ion-row>
+        </div>
+      </ion-slide>
+    </ion-slides>
   </form>
+
 </ion-content>

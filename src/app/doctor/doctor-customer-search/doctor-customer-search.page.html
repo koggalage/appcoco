@@ -1,0 +1,51 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar color="primary" class="ion-no-border header-toolbar">
+    <ion-buttons color="dark" slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title color="light" class="title ion-text-center ion-padding-vertical">Customer search</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding class="main-wrapper">
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <form (ngSubmit)="seachCustomers()">
+          <ion-item class="ion-no-padding ion-margin-bottom">
+            <ion-label position="stacked" color="primary">Customer Name</ion-label>
+            <ion-input type="text" [(ngModel)]="customerSearchRequest.CustomerName" name="LName">
+            </ion-input>
+          </ion-item>
+          <ion-item class="ion-no-padding ion-margin-bottom">
+            <ion-label position="stacked" color="primary">Registration No</ion-label>
+            <ion-input type="text" [(ngModel)]="customerSearchRequest.CustomerId" name="CustomerId">
+            </ion-input>
+          </ion-item>
+          <ion-item class="ion-no-padding ion-margin-bottom">
+            <ion-label position="stacked" color="primary">Mobile</ion-label>
+            <ion-input type="number" [(ngModel)]="customerSearchRequest.MobileNo" name="MobileNo">
+            </ion-input>
+          </ion-item>
+
+          <ion-button class="search-btn ion-text-uppercase ion-margin-top ion-text-center" shape="round" type="submit">
+            Search
+            <ion-spinner *ngIf="isShowLoader" slot="end" name="bubbles"></ion-spinner>
+          </ion-button>
+          <ion-text color="primary" class="reset-text ion-text-center">
+            <p>or <span (click)="onResetClick()">reset fields</span></p>
+          </ion-text>
+        </form>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid>
+
+  </ion-grid>
+
+</ion-content>
+
+<ion-footer class="page-footer ion-no-border">
+
+</ion-footer>

@@ -3,7 +3,6 @@
         <ion-buttons color="dark" slot="start">
             <ion-back-button></ion-back-button>
         </ion-buttons>
-
         <ion-title color="light" class="title ion-text-center ion-padding-vertical">Customer search</ion-title>
     </ion-toolbar>
 </ion-header>
@@ -32,14 +31,11 @@
                     <ion-button class="search-btn ion-text-uppercase ion-margin-top ion-text-center" shape="round"
                         type="submit">
                         Search
-                        <ion-spinner slot="end" name="bubbles"></ion-spinner>
+                        <ion-spinner *ngIf="isShowLoader" slot="end" name="bubbles"></ion-spinner>
                     </ion-button>
                     <ion-text color="primary" class="reset-text ion-text-center">
-                        <p>or <span>reset fields</span></p>
+                        <p>or <span (click)="onResetClick()">reset fields</span></p>
                     </ion-text>
-                    <ion-label *ngIf="isNotRegistered && isSearched" color="danger"
-                        class="error-msg ion-text-center ion-margin-start">No customers found.<br>Please Register as a
-                        new user or search again!</ion-label>
                 </form>
             </ion-col>
         </ion-row>
@@ -49,39 +45,8 @@
 
     </ion-grid>
 
-    <ion-grid class="search" *ngIf="!isNotRegistered">
-        <ion-row class="search-header">
-            <ion-col>
-                <ion-label color="primary">Customer Id</ion-label>
-            </ion-col>
-            <ion-col>
-                <ion-label color="primary">Full Name</ion-label>
-            </ion-col>
-            <ion-col class="ion-text-end">
-                <ion-label color="primary" class="ion-text-end">Mobile</ion-label>
-            </ion-col>
-        </ion-row>
-
-        <ion-card color="light" class="search-results" *ngFor="let customer of customerInfo" (click)="redirectCustomer(customer)">
-            <ion-card-content>
-                <ion-row nowrap>
-
-                    <ion-col>
-                        {{customer.CustomerId}}
-                    </ion-col>
-                    <ion-col>
-                        {{customer.FullName}}
-                    </ion-col>
-                    <ion-col class="ion-text-end">
-                        {{customer.MobileNo}}
-                    </ion-col>
-
-                </ion-row>
-            </ion-card-content>
-        </ion-card>
-    </ion-grid>
 </ion-content>
 
 <ion-footer class="page-footer ion-no-border">
-  
+
 </ion-footer>

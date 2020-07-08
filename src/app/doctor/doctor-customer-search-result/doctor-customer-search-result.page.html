@@ -1,0 +1,49 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar color="primary" class="ion-no-border header-toolbar">
+    <ion-buttons color="dark" slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+
+    <ion-title color="light" class="title ion-text-center ion-padding-vertical">Customer search Results</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-label *ngIf="isCustomersNotFound" color="danger" class="error-msg ion-text-center ion-margin-start">No customers
+    found.<br>Please Register as a
+    new user or search again!</ion-label>
+
+  <ion-grid *ngIf="!isCustomersNotFound" class="search">
+    <ion-row class="search-header">
+      <ion-col>
+        <ion-label color="primary">Customer Id</ion-label>
+      </ion-col>
+      <ion-col>
+        <ion-label color="primary">Full Name</ion-label>
+      </ion-col>
+      <ion-col class="ion-text-end">
+        <ion-label color="primary" class="ion-text-end">Mobile</ion-label>
+      </ion-col>
+    </ion-row>
+
+    <ion-card color="light" class="search-results" *ngFor="let customer of customerInfo"
+      (click)="redirectCustomer(customer)">
+      <ion-card-content>
+        <ion-row nowrap>
+
+          <ion-col>
+            {{customer.CustomerId}}
+          </ion-col>
+          <ion-col>
+            {{customer.FullName}}
+          </ion-col>
+          <ion-col class="ion-text-end">
+            {{customer.MobileNo}}
+          </ion-col>
+
+        </ion-row>
+      </ion-card-content>
+    </ion-card>
+  </ion-grid>
+</ion-content>

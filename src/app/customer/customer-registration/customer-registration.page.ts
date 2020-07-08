@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 import { CustomerUIService } from '../customer-ui.service';
 import { ToastController } from '@ionic/angular';
 import { environment } from 'src/environments/environment';
+import { IonSlides } from '@ionic/angular';
 
 @Component({
   selector: 'app-customer-registration',
@@ -16,6 +17,7 @@ import { environment } from 'src/environments/environment';
 })
 export class CustomerRegistrationPage implements OnInit {
   @ViewChild(SignaturePad, { static: false }) public signaturePad: SignaturePad;
+  @ViewChild('mySlider', { static: false }) slides: IonSlides;
 
   private baseUrl: string = environment.host;
 
@@ -50,6 +52,14 @@ export class CustomerRegistrationPage implements OnInit {
       color: color
     });
     toast.present();
+  }
+
+  swipeNext() {
+    this.slides.slideNext();
+  }
+
+  swipePreviouse() {
+    this.slides.slidePrev();
   }
 
   onAddNewCustomer() {

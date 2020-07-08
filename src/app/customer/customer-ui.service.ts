@@ -11,6 +11,7 @@ export class CustomerUIService {
   private readonly currentlyLoadedComponent$: Subject<ComponentStatus> = new Subject();
   private readonly selectedCustomerRegNo$: BehaviorSubject<string> = new BehaviorSubject<string>(null);
   private readonly selectedCustomer$: BehaviorSubject<CustomerInfo> = new BehaviorSubject<CustomerInfo>(null);
+  public searchedCustomers: CustomerInfo[];
 
   constructor() { }
 
@@ -36,5 +37,13 @@ export class CustomerUIService {
 
   public getSelectedCustomer(): Observable<CustomerInfo> {
     return this.selectedCustomer$.asObservable();
+  }
+
+  public saveSearchedCustomers(customers: CustomerInfo[]) {
+    this.searchedCustomers = customers;
+  }
+
+  public retrieveSearchedCustomers() {
+    return this.searchedCustomers;
   }
 }

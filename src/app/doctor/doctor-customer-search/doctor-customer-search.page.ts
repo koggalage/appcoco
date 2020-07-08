@@ -1,17 +1,17 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from "@angular/router";
-import { CustomerSearchRequest, CustomerInfo } from '../customer-model';
-import { CustomerDataService } from '../customer-data-service';
+import { CustomerSearchRequest, CustomerInfo } from '../../customer/customer-model';
+import { CustomerDataService } from '../../customer/customer-data-service';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { CustomerUIService } from '../customer-ui.service';
+import { CustomerUIService } from '../../customer/customer-ui.service';
 
 @Component({
-  selector: 'app-customer-search',
-  templateUrl: './customer-search.page.html',
-  styleUrls: ['./customer-search.page.scss'],
+  selector: 'app-doctor-customer-search',
+  templateUrl: './doctor-customer-search.page.html',
+  styleUrls: ['./doctor-customer-search.page.scss'],
 })
-export class CustomerSearchPage implements OnInit, OnDestroy {
+export class DoctorCustomerSearchPage implements OnInit {
 
   public customers: any[];
   public isShowLoader: boolean = false;
@@ -49,4 +49,5 @@ export class CustomerSearchPage implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
   }
+
 }

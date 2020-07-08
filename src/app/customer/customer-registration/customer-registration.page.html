@@ -12,7 +12,7 @@
 
 
   <form (ngSubmit)="cusRegForm.form.valid && onAddNewCustomer()" #cusRegForm="ngForm">
-    <ion-slides no-padding class="slide-wrapper">
+    <ion-slides no-padding class="slide-wrapper" [options]="{onlyExternal: false}" #mySlider>
       <ion-slide no-padding>
         <div class="slide ion-padding-horizontal">
           <div class="progress-bar">
@@ -65,8 +65,16 @@
 
           <ion-row no-padding class="button-wrapper">
             <ion-col no-padding>
-              <ion-button size="large" expand="block" class="slide-btn" color="primary">
+              <ion-button size="large" expand="block" class="slide-btn" color="primary" (click)="swipeNext()">
                 Next
+                <ion-icon slot="end" ios="ios-arrow-forward"></ion-icon>
+              </ion-button>
+            </ion-col>
+          </ion-row>
+          <ion-row no-padding class="button-wrapper">
+            <ion-col no-padding>
+              <ion-button size="large" expand="block" class="slide-btn" color="primary" (click)="slidePrev()">
+                Previouse
                 <ion-icon slot="end" ios="ios-arrow-forward"></ion-icon>
               </ion-button>
             </ion-col>

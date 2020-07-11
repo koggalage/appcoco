@@ -1,9 +1,10 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
+<ion-header class="ion-no-border">
+  <ion-toolbar color="primary" class="ion-no-border header-toolbar">
+    <ion-buttons color="dark" slot="start">
+      <ion-back-button></ion-back-button>
     </ion-buttons>
-    <ion-title color="primary">Initial Assesment Form</ion-title>
+
+    <ion-title color="light" class="title ion-text-center ion-padding-vertical">Initial Assesment Form</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -37,8 +38,8 @@
       <ion-label color="tertiary">Gendar:</ion-label>
     </ion-row>
     <ion-row>
-      <ion-input *ngIf="customerInfo?.Gender == 'M' || customerInfo?.Gender == 'Male'" color="dark" class="ion-text-start"
-        type="text" value="Male" name="Gender" readonly></ion-input>
+      <ion-input *ngIf="customerInfo?.Gender == 'M' || customerInfo?.Gender == 'Male'" color="dark"
+        class="ion-text-start" type="text" value="Male" name="Gender" readonly></ion-input>
       <ion-input *ngIf="customerInfo?.Gender == 'F' || customerInfo?.Gender == 'Female'" color="dark"
         class="ion-text-start" type="text" value="Female" name="Gender" readonly></ion-input>
     </ion-row>
@@ -55,7 +56,8 @@
       <ion-label color="tertiary">Address:</ion-label>
     </ion-row>
     <ion-row *ngIf="customerInfo?.Address">
-      <ion-textarea rows="1" class="ion-text-start" type="text" value="{{customerInfo?.Address}}" name="Address" readonly>
+      <ion-textarea rows="1" class="ion-text-start" type="text" value="{{customerInfo?.Address}}" name="Address"
+        readonly>
       </ion-textarea>
     </ion-row>
 

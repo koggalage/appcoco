@@ -15,6 +15,7 @@ export class CustomerSearchPage implements OnInit, OnDestroy {
 
   public customers: any[];
   public isShowLoader: boolean = false;
+  public isNoKeyword: boolean = false;
   public customerSearchRequest = new CustomerSearchRequest();
   private ngUnsubscription = new Subject();
 
@@ -29,7 +30,16 @@ export class CustomerSearchPage implements OnInit, OnDestroy {
   }
 
   seachCustomers() {
+    if (!this.customerSearchRequest.CustomerId &&
+      !this.customerSearchRequest.CustomerName &&
+      !this.customerSearchRequest.MobileNo) {
+      this.isNoKeyword = true;
+      return;
+    }
+
+    this.isNoKeyword = false;;
     this.isShowLoader = true;
+
     this.customerDataService
       .searchCustomers(this.customerSearchRequest)
       .pipe(takeUntil(this.ngUnsubscription))

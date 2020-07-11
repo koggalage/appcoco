@@ -63,22 +63,7 @@
             <span class="error-msg">* Gender is required.</span>
           </ion-label>
 
-          <ion-row no-padding class="button-wrapper">
-            <ion-col no-padding>
-              <ion-button size="large" expand="block" class="slide-btn" color="primary" (click)="swipeNext()">
-                Next
-                <ion-icon slot="end" ios="ios-arrow-forward"></ion-icon>
-              </ion-button>
-            </ion-col>
-          </ion-row>
-          <ion-row no-padding class="button-wrapper">
-            <ion-col no-padding>
-              <ion-button size="large" expand="block" class="slide-btn" color="primary" (click)="slidePrev()">
-                Previouse
-                <ion-icon slot="end" ios="ios-arrow-forward"></ion-icon>
-              </ion-button>
-            </ion-col>
-          </ion-row>
+
         </div>
       </ion-slide>
 
@@ -170,7 +155,38 @@
           </ion-row>
         </div>
       </ion-slide>
+
+
+
+      <!-- <ion-row no-padding class="button-wrapper">
+        <ion-col no-padding>
+          <ion-button size="large" expand="block" class="slide-btn" color="primary" (click)="swipeNext()">
+            Next
+            <ion-icon slot="end" ios="ios-arrow-forward"></ion-icon>
+          </ion-button>
+        </ion-col>
+      </ion-row>
+      <ion-row no-padding class="button-wrapper">
+        <ion-col no-padding>
+          <ion-button size="large" expand="block" class="slide-btn" color="primary" (click)="slidePrev()">
+            Previouse
+            <ion-icon slot="end" ios="ios-arrow-forward"></ion-icon>
+          </ion-button>
+        </ion-col>
+      </ion-row> -->
+
     </ion-slides>
+
+    <ion-button color="primary" (click)="swipeNext()">
+      Next
+      <ion-icon slot="end" ios="ios-arrow-forward"></ion-icon>
+    </ion-button>
+
+    <ion-button color="primary" (click)="swipePreviouse()">
+      Previouse
+      <ion-icon slot="end" ios="ios-arrow-forward"></ion-icon>
+    </ion-button>
+
   </form>
 
 </ion-content>

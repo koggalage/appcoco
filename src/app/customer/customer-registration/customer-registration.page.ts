@@ -27,6 +27,7 @@ export class CustomerRegistrationPage implements OnInit {
     'canvasHeight': 200
   };
 
+  public slideOptions: {};
   public customerInfo = new CustomerInfo();
   private ngUnsubscription = new Subject();
 
@@ -41,6 +42,13 @@ export class CustomerRegistrationPage implements OnInit {
   }
 
   ngOnInit() {
+    this.slideOptions = {
+      initialSlide: 0,
+      loop: false,
+      direction: 'horizontal',
+      pager: true,
+      speed: 800
+    }
   }
 
   async presentToast(header: string, message: string, duration: number, color: string) {
@@ -54,11 +62,15 @@ export class CustomerRegistrationPage implements OnInit {
     toast.present();
   }
 
+
+
   swipeNext() {
+    this.slides.lockSwipes(false);
     this.slides.slideNext();
   }
 
   swipePreviouse() {
+    this.slides.lockSwipes(false);
     this.slides.slidePrev();
   }
 

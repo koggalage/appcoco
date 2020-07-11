@@ -28,6 +28,10 @@
                         </ion-input>
                     </ion-item>
 
+                    <div *ngIf="isNoKeyword">
+                        Please enter atleast one keyword!
+                    </div>
+
                     <ion-button class="search-btn ion-text-uppercase ion-margin-top ion-text-center" shape="round"
                         type="submit">
                         Search

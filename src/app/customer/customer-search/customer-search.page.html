@@ -29,9 +29,10 @@
                         </ion-input>
                     </ion-item>
 
-                    <div *ngIf="isNoKeyword">
-                        Please enter atleast one keyword!
-                    </div>
+
+                    <ion-label *ngIf="isNoKeyword" color="danger" class="error-msg ion-text-center">
+                        Please enter at least one keyword!
+                    </ion-label>
 
                     <ion-button class="search-btn ion-text-uppercase ion-margin-top ion-text-center" shape="round"
                         type="submit">

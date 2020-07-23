@@ -39,7 +39,7 @@ export class CustomerSerchResultPage implements OnInit {
     this.customerUIService.setSelectedCustomer(customer);
 
     if (this.user.UserType == "Doctor") {
-      this.router.navigate(['/history-list']);
+      this.router.navigate(['/doctor-menu']);
     } else {
       if (customer.FullName == null ||
         customer.MobileNo.replace(/\s/g, "") == "" ||

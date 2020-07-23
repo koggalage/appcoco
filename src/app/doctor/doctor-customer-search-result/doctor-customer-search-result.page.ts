@@ -39,20 +39,21 @@ export class DoctorCustomerSearchResultPage implements OnInit {
     this.customerUIService.setSelectedCustomer(customer);
 
     if (this.user.UserType == "Doctor") {
-      this.router.navigate(['/history-list']);
-    } else {
-      if (customer.FullName == null ||
-        customer.MobileNo.replace(/\s/g, "") == "" ||
-        customer.Email == null ||
-        customer.SignatureURL == null) {
-        this.router.navigate(['/customer-info']);
-      } else if (!customer.IsFilledInitConcern) {
-        this.router.navigate(['/init-concent']);
-      } else {
-        this.router.navigate(['/daily-concent']);
-      }
-
+      this.router.navigate(['/doctor-menu']);
     }
+    // else {
+    //   if (customer.FullName == null ||
+    //     customer.MobileNo.replace(/\s/g, "") == "" ||
+    //     customer.Email == null ||
+    //     customer.SignatureURL == null) {
+    //     this.router.navigate(['/customer-info']);
+    //   } else if (!customer.IsFilledInitConcern) {
+    //     this.router.navigate(['/init-concent']);
+    //   } else {
+    //     this.router.navigate(['/daily-concent']);
+    //   }
+
+    // }
   }
 
 }

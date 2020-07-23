@@ -12,6 +12,8 @@ import { Router } from '@angular/router';
 })
 export class HomePage {
 
+  public user: any;
+  public userName: string;
   images: any[];
 
   slideOptions = {
@@ -23,7 +25,11 @@ export class HomePage {
     private authenticationService: AuthenticationService,
     private router: Router
   ) {
+    this.user = JSON.parse(localStorage.getItem('currentUser'));
     this.initializeItems();
+
+    this.userName = this.user.FullName.split(" ")[0];
+    console.log('this.userName', this.userName);
   }
 
   slidesDidLoad(slides: IonSlides) {

@@ -24,11 +24,19 @@
     <ion-row class="main-wrapper">
       <ion-col>
         <ion-text class="text-wrapper ion-text-center" color="light">
-          <h2>Hi Chandika,</h2>
+          <h2>Hi {{userName}},</h2>
           <p class="ion-no-margin">Select your preference</p>
         </ion-text>
       </ion-col>
     </ion-row>
+  </ion-grid>
+
+  <ion-grid *ngIf="user.UserType == 'Doctor'">
+    I'm a doctor
+  </ion-grid>
+
+  <ion-grid *ngIf="user.UserType != 'Doctor'">
+    I'm a User
   </ion-grid>
 
   <ion-grid padding class="home-body">

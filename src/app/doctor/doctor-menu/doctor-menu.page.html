@@ -1,0 +1,23 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar color="primary" class="ion-no-border header-toolbar">
+    <ion-buttons color="dark" slot="start">
+      <ion-back-button defaultHref="/doctor-customer-search"></ion-back-button>
+    </ion-buttons>
+
+    <ion-title color="light" class="title ion-text-center ion-padding-vertical">Name</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-button (click)="onDailyUpdateClick()" class="search-btn ion-text-uppercase ion-margin-top ion-text-center"
+    shape="round">
+    Daily Update
+  </ion-button>
+
+  <ion-button (click)="onHistoryListClick()" class="search-btn ion-text-uppercase ion-margin-top ion-text-center"
+    shape="round">
+    Treatment History List
+  </ion-button>
+
+</ion-content>

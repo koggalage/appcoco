@@ -1,7 +1,7 @@
 <ion-header class="ion-no-border">
   <ion-toolbar color="primary" class="ion-no-border header-toolbar">
     <ion-buttons color="dark" slot="start">
-      <ion-back-button></ion-back-button>
+      <ion-back-button defaultHref="/home"></ion-back-button>
     </ion-buttons>
 
     <ion-title color="light" class="title ion-text-center ion-padding-vertical">Customer registration</ion-title>
@@ -177,17 +177,17 @@
 
     <ion-row no-padding class="button-wrapper">
       <ion-col no-padding>
-    <ion-button size="large" expand="block" class="slide-btn" color="primary" (click)="swipeNext()">
-      Next
-      <ion-icon slot="end" ios="ios-arrow-forward"></ion-icon>
-    </ion-button>
+        <ion-button size="large" expand="block" class="slide-btn" color="primary" (click)="swipeNext()">
+          Next
+          <ion-icon slot="end" ios="ios-arrow-forward"></ion-icon>
+        </ion-button>
 
-    <ion-button size="large" expand="block" class="slide-btn" color="primary" (click)="swipePreviouse()">
-      Previous
-      <ion-icon slot="end" ios="ios-arrow-forward"></ion-icon>
-    </ion-button>
-    </ion-col>
-  </ion-row>
+        <ion-button size="large" expand="block" class="slide-btn" color="primary" (click)="swipePreviouse()">
+          Previous
+          <ion-icon slot="end" ios="ios-arrow-forward"></ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row>
   </form>
 
 </ion-content>

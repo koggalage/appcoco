@@ -4,13 +4,13 @@
 
 export const environment = {
   production: false,
-  api: 'http://02e65c5571bf.ngrok.io/api/',
+  // api: 'http://02e65c5571bf.ngrok.io/api/',
   //api: 'http://c1632bcd.ngrok.io/api/',
   //api: 'http://192.168.100.148:8068/api/',
-  //api: 'http://localhost:57045/api/',
-  host: 'http://02e65c5571bf.ngrok.io'
+  api: 'http://localhost:57045/api/',
+  // host: 'http://02e65c5571bf.ngrok.io'
   //host: 'http://c1632bcd.ngrok.io/'
-  //host: 'http://localhost:57045/'
+  host: 'http://localhost:57045/'
   //host: 'http://192.168.100.148:8068/'
 };
 

@@ -20,7 +20,8 @@ const routes: Routes = [
   { path: 'history-details', loadChildren: './history/history-details/history-details.module#HistoryDetailsPageModule' },
   { path: 'customer-info', loadChildren: './customer/customer-info/customer-info.module#CustomerInfoPageModule' },  { path: 'customer-serch-result', loadChildren: './customer/customer-serch-result/customer-serch-result.module#CustomerSerchResultPageModule' },
   { path: 'doctor-customer-search', loadChildren: './doctor/doctor-customer-search/doctor-customer-search.module#DoctorCustomerSearchPageModule' },
-  { path: 'doctor-customer-search-result', loadChildren: './doctor/doctor-customer-search-result/doctor-customer-search-result.module#DoctorCustomerSearchResultPageModule' }
+  { path: 'doctor-customer-search-result', loadChildren: './doctor/doctor-customer-search-result/doctor-customer-search-result.module#DoctorCustomerSearchResultPageModule' },
+  { path: 'doctor-menu', loadChildren: './doctor/doctor-menu/doctor-menu.module#DoctorMenuPageModule' }
 
 ];
 

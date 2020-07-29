@@ -53,4 +53,8 @@ export class HistoryListPage implements OnInit {
     this.router.navigate(['/history-details']);
   }
 
+  onBackButtonClick() {
+    this.router.navigateByUrl('/doctor-menu');
+  }
+
 }

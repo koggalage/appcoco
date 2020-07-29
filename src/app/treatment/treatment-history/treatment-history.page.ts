@@ -4,6 +4,7 @@ import { TreatmentDataService } from '../treatment-data-service';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { CustomerUIService } from 'src/app/customer/customer-ui.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-treatment-history',
@@ -19,6 +20,7 @@ export class TreatmentHistoryPage implements OnInit {
   constructor(
     private customerUIService: CustomerUIService,
     private treatmentDataService: TreatmentDataService,
+    private router: Router,
   ) { }
 
   ngOnInit() {
@@ -42,6 +44,10 @@ export class TreatmentHistoryPage implements OnInit {
       .subscribe((history: TreatmentHistory) => {
         this.treatmentHistory = history;
       });
+  }
+
+  onBackButtonClick() {
+    this.router.navigateByUrl('/doctor-customer-search');
   }
 
 }

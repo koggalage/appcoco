@@ -1,8 +1,13 @@
 <ion-header class="ion-no-border">
   <ion-toolbar color="primary" class="ion-no-border header-toolbar">
-    <ion-buttons class="ion-padding-start" color="dark" slot="start">
+    <!-- <ion-buttons class="ion-padding-start" color="dark" slot="start">
       <ion-back-button icon="md-arrow-back" text="" defaultHref="/customer-search"></ion-back-button>
-    </ion-buttons>
+    </ion-buttons> -->
+
+    <ion-button slot="start" (click)="onBackButtonClick()" type="button" size="large" expand="block"
+      class="ion-padding-start">
+      <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+    </ion-button>
 
     <ion-title color="light" class="title ion-text-center ion-padding-vertical">Patient Selected</ion-title>
   </ion-toolbar>
@@ -12,10 +17,10 @@
 
   <ion-item class="ion-padding-top" lines="none">
     <ion-label no-margin color="primary">
-      Patient's ID 
+      Patient's ID
 
       <ion-chip color="primary">
-        <ion-label>6457458468</ion-label>
+        <ion-label>{{customerInfo.CustomerId}}</ion-label>
       </ion-chip>
     </ion-label>
   </ion-item>
@@ -25,19 +30,19 @@
       Patient's full name
 
       <ion-chip color="primary">
-        <ion-label>Patali Champika</ion-label>
+        <ion-label>{{customerInfo.FullName}}</ion-label>
       </ion-chip>
     </ion-label>
   </ion-item>
 
-  <ion-button (click)="onDailyUpdateClick()" size="large" expand="block" class="doc-btn ion-text-uppercase ion-margin-top"
-    shape="round">
+  <ion-button (click)="onDailyUpdateClick()" size="large" expand="block"
+    class="doc-btn ion-text-uppercase ion-margin-top" shape="round">
     Daily Update
     <ion-icon slot="end" name="alarm"></ion-icon>
   </ion-button>
 
-  <ion-button (click)="onHistoryListClick()" size="large" expand="block" class="doc-btn ion-text-uppercase ion-margin-top"
-    shape="round">
+  <ion-button (click)="onHistoryListClick()" size="large" expand="block"
+    class="doc-btn ion-text-uppercase ion-margin-top" shape="round">
     Treatment History List
     <ion-icon slot="end" name="list"></ion-icon>
   </ion-button>

@@ -13,7 +13,7 @@ import { SignaturePad } from 'angular2-signaturepad/signature-pad';
 import { EmployeeUIService } from 'src/app/employee/employee-ui.service';
 import { EmployeeListInfo } from 'src/app/employee/employee-model';
 import { EmployeeDataService } from 'src/app/employee/employee-data-service';
-import { IonSlides } from '@ionic/angular';
+import { IonSlides, ToastController } from '@ionic/angular';
 
 
 @Component({
@@ -23,7 +23,7 @@ import { IonSlides } from '@ionic/angular';
 })
 export class DailyConcentPage implements OnInit {
   @ViewChild(SignaturePad, { static: false }) public signaturePad: SignaturePad;
-  @ViewChild('mySlider', { static: false }) slides: IonSlides;
+  @ViewChild('slides', { static: false }) slides: IonSlides;
 
   private baseUrl: string = environment.host;
 
@@ -58,7 +58,8 @@ export class DailyConcentPage implements OnInit {
     private concentDataService: ConcentDataService,
     private customerUIService: CustomerUIService,
     private employeeDataService: EmployeeDataService,
-    private router: Router
+    private router: Router,
+    public toastController: ToastController
   ) {
     this.myself = true;
     this.dailyConcentSaveRequest.ConsentDatetime = moment().format('YYYY-MM-DD');
@@ -74,18 +75,9 @@ export class DailyConcentPage implements OnInit {
       loop: false,
       direction: 'horizontal',
       pager: true,
-      speed: 800
+      speed: 800,
+      noSwipingClass: 'swiper-no-swiping',
     };
-  }
-
-  swipeNext() {
-    this.slides.lockSwipes(false);
-    this.slides.slideNext();
-  }
-
-  swipePrevious() {
-    this.slides.lockSwipes(false);
-    this.slides.slidePrev();
   }
 
   private getCustomerInfo() {
@@ -97,7 +89,6 @@ export class DailyConcentPage implements OnInit {
         //this.customerInfo.SignatureURL = this.baseUrl + "UserImages/Signatures/" + this.customerInfo.SignatureURL + ".jpg";
       });
   }
-
 
   onAddNewDailyConcent() {
 
@@ -114,10 +105,15 @@ export class DailyConcentPage implements OnInit {
       .pipe(takeUntil(this.ngUnsubscription))
       .subscribe((value: boolean) => {
         if (value) {
+          this.presentToast('Success:', 'Successfully Saved!', 3000, 'success');
           this.router.navigateByUrl('/home');
+        } else {
+          console.log("Failed to save!");
+          this.presentToast('Error:', 'Failed to save!', 3000, 'danger');
         }
       }, (error: any) => {
-        console.log(error);
+        this.presentToast('Error:', 'Failed to save!', 3000, 'danger');
+        console.error(error);
       })
   }
 
@@ -197,6 +193,38 @@ export class DailyConcentPage implements OnInit {
     this.dailyConcentSaveRequest.DoctorId = user.EmpNo;
     this.dailyConcentSaveRequest.IsDoctorSinged = false;
     this.userSearchText = user.EmpName;
+  }
+
+  onBackButtonClick() {
+    var thisObj = this;
+    this.slides.getActiveIndex().then(function (res) {
+      if (res == 0) {
+        thisObj.router.navigateByUrl('/customer-search');
+      } else {
+        thisObj.swipePreviouse();
+      }
+    });
+  }
+
+  swipeNext(form: any) {
+    this.slides.lockSwipes(false);
+    this.slides.slideNext();
+  }
+
+  swipePreviouse() {
+    this.slides.lockSwipes(false);
+    this.slides.slidePrev();
+  }
+
+  async presentToast(header: string, message: string, duration: number, color: string) {
+    const toast = await this.toastController.create({
+      header: header,
+      message: message,
+      duration: duration,
+      position: 'top',
+      color: color
+    });
+    toast.present();
   }
 
 }

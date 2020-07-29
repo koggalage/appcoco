@@ -9,7 +9,7 @@ import { DailyUpdateSaveRequest } from '../../treatment/treatment-model';
 import * as moment from 'moment';
 import { CustomerUIService } from '../../customer/customer-ui.service';
 import { Router } from '@angular/router';
-import { AlertController, ModalController } from '@ionic/angular';
+import { ModalController, ToastController } from '@ionic/angular';
 import { ImageModalPage } from 'src/app/image-modal/image-modal.page';
 
 @Component({
@@ -39,7 +39,7 @@ export class DailyUpdatePage implements OnInit {
     private customerUIService: CustomerUIService,
     private treatmentDataService: TreatmentDataService,
     private router: Router,
-    public alertController: AlertController
+    public toastController: ToastController
   ) {
     this.date = moment().format('YYYY-MM-DD');
   }
@@ -88,10 +88,15 @@ export class DailyUpdatePage implements OnInit {
       .subscribe((value: boolean) => {
         if (value) {
           console.log(value);
+          this.presentToast('Success:', 'Successfully Saved!', 3000, 'success');
           this.router.navigateByUrl('/customer-search');
+        } else {
+          console.log("Failed to save!");
+          this.presentToast('Error:', 'Failed to save!', 3000, 'danger');
         }
       }, (error: any) => {
-        console.log(error);
+        this.presentToast('Error:', 'Failed to save!', 3000, 'danger');
+        console.error(error);
       })
   }
 
@@ -103,6 +108,21 @@ export class DailyUpdatePage implements OnInit {
         img: img
       }
     }).then(modal => modal.present());
+  }
+
+  async presentToast(header: string, message: string, duration: number, color: string) {
+    const toast = await this.toastController.create({
+      header: header,
+      message: message,
+      duration: duration,
+      position: 'top',
+      color: color
+    });
+    toast.present();
+  }
+
+  onBackButtonClick() {
+    this.router.navigateByUrl('/doctor-menu');
   }
 
 }

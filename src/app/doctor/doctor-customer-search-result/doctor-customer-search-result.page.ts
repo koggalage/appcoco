@@ -41,19 +41,10 @@ export class DoctorCustomerSearchResultPage implements OnInit {
     if (this.user.UserType == "Doctor") {
       this.router.navigate(['/doctor-menu']);
     }
-    // else {
-    //   if (customer.FullName == null ||
-    //     customer.MobileNo.replace(/\s/g, "") == "" ||
-    //     customer.Email == null ||
-    //     customer.SignatureURL == null) {
-    //     this.router.navigate(['/customer-info']);
-    //   } else if (!customer.IsFilledInitConcern) {
-    //     this.router.navigate(['/init-concent']);
-    //   } else {
-    //     this.router.navigate(['/daily-concent']);
-    //   }
+  }
 
-    // }
+  onBackButtonClick() {
+    this.router.navigateByUrl('/doctor-customer-search');
   }
 
 }

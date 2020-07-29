@@ -55,4 +55,8 @@ export class CustomerSerchResultPage implements OnInit {
     }
   }
 
+  onBackButtonClick() {
+    this.router.navigateByUrl('/customer-search');
+  }
+
 }

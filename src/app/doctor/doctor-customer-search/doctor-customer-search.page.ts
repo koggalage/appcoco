@@ -47,6 +47,10 @@ export class DoctorCustomerSearchPage implements OnInit {
     this.customerSearchRequest = new CustomerSearchRequest();
   }
 
+  onBackButtonClick() {
+    this.router.navigateByUrl('/home');
+  }
+
   ngOnDestroy(): void {
   }
 

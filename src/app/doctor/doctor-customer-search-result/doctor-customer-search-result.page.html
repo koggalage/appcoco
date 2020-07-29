@@ -1,8 +1,13 @@
 <ion-header class="ion-no-border">
   <ion-toolbar color="primary" class="ion-no-border header-toolbar">
-    <ion-buttons class="ion-padding-start" color="dark" slot="start">
+    <!-- <ion-buttons class="ion-padding-start" color="dark" slot="start">
       <ion-back-button icon="md-arrow-back" text="" defaultHref="/doctor-customer-search"></ion-back-button>
-    </ion-buttons>
+    </ion-buttons> -->
+
+    <ion-button slot="start" (click)="onBackButtonClick()" type="button" size="large" expand="block"
+      class="ion-padding-start">
+      <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+    </ion-button>
 
     <ion-title color="light" class="title ion-text-center ion-padding-vertical">Customer search Results</ion-title>
   </ion-toolbar>

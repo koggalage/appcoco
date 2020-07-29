@@ -1,21 +1,29 @@
 <ion-header class="ion-no-border">
   <ion-toolbar color="primary" class="ion-no-border header-toolbar">
-    <ion-buttons class="ion-padding-start" color="dark" slot="start">
+    <!-- <ion-buttons class="ion-padding-start" color="dark" slot="start">
       <ion-back-button icon="md-arrow-back" text="" defaultHref="/customer-search"></ion-back-button>
-    </ion-buttons>
+    </ion-buttons> -->
+
+    <ion-button slot="start" (click)="onBackButtonClick()" type="button" size="large" expand="block"
+      class="ion-padding-start">
+      <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+    </ion-button>
 
     <ion-title color="light" class="title ion-text-center ion-padding-vertical">Daily Concent Form</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding fullscreen>
-  <form (ngSubmit)="dailyConcentForm.form.valid && onAddNewDailyConcent()" #dailyConcentForm="ngForm">
-    <ion-slides no-padding class="slide-wrapper" [options]="{onlyExternal: false}" #mySlider>
-      <ion-slide no-padding>
-        <div class="slide ion-padding-horizontal">
-          <ion-text color="primary" no-padding class="ion-text-start">
-            <h4>Basic information</h4>
-          </ion-text>
+  <ion-slides no-padding class="slide-wrapper" [options]="slideOptions" class="swiper-no-swiping" #slides>
+
+    <ion-slide no-padding>
+
+      <div class="slide ion-padding-horizontal">
+        <ion-text color="primary" no-padding class="ion-text-start">
+          <h4>Basic information</h4>
+        </ion-text>
+
+        <form (ngSubmit)="swipeNext()" #dailyConcentFormSlideOne="ngForm">
 
           <ion-item class="ion-no-padding">
             <ion-label position="stacked" color="secondary">Date</ion-label>
@@ -49,14 +57,26 @@
             <ion-textarea color="medium" rows="1" type="text" value="{{customerInfo?.Address}}" name="Address" readonly>
             </ion-textarea>
           </ion-item>
-        </div>
-      </ion-slide>
 
-      <ion-slide no-padding>
-        <div class="slide ion-padding-horizontal">
-          <ion-text color="primary" no-padding class="ion-text-start">
-            <h4>Required Information</h4>
-          </ion-text>
+          <ion-button type="submit" size="large" expand="block" class="slide-btn" color="primary">
+            Next
+            <ion-icon slot="end" ios="ios-arrow-forward"></ion-icon>
+          </ion-button>
+
+        </form>
+
+      </div>
+
+    </ion-slide>
+
+    <ion-slide no-padding>
+
+      <div class="slide ion-padding-horizontal">
+        <ion-text color="primary" no-padding class="ion-text-start">
+          <h4>Required Information</h4>
+        </ion-text>
+
+        <form (ngSubmit)="dailyConcentFormSlideTwo.form.valid && swipeNext()" #dailyConcentFormSlideTwo="ngForm">
 
           <ion-item no-padding>
             <ion-label position="stacked" color="primary">Treatment<span color="danger">*</span></ion-label>
@@ -64,7 +84,7 @@
               #Treatment="ngModel" required>
             </ion-textarea>
           </ion-item>
-          <ion-label color="danger" class="error-msg" *ngIf="dailyConcentForm.submitted && Treatment.invalid">*
+          <ion-label color="danger" class="error-msg" *ngIf="dailyConcentFormSlideTwo.submitted && Treatment.invalid">*
             Treatment is required.</ion-label>
 
           <ion-item class="ion-margin-top ion-padding-bottom" no-padding>
@@ -81,12 +101,12 @@
 
           <ion-item class="ion-margin-top" no-padding *ngIf="myself && !customerInfo.NIC">
             <ion-label position="stacked" color="primary">NIC Number<span color="danger">*</span></ion-label>
-            <ion-input type="text" [(ngModel)]="dailyConcentSaveRequest.NIC" name="dailyNIC" #dailyNIC="ngModel"
-              required>
+            <ion-input type="text" maxlength="20" [(ngModel)]="dailyConcentSaveRequest.NIC" name="dailyNIC"
+              #dailyNIC="ngModel" required>
             </ion-input>
           </ion-item>
           <ion-label color="danger" class="error-msg"
-            *ngIf="dailyConcentForm.submitted && !customerInfo.NIC && !dailyConcentSaveRequest.NIC && myself">
+            *ngIf="dailyConcentFormSlideTwo.submitted && !customerInfo.NIC && !dailyConcentSaveRequest.NIC && myself">
             * NIC number is required.
           </ion-label>
 
@@ -102,7 +122,7 @@
                 #RelativeName="ngModel" required></ion-input>
             </ion-item>
             <ion-label color="danger" class="error-msg"
-              *ngIf="dailyConcentForm.submitted && !dailyConcentSaveRequest.RelativeName && !myself">
+              *ngIf="dailyConcentFormSlideTwo.submitted && !dailyConcentSaveRequest.RelativeName && !myself">
               * Relative's name is required.</ion-label>
 
             <ion-item class="ion-margin-top" no-padding>
@@ -111,17 +131,30 @@
                 #Relationship="ngModel" required></ion-input>
             </ion-item>
             <ion-label color="danger" class="error-msg"
-              *ngIf="dailyConcentForm.submitted && !dailyConcentSaveRequest.Relationship && !myself">
+              *ngIf="dailyConcentFormSlideTwo.submitted && !dailyConcentSaveRequest.Relationship && !myself">
               * Relationship is required.</ion-label>
           </div>
-        </div>
-      </ion-slide>
 
-      <ion-slide no-padding>
-        <div class="slide ion-padding-horizontal">
-          <ion-text color="primary" no-padding class="ion-text-start">
-            <h4>Agreements</h4>
-          </ion-text>
+          <ion-button type="submit" size="large" expand="block" class="slide-btn" color="primary">
+            Next
+            <ion-icon slot="end" ios="ios-arrow-forward"></ion-icon>
+          </ion-button>
+
+        </form>
+
+      </div>
+
+    </ion-slide>
+
+    <ion-slide no-padding>
+
+      <div class="slide ion-padding-horizontal">
+        <ion-text color="primary" no-padding class="ion-text-start">
+          <h4>Agreements</h4>
+        </ion-text>
+
+        <form (ngSubmit)="dailyConcentFormSlideThree.form.valid && onAddNewDailyConcent()"
+          #dailyConcentFormSlideThree="ngForm">
 
           <ion-item no-padding lines="none">
             <ion-label position="stacked" color="primary">Customer signature</ion-label>
@@ -134,7 +167,8 @@
               required>
             </ion-checkbox>
           </ion-item>
-          <ion-label color="danger" class="error-msg" *ngIf="dailyConcentForm.submitted && custAgreed.invalid">*
+          <ion-label color="danger" class="error-msg"
+            *ngIf="dailyConcentFormSlideThree.submitted && custAgreed.invalid">*
             Customer's Agreement is required.</ion-label>
 
           <ion-item no-padding></ion-item>
@@ -169,7 +203,8 @@
           </ion-item>
 
           <ion-label color="danger" class="ion-padding-bottom error-msg"
-            *ngIf="dailyConcentForm.submitted && !isEmpSignatureNA && !empSignatureUrl">* Therapist's Signature is
+            *ngIf="dailyConcentFormSlideThree.submitted && !isEmpSignatureNA && !empSignatureUrl">* Therapist's
+            Signature is
             required.</ion-label>
 
           <ion-item no-padding lines="none" *ngIf="!isEmpSignatureNA">
@@ -179,7 +214,8 @@
             </ion-checkbox>
           </ion-item>
           <ion-label color="danger" class="error-msg"
-            *ngIf="dailyConcentForm.submitted && !dailyConcentSaveRequest.IsTherapistSigned">* Therapist's Agreement is
+            *ngIf="dailyConcentFormSlideThree.submitted && !dailyConcentSaveRequest.IsTherapistSigned">* Therapist's
+            Agreement is
             required.</ion-label>
 
           <ion-text color="secondary" no-padding class="ion-text-start ion-padding-top">
@@ -209,7 +245,8 @@
             <ion-img [src]="userSignatureUrl"></ion-img>
           </ion-item>
           <ion-label color="danger" class="ion-padding-bottom  error-msg"
-            *ngIf="dailyConcentForm.submitted && !isUserSignatureNA && !userSignatureUrl">* Medical officer's signature
+            *ngIf="dailyConcentFormSlideThree.submitted && !isUserSignatureNA && !userSignatureUrl">* Medical officer's
+            signature
             is required.</ion-label>
 
           <ion-item no-padding lines="none" *ngIf="!isUserSignatureNA">
@@ -219,30 +256,19 @@
             </ion-checkbox>
           </ion-item>
           <ion-label color="danger" class="error-msg"
-            *ngIf="dailyConcentForm.submitted && !dailyConcentSaveRequest.IsDoctorSinged">* Medical Officer's Agreement
+            *ngIf="dailyConcentFormSlideThree.submitted && !dailyConcentSaveRequest.IsDoctorSinged">* Medical Officer's
+            Agreement
             is required.</ion-label>
-        </div>
-      </ion-slide>
-    </ion-slides>
 
-    <ion-row>
-      <ion-col>
-        <ion-button expand="block" type="submit" color="primary" expand="block">Save</ion-button>
-      </ion-col>
-    </ion-row>
+          <ion-button type="submit" size="large" expand="block" class="slide-btn" color="primary">
+            Complete
+            <ion-icon slot="end" ios="ios-arrow-forward"></ion-icon>
+          </ion-button>
 
-  </form>
+        </form>
+      </div>
 
-  <!-- Footer without a border -->
-  <ion-footer position="fixed-bottom" class="ion-no-border">
-    <ion-button size="large" expand="block" class="slide-btn" color="primary" (click)="swipeNext()">
-      Next
-      <ion-icon slot="end" ios="ios-arrow-forward"></ion-icon>
-    </ion-button>
+    </ion-slide>
+  </ion-slides>
 
-    <ion-button size="large" expand="block" class="slide-btn" color="primary" (click)="swipePrevious()">
-      Previous
-      <ion-icon slot="end" ios="ios-arrow-forward"></ion-icon>
-    </ion-button>
-  </ion-footer>
 </ion-content>

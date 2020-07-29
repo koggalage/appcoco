@@ -86,4 +86,8 @@ export class HistoryDetailsPage implements OnInit {
     }).then(modal => modal.present());
   }
 
+  onBackButtonClick() {
+    this.router.navigateByUrl('/history-list');
+  }
+
 }

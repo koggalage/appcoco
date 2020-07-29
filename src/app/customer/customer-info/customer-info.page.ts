@@ -7,6 +7,8 @@ import { CustomerDataService } from '../customer-data-service';
 import { Router } from '@angular/router';
 import { SignaturePad } from 'angular2-signaturepad/signature-pad';
 import { environment } from 'src/environments/environment';
+import * as EmailValidator from 'email-validator';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-customer-info',
@@ -35,11 +37,14 @@ export class CustomerInfoPage implements OnInit {
   public isMobileNotFilled: boolean = false;
   public isEmailNotFilled: boolean = false;
   public isNoSignature: boolean = false;
+  public isInvalidEmail: boolean = false;
+  public isMobileEmpty: boolean = false;
 
   constructor(
     private customerUIService: CustomerUIService,
     private customerDataService: CustomerDataService,
-    private router: Router
+    private router: Router,
+    public toastController: ToastController
   ) { }
 
   ngOnInit() {
@@ -60,16 +65,24 @@ export class CustomerInfoPage implements OnInit {
         this.isNoSignature = (!this.customerInfo.SignatureURL);
         //this.isLnameNotFilled = (!this.customerInfo.Lname);
         //this.isDoBNotFilled = (!this.customerInfo.DoB);
-
+        console.log('this.customerInfo.MobileNo', this.customerInfo.MobileNo);
+        console.log('isMobileNotFilled', this.isMobileNotFilled);
       });
   }
 
   onUpdateCustomer() {
 
+    console.log('isMobileNotFilled', this.isMobileNotFilled);
+    console.log('isMobileNotFilled', this.customerInfo.MobileNo);
+
     if ((this.isFnameNotFilled && !this.customerInfo.FullName) ||
-      (this.isMobileNotFilled && !this.customerInfo.MobileNo) ||
       (this.isEmailNotFilled && !this.customerInfo.Email) ||
       (this.isNoSignature && !this.customerInfo.SignatureURL)) {
+      return;
+    }
+
+    if (this.isMobileNotFilled && this.customerInfo.MobileNo.trim() == '') {
+      this.isMobileEmpty = true;
       return;
     }
 
@@ -82,7 +95,9 @@ export class CustomerInfoPage implements OnInit {
       .pipe(takeUntil(this.ngUnsubscription))
       .subscribe((value: any) => {
         if (value) {
+          this.presentToast('Success:', 'Successfully Updated!', 3000, 'success');
           if (value.ImageName != "") {
+            this.isMobileEmpty = false;
             this.customerInfo.SignatureURL = this.baseUrl + "UserImages/Signatures/" + value.ImageName + ".jpg";
             this.customerUIService.setSelectedCustomer(this.customerInfo);
           }
@@ -91,9 +106,13 @@ export class CustomerInfoPage implements OnInit {
           } else {
             this.router.navigateByUrl('/daily-concent');
           }
+        } else {
+          this.presentToast('Error:', 'Update Failed!', 3000, 'danger');
+          console.log("Update Failed!");
         }
       }, (error: any) => {
-        console.log('error', error);
+        this.presentToast('Error:', 'Update Failed!', 3000, 'danger');
+        console.error('error', error);
       })
   }
 
@@ -106,5 +125,25 @@ export class CustomerInfoPage implements OnInit {
     this.customerInfo.SignatureURL = null;
   }
 
+  onBackButtonClick() {
+    this.router.navigateByUrl('/customer-search');
+  }
+
+  onEmailBlur(event: any) {
+    console.log('event.target.value', event.target.value);
+    this.isInvalidEmail = !EmailValidator.validate(event.target.value);
+    console.log('this.isInvalidEmail', this.isInvalidEmail);
+  }
+
+  async presentToast(header: string, message: string, duration: number, color: string) {
+    const toast = await this.toastController.create({
+      header: header,
+      message: message,
+      duration: duration,
+      position: 'top',
+      color: color
+    });
+    toast.present();
+  }
 
 }

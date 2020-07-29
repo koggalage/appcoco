@@ -1,8 +1,13 @@
 <ion-header class="ion-no-border">
   <ion-toolbar color="primary" class="ion-no-border header-toolbar">
-    <ion-buttons class="ion-padding-start" color="dark" slot="start">
+    <!-- <ion-buttons class="ion-padding-start" color="dark" slot="start">
       <ion-back-button icon="md-arrow-back" text="" defaultHref="/customer-search"></ion-back-button>
-    </ion-buttons>
+    </ion-buttons> -->
+
+    <ion-button slot="start" (click)="onBackButtonClick()" type="button" size="large" expand="block"
+      class="ion-padding-start">
+      <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+    </ion-button>
 
     <ion-title color="light" class="title ion-text-center ion-padding-vertical">Missing Customer Details</ion-title>
   </ion-toolbar>
@@ -14,35 +19,64 @@
     <ion-grid>
       <ion-row>
         <ion-col>
+
           <ion-item no-padding *ngIf="isFnameNotFilled" class="ion-margin-top">
-            <ion-label position="stacked" color="primary">Full Name</ion-label>
+            <ion-label position="stacked" color="primary">Full Name
+              <span color="danger">*</span>
+            </ion-label>
             <ion-input maxlength="250" type="text" [(ngModel)]="customerInfo.FullName" name="FullName"
               #FullName="ngModel" required></ion-input>
           </ion-item>
+
           <ion-label *ngIf="isFnameNotFilled && cusInfoForm.submitted && !customerInfo.FullName" color="danger"
             class="error-msg">* FullName is required.</ion-label>
 
           <ion-item no-padding *ngIf="isMobileNotFilled" class="ion-margin-top">
-            <ion-label position="stacked" color="primary">Mobile</ion-label>
-            <ion-input maxlength="15" type="number" [(ngModel)]="customerInfo.MobileNo" name="MobileNo"
-              #MobileNo="ngModel" required>
-            </ion-input>
-          </ion-item>
-          <ion-label color="danger" class="error-msg"
-            *ngIf="isMobileNotFilled && cusInfoForm.submitted && !customerInfo.MobileNo">* Mobile Number is required.
-          </ion-label>
-
-
-          <ion-item no-padding *ngIf="isEmailNotFilled" class="ion-margin-top">
-            <ion-label position="stacked" color="primary">Email</ion-label>
-            <ion-input maxlength="50" type="email" [(ngModel)]="customerInfo.Email" name="Email" #Email="ngModel" email
+            <ion-label position="stacked" color="primary">Mobile
+              <span color="danger">*</span>
+            </ion-label>
+            <ion-input maxlength="15" type="text" [(ngModel)]="customerInfo.MobileNo" name="MobileNo"
+              #MobileNo="ngModel"
+              onkeydown="javascript: return event.keyCode === 8 || event.keyCode === 46 ? true : !isNaN(Number(event.key))"
               required>
             </ion-input>
           </ion-item>
-          <div *ngIf="isEmailNotFilled && cusInfoForm.submitted && !customerInfo.Email">
+
+          <ion-label color="danger">
+            <ion-row *ngIf="cusInfoForm.submitted && isMobileNotFilled && isMobileEmpty" class="error-msg">
+              * Mobile Number is required.
+            </ion-row>
+          </ion-label>
+
+          <!-- <ion-label color="danger">
+            <ion-row *ngIf="isMobileNotFilled && cusInfoForm.submitted && !customerInfo.MobileNo" class="error-msg">
+              * Mobile Number is required.
+            </ion-row>
+          </ion-label> -->
+
+          <ion-item no-padding *ngIf="isEmailNotFilled" class="ion-margin-top">
+            <ion-label position="stacked" color="primary">Email
+              <span color="danger">*</span>
+            </ion-label>
+            <ion-input (ionBlur)="onEmailBlur($event)" maxlength="50" type="email" [(ngModel)]="customerInfo.Email"
+              name="Email" #Email="ngModel" email required>
+            </ion-input>
+          </ion-item>
+
+          <ion-label color="danger">
+            <ion-row *ngIf="cusInfoForm.submitted && isEmailNotFilled && !customerInfo.Email" class="error-msg">
+              * Email is required.
+            </ion-row>
+          </ion-label>
+
+          <ion-row *ngIf="isInvalidEmail && isEmailNotFilled" class="danger error-msg">
+            * Email is invalid.
+          </ion-row>
+
+          <!-- <div *ngIf="isEmailNotFilled && cusInfoForm.submitted && !customerInfo.Email">
             <ion-label color="danger" *ngIf="Email.errors.required" class="error-msg">* Email is required.</ion-label>
             <ion-label color="danger" *ngIf="Email.errors.email" class="error-msg">* Email is invalid.</ion-label>
-          </div>
+          </div> -->
 
           <ion-item no-padding *ngIf="isNoSignature" class="ion-margin-top ion-padding-bottom">
             <ion-label position="stacked" color="primary">Signature</ion-label>

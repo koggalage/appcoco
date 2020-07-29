@@ -1,8 +1,13 @@
 <ion-header class="ion-no-border">
   <ion-toolbar color="primary" class="ion-no-border header-toolbar">
-    <ion-buttons class="ion-padding-start" color="dark" slot="start">
-      <ion-back-button icon="md-arrow-back" text="" defaultHref="/home"></ion-back-button>
-    </ion-buttons>
+    <!-- <ion-buttons class="ion-padding-start" color="dark" slot="start">
+      <ion-back-button icon="md-arrow-back" text="" (click)="onBackButtonClick()"></ion-back-button>
+    </ion-buttons> -->
+
+    <ion-button slot="start" (click)="onBackButtonClick()" type="button" size="large" expand="block"
+      class="ion-padding-start">
+      <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+    </ion-button>
 
     <ion-title color="light" class="title ion-text-center ion-padding-vertical">Customer registration</ion-title>
   </ion-toolbar>
@@ -11,27 +16,42 @@
 <ion-content padding fullscreen scroll-y="false">
 
 
-  <form (ngSubmit)="cusRegForm.form.valid && onAddNewCustomer()" #cusRegForm="ngForm">
-    <ion-slides no-padding class="slide-wrapper" [options]="{onlyExternal: false}" #mySlider>
-      <ion-slide no-padding>
-        <div class="slide ion-padding-horizontal">
-          <div class="progress-bar">
-            <span class="bar-item filled"></span>
-            <span class="bar-item"></span>
-            <span class="bar-item"></span>
-          </div>
-          <ion-text color="primary" no-padding class="ion-padding-vertical ion-text-start">
-            <h4>Personal information</h4>
-          </ion-text>
+  <!-- <form (ngSubmit)="cusRegForm.form.valid && onAddNewCustomer()" #cusRegForm="ngForm"> -->
+  <ion-slides #slides no-padding class="slide-wrapper" [options]="slideOptions" class="swiper-no-swiping">
+
+    <ion-slide no-padding>
+
+      <div class="slide ion-padding-horizontal">
+
+
+        <div class="progress-bar">
+          <span class="bar-item filled"></span>
+          <span class="bar-item"></span>
+          <span class="bar-item"></span>
+        </div>
+
+        <ion-text color="primary" no-padding class="ion-padding-vertical ion-text-start">
+          <h4>Personal information</h4>
+        </ion-text>
+
+        <form (ngSubmit)=" cusRegFormSLideOne.form.valid && swipeNext()" #cusRegFormSLideOne="ngForm">
+
           <ion-item class="ion-no-padding">
-            <ion-label position="stacked" color="primary">Full name <span color="danger">*</span></ion-label>
+
+            <ion-label position="stacked" color="primary">Full name
+              <span color="danger">*</span>
+            </ion-label>
+
             <ion-input maxlength="250" type="text" [(ngModel)]="customerInfo.FullName" name="FullName"
               #FullName="ngModel" required>
             </ion-input>
           </ion-item>
-          <ion-label no-margin color="danger" *ngIf="cusRegForm.submitted && FullName.invalid" class="ion-text-start">
+
+          <ion-label no-margin color="danger" *ngIf="cusRegFormSLideOne.submitted && FullName.invalid"
+            class="ion-text-start">
             <span class="error-msg">* Full name is required.</span>
           </ion-label>
+
 
           <ion-item class="ion-no-padding ion-margin-vertical">
             <ion-label position="stacked" color="primary">Profession</ion-label>
@@ -41,14 +61,18 @@
 
           <ion-item no-margin class="ion-no-padding" lines="none">
             <ion-label position="stacked" color="primary">Gender <span color="danger">*</span></ion-label>
+
             <ion-radio-group [(ngModel)]="customerInfo.Gender" name="gender" #gender="ngModel" required>
+
               <ion-row>
+
                 <ion-col>
                   <ion-item lines="none" no-padding>
                     <ion-label class="radio-btn-label" color="secondary">Male</ion-label>
                     <ion-radio [value]="'Male'" mode="md" slot="start" color="secondary"></ion-radio>
                   </ion-item>
                 </ion-col>
+
                 <ion-col>
                   <ion-item lines="none" no-padding>
                     <ion-label class="radio-btn-label" color="secondary">Female</ion-label>
@@ -56,44 +80,80 @@
                     </ion-radio>
                   </ion-item>
                 </ion-col>
+
               </ion-row>
+
             </ion-radio-group>
+
           </ion-item>
-          <ion-label color="danger" *ngIf="cusRegForm.submitted && gender.invalid">
+
+          <ion-label color="danger" *ngIf="cusRegFormSLideOne.submitted && gender.invalid">
             <span class="error-msg">* Gender is required.</span>
           </ion-label>
-        </div>
-      </ion-slide>
 
-      <ion-slide>
-        <div class="slide ion-padding-horizontal">
-          <div class="progress-bar">
-            <span class="bar-item filled"></span>
-            <span class="bar-item filled"></span>
-            <span class="bar-item"></span>
-          </div>
-          <ion-text color="primary" no-padding class="ion-padding-vertical ion-text-start">
-            <h4>Contact information</h4>
-          </ion-text>
+          <ion-button type="submit" size="large" expand="block" class="slide-btn" color="primary">
+            Next
+            <ion-icon slot="end" ios="ios-arrow-forward"></ion-icon>
+          </ion-button>
+
+        </form>
+
+      </div>
+
+    </ion-slide>
+
+
+
+    <ion-slide>
+
+      <div class="slide ion-padding-horizontal">
+
+        <div class="progress-bar">
+          <span class="bar-item filled"></span>
+          <span class="bar-item filled"></span>
+          <span class="bar-item"></span>
+        </div>
+
+        <ion-text color="primary" no-padding class="ion-padding-vertical ion-text-start">
+          <h4>Contact information</h4>
+        </ion-text>
+
+        <form (ngSubmit)="cusRegFormSlideTwo.form.valid && swipeNext()" #cusRegFormSlideTwo="ngForm">
+
           <ion-item class="ion-no-padding">
             <ion-label position="stacked" color="primary">Mobile <span color="danger">*</span></ion-label>
-            <ion-input maxlength="15" type="number" [(ngModel)]="customerInfo.MobileNo" name="MobileNo"
-              #MobileNo="ngModel" required>
-            </ion-input>
-          </ion-item>
-          <ion-label color="danger" *ngIf="cusRegForm.submitted && MobileNo.invalid">
-            <span class="error-msg">* Mobile Number is required.</span>
-          </ion-label>
-          <ion-item class="ion-no-padding ion-margin-top">
-            <ion-label position="stacked" color="primary">Email <span color="danger">*</span></ion-label>
-            <ion-input maxlength="50" type="email" [(ngModel)]="customerInfo.Email" name="Email" #Email="ngModel" email
+            <ion-input maxlength="15" type="text" [(ngModel)]="customerInfo.MobileNo" name="MobileNo"
+              #MobileNo="ngModel"
+              onkeydown="javascript: return event.keyCode === 8 || event.keyCode === 46 ? true : !isNaN(Number(event.key))"
               required>
             </ion-input>
           </ion-item>
-          <ion-label color="danger" *ngIf="cusRegForm.submitted && Email.invalid">
-            <span *ngIf="Email.errors.required" class="error-msg">* Email is required.</span>
-            <span *ngIf="Email.errors.email" class="error-msg">* Email is invalid.</span>
+
+          <ion-label color="danger">
+            <ion-row *ngIf="cusRegFormSlideTwo.submitted && MobileNo.invalid" class="error-msg">
+              * Mobile Number is required.
+            </ion-row>
           </ion-label>
+
+          <!-- <ion-row *ngIf="cusRegFormSlideTwo.submitted && MobileNo.invalid" class="danger error-msg">* Mobile Number is
+            required.</ion-row> -->
+
+          <ion-item class="ion-no-padding ion-margin-top">
+            <ion-label position="stacked" color="primary">Email <span color="danger">*</span></ion-label>
+            <ion-input (ionBlur)="onEmailBlur($event)" maxlength="50" type="email" [(ngModel)]="customerInfo.Email"
+              name="Email" #Email="ngModel" email required>
+            </ion-input>
+          </ion-item>
+
+          <ion-label color="danger">
+            <ion-row *ngIf="cusRegFormSlideTwo.submitted && Email.errors.required" class="error-msg">
+              * Email is required.
+            </ion-row>
+          </ion-label>
+
+          <ion-row *ngIf="isInvalidEmail" class="danger error-msg">
+            * Email is invalid.
+          </ion-row>
 
           <ion-item class="ion-no-padding ion-margin-top">
             <ion-label position="stacked" color="primary">Address <span color="danger">*</span></ion-label>
@@ -101,93 +161,76 @@
               #Address="ngModel" required>
             </ion-textarea>
           </ion-item>
-          <ion-label color="danger" *ngIf="cusRegForm.submitted && Address.invalid">
-            <span class="error-msg">* Address is required.</span>
+          <!-- 
+          <span *ngIf="cusRegFormSlideTwo.submitted && Address.invalid" class="danger error-msg">
+            * Address is required.
+          </span> -->
+
+          <ion-label color="danger">
+            <ion-row *ngIf="cusRegFormSlideTwo.submitted && Address.invalid" class="error-msg">
+              * Address is required.
+            </ion-row>
           </ion-label>
 
-          <!-- <ion-row no-padding class="button-wrapper">
-            <ion-col no-padding>
-              <ion-button size="large" expand="block" class="slide-btn" color="primary">
-                Next
-                <ion-icon slot="end" ios="ios-arrow-forward"></ion-icon>
-              </ion-button>
-            </ion-col>
-          </ion-row> -->
-        </div>
-      </ion-slide>
+          <ion-button type="submit" size="large" expand="block" class="slide-btn" color="primary">
+            Next
+            <ion-icon slot="end" ios="ios-arrow-forward"></ion-icon>
+          </ion-button>
 
-      <ion-slide>
-        <div class="slide ion-padding-horizontal">
-          <div class="progress-bar">
-            <span class="bar-item filled"></span>
-            <span class="bar-item filled"></span>
-            <span class="bar-item filled"></span>
-          </div>
-          <ion-text color="primary" no-padding class="ion-padding-vertical ion-text-start">
-            <h4>Other information</h4>
-          </ion-text>
+        </form>
+      </div>
+
+
+    </ion-slide>
+
+
+    <ion-slide>
+
+      <div class="slide ion-padding-horizontal">
+
+        <div class="progress-bar">
+          <span class="bar-item filled"></span>
+          <span class="bar-item filled"></span>
+          <span class="bar-item filled"></span>
+        </div>
+
+        <ion-text color="primary" no-padding class="ion-padding-vertical ion-text-start">
+          <h4>Other information</h4>
+        </ion-text>
+
+        <form (ngSubmit)="cusRegFormSlideThree.form.valid && onAddNewCustomer()" #cusRegFormSlideThree="ngForm">
+
           <ion-item class="ion-no-padding" lines="none">
             <ion-label position="stacked" color="primary">Signature <span color="danger">*</span></ion-label>
+
             <ion-card no-margin class="sign-pad-wrapper">
               <signature-pad id="signature" [options]="signaturePadOptions" (onEndEvent)="drawComplete()">
               </signature-pad>
             </ion-card>
+
             <ion-item class="ion-no-padding" lines="none">
               <ion-chip outline color="secondary" (click)="drawClear()">
                 <ion-label>Clear</ion-label>
               </ion-chip>
             </ion-item>
+
           </ion-item>
-          <ion-label class="ion-text-center" color="danger" *ngIf="cusRegForm.submitted && !customerInfo.SignatureURL">
+
+          <ion-label class="ion-text-center" color="danger"
+            *ngIf="cusRegFormSlideThree.submitted && !customerInfo.SignatureURL">
             <span class="error-msg">* Signature is required.</span>
           </ion-label>
 
-          <!-- <ion-button class="ion-margin-top" type="submit" color="primary" expand="block">Save</ion-button> -->
-          <!-- <ion-row no-padding class="button-wrapper">
-            <ion-col no-padding>
-              <ion-button size="large" expand="block" class="slide-btn" color="primary" type="submit">
-                Complete
-                <ion-icon slot="end" name="checkmark-circle-outline" md="md-checkmark-circle-outline"></ion-icon>
-              </ion-button>
-            </ion-col>
-          </ion-row> -->
-        </div>
-      </ion-slide>
-
-
-
-      <!-- <ion-row no-padding class="button-wrapper">
-        <ion-col no-padding>
-          <ion-button size="large" expand="block" class="slide-btn" color="primary" (click)="swipeNext()">
-            Next
+          <ion-button type="submit" size="large" expand="block" class="slide-btn" color="primary">
+            Complete
             <ion-icon slot="end" ios="ios-arrow-forward"></ion-icon>
           </ion-button>
-        </ion-col>
-      </ion-row>
-      <ion-row no-padding class="button-wrapper">
-        <ion-col no-padding>
-          <ion-button size="large" expand="block" class="slide-btn" color="primary" (click)="slidePrev()">
-            Previouse
-            <ion-icon slot="end" ios="ios-arrow-forward"></ion-icon>
-          </ion-button>
-        </ion-col>
-      </ion-row> -->
+        </form>
 
-    </ion-slides>
+      </div>
 
-    <ion-row no-padding class="button-wrapper">
-      <ion-col no-padding>
-        <ion-button size="large" expand="block" class="slide-btn" color="primary" (click)="swipeNext()">
-          Next
-          <ion-icon slot="end" ios="ios-arrow-forward"></ion-icon>
-        </ion-button>
+    </ion-slide>
 
-        <ion-button size="large" expand="block" class="slide-btn" color="primary" (click)="swipePreviouse()">
-          Previous
-          <ion-icon slot="end" ios="ios-arrow-forward"></ion-icon>
-        </ion-button>
-      </ion-col>
-    </ion-row>
-  </form>
+  </ion-slides>
 
 </ion-content>

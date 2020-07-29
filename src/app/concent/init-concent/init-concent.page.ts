@@ -13,6 +13,7 @@ import { SignaturePad } from 'angular2-signaturepad/signature-pad';
 import { EmployeeDataService } from 'src/app/employee/employee-data-service';
 import { EmployeeListInfo } from 'src/app/employee/employee-model';
 import { IonSlides } from '@ionic/angular';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-init-concent',
@@ -21,7 +22,7 @@ import { IonSlides } from '@ionic/angular';
 })
 export class InitConcentPage implements OnInit {
   @ViewChild(SignaturePad, { static: false }) public signaturePad: SignaturePad;
-  @ViewChild('mySlider', { static: false }) slides: IonSlides;
+  @ViewChild('slides', { static: false }) slides: IonSlides;
 
   public title: string;
   public customerId: number;
@@ -54,7 +55,8 @@ export class InitConcentPage implements OnInit {
     private concentDataService: ConcentDataService,
     private customerUIService: CustomerUIService,
     private employeeDataService: EmployeeDataService,
-    private router: Router
+    private router: Router,
+    public toastController: ToastController
   ) { }
 
   ngOnInit() {
@@ -67,18 +69,9 @@ export class InitConcentPage implements OnInit {
       loop: false,
       direction: 'horizontal',
       pager: true,
-      speed: 800
+      speed: 800,
+      noSwipingClass: 'swiper-no-swiping',
     };
-  }
-
-  swipeNext() {
-    this.slides.lockSwipes(false);
-    this.slides.slideNext();
-  }
-
-  swipePrevious() {
-    this.slides.lockSwipes(false);
-    this.slides.slidePrev();
   }
 
   private getCustomerInfo() {
@@ -107,10 +100,15 @@ export class InitConcentPage implements OnInit {
       .subscribe((value: boolean) => {
         if (value) {
           console.log(value);
+          this.presentToast('Success:', 'Successfully Saved!', 3000, 'success');
           this.router.navigateByUrl('/daily-concent');
+        } else {
+          console.log("Failed to save!");
+          this.presentToast('Error:', 'Failed to save!', 3000, 'danger');
         }
       }, (error: any) => {
-        console.log(error);
+        this.presentToast('Error:', 'Failed to save!', 3000, 'danger');
+        console.error(error);
       })
   }
 
@@ -190,6 +188,38 @@ export class InitConcentPage implements OnInit {
     this.initConcentSaveRequest.DoctorId = user.EmpNo;
     this.initConcentSaveRequest.IsDoctorSinged = false;
     this.userSearchText = user.EmpName;
+  }
+
+  onBackButtonClick() {
+    var thisObj = this;
+    this.slides.getActiveIndex().then(function (res) {
+      if (res == 0) {
+        thisObj.router.navigateByUrl('/customer-search');
+      } else {
+        thisObj.swipePreviouse();
+      }
+    });
+  }
+
+  swipeNext(form: any) {
+    this.slides.lockSwipes(false);
+    this.slides.slideNext();
+  }
+
+  swipePreviouse() {
+    this.slides.lockSwipes(false);
+    this.slides.slidePrev();
+  }
+
+  async presentToast(header: string, message: string, duration: number, color: string) {
+    const toast = await this.toastController.create({
+      header: header,
+      message: message,
+      duration: duration,
+      position: 'top',
+      color: color
+    });
+    toast.present();
   }
 
 }

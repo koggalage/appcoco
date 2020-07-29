@@ -1,25 +1,23 @@
-ion-slides {
-    margin-top: 5%;
-    background: #1d3e41;
+.header-toolbar {
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
 
-    img {
-        padding-top: 20px;
-        padding-bottom: 20px;
+    .title {
+        font-weight: 400;
+        font-size: 16px;
     }
 }
 
-ion-col {
-    padding-right: 5px;
-}
+ion-item {
+    --background: transparent;
+    --border-color: var(--ion-color-secondary, #FDA2C6);
 
-ion-input, ion-textarea {
-            border-radius: 10px !important;
-            padding-right: 30px;
-            font-size: 0.9em;
-            border: 1px solid #f1f1f1 !important;
-            --background: rgb(219,219,219) !important;
-}
+    &.list-item {
+        --border-color: var(--ion-color-medium, #989aa2);
+    }
 
-ion-row {
-     padding-top: 10px;
+    &.search-item {
+        border-color: #ffffff;
+        background-color: #EDEDED;
+    }
 }

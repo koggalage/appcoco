@@ -1,26 +1,35 @@
-ion-col {
-    padding-right: 5px;
+.header-toolbar {
+  border-bottom-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+
+  .title {
+    font-weight: 400;
+    font-size: 16px;
+  }
 }
 
-ion-input, ion-textarea {
-            border-radius: 10px !important;
-            padding-right: 30px;
-            font-size: 0.9em;
-            border: 1px solid #f1f1f1 !important;
-            --background: rgb(219,219,219) !important;
-            /* height: 10%; */
-            /* width: 41%; */
-            // max-width: 50vw; // this is applying perfectly
-            // max-height: 10vh;
+.sign-pad-wrapper {
+  width: calc(100% - 10px);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1), 0 3px 6px rgba(0, 0, 0, 0.15);
+  margin: 5px;
 }
 
-ion-row {
-     padding-top: 10px;
+ion-item {
+  --background: transparent;
+  --border-color: var(--ion-color-primary, #FF4380);
 }
-#signature {outline-style: double;}
 
+.save-btn {
+  letter-spacing: 2px;
+  width: 170px;
+  align-self: center;
+  display: flex;
+  margin-left: auto;
+  justify-content: center;
+  margin-right: auto;
+}
 
 .error-msg {
-  color: red;
-  font-size: 13px;
+  text-align: left;
+  font-size: 12px;
 }

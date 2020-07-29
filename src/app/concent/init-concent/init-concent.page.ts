@@ -12,6 +12,7 @@ import { environment } from 'src/environments/environment';
 import { SignaturePad } from 'angular2-signaturepad/signature-pad';
 import { EmployeeDataService } from 'src/app/employee/employee-data-service';
 import { EmployeeListInfo } from 'src/app/employee/employee-model';
+import { IonSlides } from '@ionic/angular';
 
 @Component({
   selector: 'app-init-concent',
@@ -20,6 +21,7 @@ import { EmployeeListInfo } from 'src/app/employee/employee-model';
 })
 export class InitConcentPage implements OnInit {
   @ViewChild(SignaturePad, { static: false }) public signaturePad: SignaturePad;
+  @ViewChild('mySlider', { static: false }) slides: IonSlides;
 
   public title: string;
   public customerId: number;
@@ -46,6 +48,7 @@ export class InitConcentPage implements OnInit {
 
   public empSearchText: string;
   public userSearchText: string;
+  public slideOptions: {};
 
   constructor(
     private concentDataService: ConcentDataService,
@@ -58,6 +61,24 @@ export class InitConcentPage implements OnInit {
     this.getCustomerInfo();
     this.getEmployeeList();
     this.getUserList();
+
+    this.slideOptions = {
+      initialSlide: 0,
+      loop: false,
+      direction: 'horizontal',
+      pager: true,
+      speed: 800
+    };
+  }
+
+  swipeNext() {
+    this.slides.lockSwipes(false);
+    this.slides.slideNext();
+  }
+
+  swipePrevious() {
+    this.slides.lockSwipes(false);
+    this.slides.slidePrev();
   }
 
   private getCustomerInfo() {

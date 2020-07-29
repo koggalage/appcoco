@@ -1,71 +1,59 @@
 <ion-header class="ion-no-border">
   <ion-toolbar color="primary" class="ion-no-border header-toolbar">
-    <ion-buttons color="dark" slot="start">
-      <ion-back-button defaultHref="/history-list"></ion-back-button>
+    <ion-buttons class="ion-padding-start" color="dark" slot="start">
+      <ion-back-button icon="md-arrow-back" text="" defaultHref="/history-list"></ion-back-button>
     </ion-buttons>
 
     <ion-title color="light" class="title ion-text-center ion-padding-vertical">Treatment History Details</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content padding fullscreen>
+  <ion-grid no-padding>
+    <ion-row>
+      <ion-col>
 
-  <ion-grid>
+        <ion-item class="ion-no-padding">
+          <ion-label position="stacked" color="secondary">Date</ion-label>
+          <ion-input color="medium" type="text" name="Date" value="{{treatmentDetailsResponse?.Date}}" readonly>
+          </ion-input>
+        </ion-item>
 
-    <ion-row>
-      <ion-label color="tertiary">Date:</ion-label>
-    </ion-row>
-    <ion-row>
-      <ion-input color="dark" class="ion-text-start" type="text" name="Date" value="{{treatmentDetailsResponse?.Date}}"
-        readonly></ion-input>
-    </ion-row>
+        <ion-item class="ion-no-padding ion-margin-top">
+          <ion-label position="stacked" color="secondary">Customer Id</ion-label>
+          <ion-input color="medium" type="text" name="Date" value="{{treatmentDetailsResponse?.CustomerId}}"
+            name="CustomerId" readonly></ion-input>
+        </ion-item>
 
-    <ion-row>
-      <ion-label color="tertiary">Customer Id:</ion-label>
-    </ion-row>
-    <ion-row>
-      <ion-input color="dark" class="ion-text-start" type="text" value="{{treatmentDetailsResponse?.CustomerId}}"
-        name="CustomerId" readonly>
-      </ion-input>
-    </ion-row>
+        <ion-item class="ion-no-padding ion-margin-top">
+          <ion-label position="stacked" color="secondary">Customer name</ion-label>
+          <ion-input color="medium" type="text" value="{{treatmentDetailsResponse?.FullName}}" name="FullName" readonly>
+          </ion-input>
+        </ion-item>
 
-    <ion-row>
-      <ion-label color="tertiary">Customer Name:</ion-label>
-    </ion-row>
-    <ion-row>
-      <ion-input color="dark" class="ion-text-start" type="text" value="{{treatmentDetailsResponse?.FullName}}"
-        name="FullName" readonly>
-      </ion-input>
-    </ion-row>
+        <ion-item class="ion-no-padding ion-margin-top">
+          <ion-label position="stacked" color="secondary">Problem</ion-label>
+          <ion-input color="medium" type="text" value="{{treatmentDetailsResponse?.Problem}}" name="Problem" readonly>
+          </ion-input>
+        </ion-item>
 
-    <ion-row>
-      <ion-label color="tertiary">Problem:</ion-label>
-    </ion-row>
-    <ion-row>
-      <ion-input color="dark" class="ion-text-start" type="text" value="{{treatmentDetailsResponse?.Problem}}"
-        name="Problem" readonly>
-      </ion-input>
-    </ion-row>
+        <ion-item class="ion-no-padding ion-margin-top">
+          <ion-label position="stacked" color="secondary">Doctor note</ion-label>
+          <ion-input color="medium" type="text" value="{{treatmentDetailsResponse?.DoctorNote}}" name="DoctorNote"
+            readonly>
+          </ion-input>
+        </ion-item>
 
-    <ion-row>
-      <ion-label color="tertiary">Doctor Note:</ion-label>
+        <ion-item lines="none" class="ion-no-padding ion-margin-top">
+          <ion-item-divider padding class="ion-margin-top">
+            <ion-slides [options]='sliderOptions'>
+              <ion-slide *ngFor="let url of treatmentDetailsResponse.TreatmentImageURLs">
+                <img src="{{url}}" tappable (click)="onImageClick(url)">
+              </ion-slide>
+            </ion-slides>
+          </ion-item-divider>
+        </ion-item>
+      </ion-col>
     </ion-row>
-    <ion-row>
-      <ion-input color="dark" class="ion-text-start" type="text" value="{{treatmentDetailsResponse?.DoctorNote}}"
-        name="DoctorNote" readonly>
-      </ion-input>
-    </ion-row>
-
-    <ion-row>
-      <ion-slides [options]='sliderOptions'>
-        <ion-slide *ngFor="let url of treatmentDetailsResponse.TreatmentImageURLs">
-          <img src="{{url}}" tappable (click)="onImageClick(url)">
-        </ion-slide>
-      </ion-slides>
-    </ion-row>
-
   </ion-grid>
-
-
-
 </ion-content>

@@ -1,110 +1,87 @@
 <ion-header class="ion-no-border">
   <ion-toolbar color="primary" class="ion-no-border header-toolbar">
-    <ion-buttons color="dark" slot="start">
-      <ion-back-button defaultHref="/doctor-menu"></ion-back-button>
+    <ion-buttons class="ion-padding-start" color="dark" slot="start">
+      <ion-back-button icon="md-arrow-back" text="" defaultHref="/doctor-menu"></ion-back-button>
     </ion-buttons>
 
     <ion-title color="light" class="title ion-text-center ion-padding-vertical">Daily Update</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-
-  <ion-grid>
-
-    <ion-item-divider>
-      <ion-label color="medium">Bssic Info:</ion-label>
-    </ion-item-divider>
-
+<ion-content padding fullscreen>
+  <ion-grid no-padding>
     <ion-row>
-      <ion-label color="tertiary">Date:</ion-label>
-    </ion-row>
-    <ion-row>
-      <ion-input color="dark" class="ion-text-start" type="text" name="Date" value="{{date}}" readonly></ion-input>
-    </ion-row>
+      <ion-col>
+        <ion-text color="primary" no-padding class="ion-text-start">
+          <h4>Basic information</h4>
+        </ion-text>
 
-    <ion-row>
-      <ion-label color="tertiary">Customer Id:</ion-label>
-    </ion-row>
-    <ion-row>
-      <ion-input color="dark" class="ion-text-start" type="text" value="{{customerInfo?.CustomerId}}" name="CustomerId"
-        readonly>
-      </ion-input>
-    </ion-row>
+        <ion-item class="ion-no-padding">
+          <ion-label position="stacked" color="secondary">Date</ion-label>
+          <ion-input color="medium" type="text" name="Date" value="{{date}}" readonly></ion-input>
+        </ion-item>
 
-    <ion-row>
-      <ion-label color="tertiary">Customer Name:</ion-label>
-    </ion-row>
-    <ion-row>
-      <ion-input color="dark" class="ion-text-start" type="text" value="{{customerInfo?.FullName}}" name="FullName"
-        readonly>
-      </ion-input>
-    </ion-row>
+        <ion-item class="ion-no-padding ion-margin-top">
+          <ion-label position="stacked" color="secondary">Customer Id</ion-label>
+          <ion-input color="medium" type="text" value="{{customerInfo?.CustomerId}}" name="CustomerId" readonly>
+          </ion-input>
+        </ion-item>
 
+        <ion-item class="ion-no-padding ion-margin-top">
+          <ion-label position="stacked" color="secondary">Customer name</ion-label>
+          <ion-input color="medium" type="text" value="{{customerInfo?.FullName}}" name="FullName" readonly>
+          </ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
   </ion-grid>
 
   <form (ngSubmit)="dailyUpdateForm.form.valid && onAddNewDailyUpdate()" #dailyUpdateForm="ngForm">
-
-    <ion-grid>
-
-      <ion-item-divider>
-        <ion-label color="medium">Medical Officer's Update:</ion-label>
-      </ion-item-divider>
-
-      <ion-row>
-        <ion-label color="dark">Problem:</ion-label>
-      </ion-row>
-      <ion-row>
-        <ion-textarea rows="1" type="text" [(ngModel)]="dailyUpdateSaveRequest.Problem" name="Problem"
-          #Problem="ngModel" required>
-        </ion-textarea>
-      </ion-row>
-
-      <ion-row *ngIf="dailyUpdateForm.submitted && Problem.invalid">
-        <ion-label class="error-msg">* Problem is required.</ion-label>
-      </ion-row>
-
-      <ion-row>
-        <ion-label color="dark">Doctor Note:</ion-label>
-      </ion-row>
-      <ion-row>
-        <ion-textarea rows="1" type="text" [(ngModel)]="dailyUpdateSaveRequest.DoctorNote" name="DoctorNote"
-          #DoctorNote="ngModel" required>
-        </ion-textarea>
-      </ion-row>
-
-      <ion-row *ngIf="dailyUpdateForm.submitted && DoctorNote.invalid">
-        <ion-label class="error-msg">* Doctor Note is required.</ion-label>
-      </ion-row>
-
-
-      <ion-item-divider></ion-item-divider>
-
+    <ion-grid no-padding>
       <ion-row>
         <ion-col>
-          <ion-button (click)="TakePhotos()" expand="block" type="button" color="dark" expand="full">Take Photo
-          </ion-button>
+          <ion-text color="primary" no-padding class="ion-text-start">
+            <h4>Medical Officer's Update</h4>
+          </ion-text>
+
+          <ion-item no-padding>
+            <ion-label position="stacked" color="primary">Problem<span color="danger">*</span></ion-label>
+            <ion-textarea rows="1" type="text" [(ngModel)]="dailyUpdateSaveRequest.Problem" name="Problem"
+              #Problem="ngModel" required>
+            </ion-textarea>
+          </ion-item>
+          <ion-label color="danger" class="error-msg" *ngIf="dailyUpdateForm.submitted && Problem.invalid">* Problem is
+            required.</ion-label>
+
+          <ion-item no-padding class="ion-margin-vertical">
+            <ion-label position="stacked" color="primary">Doctor Note<span color="danger">*</span></ion-label>
+            <ion-textarea rows="1" type="text" [(ngModel)]="dailyUpdateSaveRequest.DoctorNote" name="DoctorNote"
+              #DoctorNote="ngModel" required>
+            </ion-textarea>
+          </ion-item>
+          <ion-label color="danger" class="error-msg ion-margin-bottom"
+            *ngIf="dailyUpdateForm.submitted && DoctorNote.invalid">* Doctor
+            Note is required.</ion-label>
+
+          <div class="ion-padding-vertical">
+            <ion-button class="photo-btn ion-margin-bottom ion-text-uppercase" shape="round" (click)="TakePhotos()"
+              expand="block" type="button" color="secondary" expand="full">
+              Take Photo
+              <ion-icon slot="end" name="camera"></ion-icon>
+            </ion-button>
+
+
+            <ion-slides [options]='sliderOptions'>
+
+              <ion-slide *ngFor="let url of dailyUpdateSaveRequest.TreatmentImageURLs">
+                <img src="{{url}}" tappable (click)="onImageClick(url)">
+              </ion-slide>
+            </ion-slides>
+          </div>
+
+          <ion-button class="ion-text-uppercase" expand="block" type="submit" color="primary" expand="block">Save</ion-button>
         </ion-col>
       </ion-row>
-
-      <ion-slides [options]='sliderOptions'>
-
-        <ion-slide *ngFor="let url of dailyUpdateSaveRequest.TreatmentImageURLs">
-          <img src="{{url}}" tappable (click)="onImageClick(url)">
-        </ion-slide>
-      </ion-slides>
-
-      <ion-item-divider></ion-item-divider>
-
-      <ion-row>
-        <ion-col>
-          <ion-button expand="block" type="submit" color="primary" expand="block">Save</ion-button>
-        </ion-col>
-      </ion-row>
-
-
     </ion-grid>
-
   </form>
-
 </ion-content>

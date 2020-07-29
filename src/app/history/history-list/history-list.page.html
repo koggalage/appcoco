@@ -1,58 +1,58 @@
 <ion-header class="ion-no-border">
   <ion-toolbar color="primary" class="ion-no-border header-toolbar">
-    <ion-buttons color="dark" slot="start">
-      <ion-back-button defaultHref="/doctor-menu"></ion-back-button>
+    <ion-buttons class="ion-padding-start" color="dark" slot="start">
+      <ion-back-button icon="md-arrow-back" text="" defaultHref="/doctor-menu"></ion-back-button>
     </ion-buttons>
 
     <ion-title color="light" class="title ion-text-center ion-padding-vertical">Treatment History List</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content padding fullscreen>
 
-  <ion-grid *ngFor="let data of treatmentDates">
+  <ion-grid no-padding >
     <ion-row>
+      <ion-col no-padding>
+        <mat-accordion class="ion-margin-bottom" *ngFor="let data of treatmentDates">
+          <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
 
-      <mat-accordion>
-        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+            <mat-expansion-panel-header>
 
-          <mat-expansion-panel-header>
+              <mat-panel-title>
+                <h6 color="primary">{{ data.Date | date }}</h6>
+              </mat-panel-title>
 
-            <mat-panel-title>
-              <h3> {{ data.Date | date }} </h3>
-            </mat-panel-title>
+              <mat-panel-description>
+                <ion-chip color="primary" (click)="onDateClick(data.Tduid)">
+                  <ion-label color="primary">View details</ion-label>
+                </ion-chip>
+              </mat-panel-description>
 
-            <mat-panel-description>
-              <ion-button text-center id="viewdetails" (click)="onDateClick(data.Tduid)" type="button" color="primary"
-                expand="block">
-                View Details
-              </ion-button>
-            </mat-panel-description>
+            </mat-expansion-panel-header>
 
-          </mat-expansion-panel-header>
+            <ion-grid>
+              <ion-row>
+                <ion-col>
+                  <ion-item class="ion-no-padding">
+                    <ion-label position="stacked" color="secondary">Doctor's note</ion-label>
+                    <ion-textarea rows="1" color="medium" type="text" value="{{data.DoctorNote}}" name="DoctorNote"
+                      readonly>
+                    </ion-textarea>
+                  </ion-item>
 
-          <ion-grid>
-            <ion-row>
-              <ion-label color="tertiary">Doctor's Note:</ion-label>
-            </ion-row>
-            <ion-row>
-              <ion-textarea rows="1" class="ion-text-start" type="text" value="{{data.DoctorNote}}" name="DoctorNote"
-                readonly>
-              </ion-textarea>
-            </ion-row>
-            <ion-row>
-              <ion-label color="tertiary">Appointment Id:</ion-label>
-            </ion-row>
-            <ion-row>
-              <ion-input class="ion-text-start" type="text" value="{{data.DoctorAppointmentId}}"
-                name="DoctorAppointmentId" readonly>
-              </ion-input>
-            </ion-row>
-          </ion-grid>
+                  <ion-item class="ion-no-padding ion-margin-top">
+                    <ion-label position="stacked" color="secondary">Appointment Id</ion-label>
+                    <ion-input color="medium" type="text" value="{{data.DoctorAppointmentId}}"
+                      name="DoctorAppointmentId" readonly>
+                    </ion-input>
+                  </ion-item>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
 
-        </mat-expansion-panel>
-      </mat-accordion>
-
+          </mat-expansion-panel>
+        </mat-accordion>
+      </ion-col>
     </ion-row>
   </ion-grid>
 

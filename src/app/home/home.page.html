@@ -1,25 +1,4 @@
-<!-- <ion-header>
-  <ion-toolbar>
-
-    <ion-menu-button></ion-menu-button>
-
-    <ion-title>
-      Christell Skin Clinic
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content padding>
-  <ion-list>
-    <ion-item>
-      <ion-slides [options]="slideOptions" pager="true" #slider (ionSlidesDidLoad)="slidesDidLoad(slider)">
-        <ion-slide *ngFor="let img of images">
-          <img [src]="img.url">
-        </ion-slide>
-      </ion-slides>
-    </ion-item>
-  </ion-list> -->
-<ion-content>
+<ion-content [scrollY]="false">
   <ion-grid padding class="home-header">
     <ion-row class="main-wrapper">
       <ion-col>
@@ -29,14 +8,6 @@
         </ion-text>
       </ion-col>
     </ion-row>
-  </ion-grid>
-
-  <ion-grid *ngIf="user.UserType == 'Doctor'">
-    I'm a doctor
-  </ion-grid>
-
-  <ion-grid *ngIf="user.UserType != 'Doctor'">
-    I'm a User
   </ion-grid>
 
   <ion-grid padding class="home-body">
@@ -50,7 +21,7 @@
           </ion-card-content>
         </ion-card>
       </ion-col>
-      <ion-col size="6">
+      <ion-col size="6"  *ngIf="user.UserType != 'Doctor'">
         <ion-card class="card card--no-bottom-margin">
           <ion-card-content routerLink="/customer-registration" routerDirection="root" no-padding
             class="ion-text-center ion-padding-bottom">
@@ -60,29 +31,6 @@
         </ion-card>
       </ion-col>
     </ion-row>
-
-    <!-- @Mithila -->
-    <!-- we don;t need these two items in home page. 
-      user needs to search for a customer 1st before navigating to these pages. -->
-
-    <!-- <ion-row class="main-wrapper" no-margin>
-      <ion-col size="6">
-        <ion-card class="card">
-          <ion-card-content routerLink="/init-concent" no-padding class="ion-text-center ion-padding-bottom">
-            <img class="ion-padding-top" src="../../assets/img/search_engine.svg" alt="">
-            <ion-label color="primary">Initial consent</ion-label>
-          </ion-card-content>
-        </ion-card>
-      </ion-col>
-      <ion-col size="6">
-        <ion-card class="card">
-          <ion-card-content routerLink="/daily-concent" no-padding class="ion-text-center ion-padding-bottom">
-            <img class="ion-padding-top" src="../../assets/img/receptionist.svg" alt="">
-            <ion-label color="primary">Daily consent</ion-label>
-          </ion-card-content>
-        </ion-card>
-      </ion-col>
-    </ion-row> -->
 
     <ion-row class="button-wrapper">
       <ion-col no-padding class="ion-margin-horizontal">

@@ -48,7 +48,7 @@ export class CustomerRegistrationPage implements OnInit {
       direction: 'horizontal',
       pager: true,
       speed: 800
-    }
+    };
   }
 
   async presentToast(header: string, message: string, duration: number, color: string) {

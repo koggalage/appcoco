@@ -30,3 +30,23 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+
+
+.mat-expansion-panel {
+    margin-bottom: 20px !important;
+}
+
+.mat-expansion-panel-header {
+    padding: 0 20px !important;
+
+    .mat-content {
+        align-items: center;
+    }
+}
+
+.mat-expansion-panel-header-title {
+    max-width: 120px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}

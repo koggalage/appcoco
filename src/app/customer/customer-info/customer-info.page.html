@@ -1,83 +1,72 @@
 <ion-header class="ion-no-border">
   <ion-toolbar color="primary" class="ion-no-border header-toolbar">
-    <ion-buttons color="dark" slot="start">
-      <ion-back-button defaultHref="/customer-search"></ion-back-button>
+    <ion-buttons class="ion-padding-start" color="dark" slot="start">
+      <ion-back-button icon="md-arrow-back" text="" defaultHref="/customer-search"></ion-back-button>
     </ion-buttons>
 
     <ion-title color="light" class="title ion-text-center ion-padding-vertical">Missing Customer Details</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content padding fullscreen scroll-y="false">
 
   <form (ngSubmit)="cusInfoForm.form.valid && onUpdateCustomer()" #cusInfoForm="ngForm">
-
     <ion-grid>
-
-      <ion-row *ngIf="isFnameNotFilled">
-        <ion-label>Full Name:</ion-label>
-      </ion-row>
-      <ion-row *ngIf="isFnameNotFilled">
-        <ion-input maxlength="250" type="text" [(ngModel)]="customerInfo.FullName" name="FullName" #FullName="ngModel"
-          required>
-        </ion-input>
-      </ion-row>
-      <ion-row *ngIf="isFnameNotFilled && cusInfoForm.submitted && !customerInfo.FullName">
-        <ion-label class="error-msg">* FullName is required.</ion-label>
-      </ion-row>
-
-      <ion-row *ngIf="isMobileNotFilled">
-        <ion-label>Mobile:</ion-label>
-      </ion-row>
-      <ion-row *ngIf="isMobileNotFilled">
-        <ion-input maxlength="15" type="number" [(ngModel)]="customerInfo.MobileNo" name="MobileNo" #MobileNo="ngModel"
-          required>
-        </ion-input>
-      </ion-row>
-      <ion-row *ngIf="isMobileNotFilled && cusInfoForm.submitted && !customerInfo.MobileNo">
-        <ion-label class="error-msg">* Mobile Number is required.</ion-label>
-      </ion-row>
-
-      <ion-row *ngIf="isEmailNotFilled">
-        <ion-label>Email:</ion-label>
-      </ion-row>
-      <ion-row *ngIf="isEmailNotFilled">
-        <ion-input maxlength="50" type="email" [(ngModel)]="customerInfo.Email" name="Email" #Email="ngModel" email
-          required>
-        </ion-input>
-      </ion-row>
-      <ion-row *ngIf="isEmailNotFilled && cusInfoForm.submitted && !customerInfo.Email">
-        <ion-label *ngIf="Email.errors.required" class="error-msg">* Email is required.</ion-label>
-        <ion-label *ngIf="Email.errors.email" class="error-msg">* Email is invalid.</ion-label>
-      </ion-row>
-
-      <ion-item-divider></ion-item-divider>
-
-      <ion-row *ngIf="isNoSignature">
-        <ion-label>Signature:</ion-label>
-      </ion-row>
-      <ion-row *ngIf="isNoSignature">
-        <signature-pad id="signature" [options]="signaturePadOptions" (onEndEvent)="drawComplete()">
-        </signature-pad>
-      </ion-row>
-      <ion-row *ngIf="isNoSignature">
-        <ion-button type="button" color="danger" (click)="drawClear()" expand="block">Clear</ion-button>
-      </ion-row>
-
-      <ion-row *ngIf="isNoSignature && cusInfoForm.submitted && !customerInfo.SignatureURL">
-        <ion-label class="error-msg">* Signature is required.</ion-label>
-      </ion-row>
-
-      <ion-item-divider></ion-item-divider>
-
       <ion-row>
         <ion-col>
-          <ion-button expand="block" type="submit" color="primary" expand="block">Save</ion-button>
+          <ion-item no-padding *ngIf="isFnameNotFilled" class="ion-margin-top">
+            <ion-label position="stacked" color="primary">Full Name</ion-label>
+            <ion-input maxlength="250" type="text" [(ngModel)]="customerInfo.FullName" name="FullName"
+              #FullName="ngModel" required></ion-input>
+          </ion-item>
+          <ion-label *ngIf="isFnameNotFilled && cusInfoForm.submitted && !customerInfo.FullName" color="danger"
+            class="error-msg">* FullName is required.</ion-label>
+
+          <ion-item no-padding *ngIf="isMobileNotFilled" class="ion-margin-top">
+            <ion-label position="stacked" color="primary">Mobile</ion-label>
+            <ion-input maxlength="15" type="number" [(ngModel)]="customerInfo.MobileNo" name="MobileNo"
+              #MobileNo="ngModel" required>
+            </ion-input>
+          </ion-item>
+          <ion-label color="danger" class="error-msg"
+            *ngIf="isMobileNotFilled && cusInfoForm.submitted && !customerInfo.MobileNo">* Mobile Number is required.
+          </ion-label>
+
+
+          <ion-item no-padding *ngIf="isEmailNotFilled" class="ion-margin-top">
+            <ion-label position="stacked" color="primary">Email</ion-label>
+            <ion-input maxlength="50" type="email" [(ngModel)]="customerInfo.Email" name="Email" #Email="ngModel" email
+              required>
+            </ion-input>
+          </ion-item>
+          <div *ngIf="isEmailNotFilled && cusInfoForm.submitted && !customerInfo.Email">
+            <ion-label color="danger" *ngIf="Email.errors.required" class="error-msg">* Email is required.</ion-label>
+            <ion-label color="danger" *ngIf="Email.errors.email" class="error-msg">* Email is invalid.</ion-label>
+          </div>
+
+          <ion-item no-padding *ngIf="isNoSignature" class="ion-margin-top ion-padding-bottom">
+            <ion-label position="stacked" color="primary">Signature</ion-label>
+            <ion-card no-margin class="sign-pad-wrapper">
+              <signature-pad id="signature" [options]="signaturePadOptions" (onEndEvent)="drawComplete()">
+              </signature-pad>
+            </ion-card>
+            <ion-item class="ion-no-padding" lines="none">
+              <ion-chip outline color="secondary" (click)="drawClear()">
+                <ion-label>Clear</ion-label>
+              </ion-chip>
+            </ion-item>
+          </ion-item>
+          <ion-label color="danger" class="error-msg"
+            *ngIf="isNoSignature && cusInfoForm.submitted && !customerInfo.SignatureURL">* Signature is required.
+          </ion-label>
         </ion-col>
       </ion-row>
-
     </ion-grid>
 
+    <div class="ion-padding-top ion-margin-top ion-text-center">
+      <ion-button class="save-btn ion-text-uppercase" shape="round" type="submit" color="secondary">
+        Save
+      </ion-button>
+    </div>
   </form>
-
 </ion-content>

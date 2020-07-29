@@ -1,20 +1,78 @@
-ion-col {
-    padding-right: 5px;
+.header-toolbar {
+  border-bottom-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+
+  .title {
+    font-weight: 400;
+    font-size: 16px;
+  }
 }
 
-ion-input, ion-textarea {
-            border-radius: 10px !important;
-            padding-right: 30px;
-            font-size: 0.9em;
-            border: 1px solid #f1f1f1 !important;
-            --background: rgb(219,219,219) !important;
+.secondary-text {
+  font-size: 14px;
+  color: #FDA2C6;
 }
 
-ion-row {
-     padding-top: 10px;
+
+ion-item {
+  --background: transparent;
+  --border-color: var(--ion-color-secondary, #FDA2C6);
+
+  &.list-item {
+    --border-color: var(--ion-color-medium, #989aa2);
+  }
+
+  &.search-item {
+    border-color: #ffffff;
+    background-color: #EDEDED;
+  }
+}
+
+.slide-wrapper {
+
+  ion-slide {
+    align-items: flex-start;
+  }
+}
+
+.slide {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  text-align: left;
+}
+
+ion-radio-group {
+  width: 100%;
+}
+
+.search-grid {
+  width: 100%;
+}
+
+.radio-btn {
+
+  .radio-icon {
+    border-color: #FDA2C6;
+  }
+}
+
+.radio-btn-label {
+  font-size: 14px;
 }
 
 .error-msg {
-  color: red;
-  font-size: 13px;
-};
+  text-align: left;
+  font-size: 12px;
+}
+
+ion-footer {
+  position: fixed;
+  bottom: 0;
+  width: calc(100% - 30px);
+
+  .toolbar-background {
+    border: none;
+  }
+}

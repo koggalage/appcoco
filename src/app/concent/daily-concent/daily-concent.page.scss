@@ -29,12 +29,21 @@ ion-item {
 }
 
 .slide-wrapper {
+  height: 100%;
 
   ion-slide {
+    overflow-y: auto;
     align-items: flex-start;
   }
-}
 
+  form {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    padding-bottom: 67px;
+  }
+}
 .slide {
   display: flex;
   flex-direction: column;
@@ -66,6 +75,28 @@ ion-radio-group {
   text-align: left;
   font-size: 12px;
 }
+
+.button-wrapper {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  background: white;
+  width: 100%;
+  padding: 16px 16px 0px;
+
+  .slide-btn {
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: 18px;
+    margin: 0;
+  
+    ion-icon {
+      margin-left: auto;
+    }
+  }
+}
+
 
 ion-footer {
   position: fixed;

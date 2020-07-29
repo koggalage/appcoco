@@ -18,9 +18,16 @@ ion-item {
 // }
 
 .slide-wrapper {
+  height: 100%;
 
   ion-slide {
     align-items: flex-start;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
   }
 }
 
@@ -49,23 +56,19 @@ ion-item {
   text-align: left;
 }
 
-.button-wrapper {
-  position: absolute;
-  bottom: 0;
-  width: calc(100% - 32px);
-  padding-bottom: 16px;
 
-  .slide-btn {
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    font-weight: 500;
-    font-size: 18px;
+.slide-btn {
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  font-weight: 500;
+  font-size: 18px;
+  margin-top: auto;
 
-    ion-icon {
-      margin-left: auto;
-    }
+  ion-icon {
+    margin-left: auto;
   }
 }
+
 
 .progress-bar {
   display: grid;

@@ -4,8 +4,7 @@
       <ion-back-button icon="md-arrow-back" text="" (click)="onBackButtonClick()"></ion-back-button>
     </ion-buttons> -->
 
-    <ion-button slot="start" (click)="onBackButtonClick()" type="button" size="large" expand="block"
-      class="ion-padding-start">
+    <ion-button slot="start" (click)="onBackButtonClick()" type="button">
       <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
     </ion-button>
 
@@ -17,7 +16,7 @@
 
 
   <!-- <form (ngSubmit)="cusRegForm.form.valid && onAddNewCustomer()" #cusRegForm="ngForm"> -->
-  <ion-slides #slides no-padding class="slide-wrapper" [options]="slideOptions" class="swiper-no-swiping">
+  <ion-slides #slides no-padding class="slide-wrapper swiper-no-swiping" [options]="slideOptions">
 
     <ion-slide no-padding>
 
@@ -129,10 +128,8 @@
             </ion-input>
           </ion-item>
 
-          <ion-label color="danger">
-            <ion-row *ngIf="cusRegFormSlideTwo.submitted && MobileNo.invalid" class="error-msg">
+          <ion-label color="danger" *ngIf="cusRegFormSlideTwo.submitted && MobileNo.invalid" class="error-msg">
               * Mobile Number is required.
-            </ion-row>
           </ion-label>
 
           <!-- <ion-row *ngIf="cusRegFormSlideTwo.submitted && MobileNo.invalid" class="danger error-msg">* Mobile Number is
@@ -145,15 +142,13 @@
             </ion-input>
           </ion-item>
 
-          <ion-label color="danger">
-            <ion-row *ngIf="cusRegFormSlideTwo.submitted && Email.errors.required" class="error-msg">
+          <ion-label color="danger" *ngIf="cusRegFormSlideTwo.submitted && Email.errors.required" class="error-msg">
               * Email is required.
-            </ion-row>
           </ion-label>
 
-          <ion-row *ngIf="isInvalidEmail" class="danger error-msg">
+          <ion-label *ngIf="isInvalidEmail" color="danger" class="error-msg">
             * Email is invalid.
-          </ion-row>
+          </ion-label>
 
           <ion-item class="ion-no-padding ion-margin-top">
             <ion-label position="stacked" color="primary">Address <span color="danger">*</span></ion-label>
@@ -166,10 +161,8 @@
             * Address is required.
           </span> -->
 
-          <ion-label color="danger">
-            <ion-row *ngIf="cusRegFormSlideTwo.submitted && Address.invalid" class="error-msg">
-              * Address is required.
-            </ion-row>
+          <ion-label color="danger" *ngIf="cusRegFormSlideTwo.submitted && Address.invalid">
+              <span class="error-msg">* Address is required.</span>
           </ion-label>
 
           <ion-button type="submit" size="large" expand="block" class="slide-btn" color="primary">

@@ -17,6 +17,7 @@ export class HistoryListPage implements OnInit {
   private ngUnsubscription = new Subject();
   private customerId: string;
   public treatmentDates: TreatmentHistoryDates[];
+  public panelOpenState: boolean = false;
 
   constructor(
     private customerUIService: CustomerUIService,

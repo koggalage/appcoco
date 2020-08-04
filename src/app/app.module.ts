@@ -8,7 +8,6 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http'
 import { AuthModule } from './auth/auth.module';
-import { SignaturePage } from './signature/signature.page';
 import { SignaturePadModule } from 'angular2-signaturepad';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Camera } from '@ionic-native/camera/ngx'
@@ -20,8 +19,7 @@ import { JwtInterceptor } from './_helpers/jwt.interceptor';
 import { ImageModalPageModule } from './image-modal/image-modal.module';
 
 @NgModule({
-  declarations: [AppComponent, SignaturePage],
-  entryComponents: [SignaturePage],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     IonicModule.forRoot(),

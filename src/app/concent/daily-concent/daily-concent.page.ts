@@ -206,7 +206,7 @@ export class DailyConcentPage implements OnInit {
     });
   }
 
-  swipeNext(form: any) {
+  swipeNext() {
     this.slides.lockSwipes(false);
     this.slides.slideNext();
   }

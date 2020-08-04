@@ -67,7 +67,7 @@ export class CustomerRegistrationPage implements OnInit {
     toast.present();
   }
 
-  swipeNext(form: any) {
+  swipeNext() {
     this.slides.lockSwipes(false);
     this.slides.slideNext();
   }

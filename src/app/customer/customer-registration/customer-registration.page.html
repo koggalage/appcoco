@@ -33,7 +33,7 @@
           <h4>Personal information</h4>
         </ion-text>
 
-        <form (ngSubmit)=" cusRegFormSLideOne.form.valid && swipeNext()" #cusRegFormSLideOne="ngForm">
+        <form (ngSubmit)="cusRegFormSLideOne.form.valid && swipeNext()" #cusRegFormSLideOne="ngForm">
 
           <ion-item class="ion-no-padding">
 
@@ -129,7 +129,7 @@
           </ion-item>
 
           <ion-label color="danger" *ngIf="cusRegFormSlideTwo.submitted && MobileNo.invalid" class="error-msg">
-              * Mobile Number is required.
+            * Mobile Number is required.
           </ion-label>
 
           <!-- <ion-row *ngIf="cusRegFormSlideTwo.submitted && MobileNo.invalid" class="danger error-msg">* Mobile Number is
@@ -143,7 +143,7 @@
           </ion-item>
 
           <ion-label color="danger" *ngIf="cusRegFormSlideTwo.submitted && Email.errors.required" class="error-msg">
-              * Email is required.
+            * Email is required.
           </ion-label>
 
           <ion-label *ngIf="isInvalidEmail" color="danger" class="error-msg">
@@ -162,7 +162,7 @@
           </span> -->
 
           <ion-label color="danger" *ngIf="cusRegFormSlideTwo.submitted && Address.invalid">
-              <span class="error-msg">* Address is required.</span>
+            <span class="error-msg">* Address is required.</span>
           </ion-label>
 
           <ion-button type="submit" size="large" expand="block" class="slide-btn" color="primary">

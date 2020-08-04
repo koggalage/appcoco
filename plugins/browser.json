@@ -8,7 +8,6 @@
   },
   "installed_plugins": {
     "cordova-plugin-camera": {
-      "ANDROID_SUPPORT_V4_VERSION": "27.+",
       "PACKAGE_NAME": "io.ionic.build01"
     },
     "cordova-plugin-device": {
@@ -24,7 +23,6 @@
       "PACKAGE_NAME": "io.ionic.build01"
     },
     "cordova-plugin-ionic-webview": {
-      "ANDROID_SUPPORT_ANNOTATIONS_VERSION": "27.+",
       "PACKAGE_NAME": "io.ionic.build01"
     },
     "cordova-plugin-splashscreen": {

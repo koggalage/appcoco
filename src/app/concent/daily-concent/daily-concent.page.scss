@@ -22,6 +22,10 @@ ion-item {
     --border-color: var(--ion-color-medium, #989aa2);
   }
 
+  &.checkbox-item {
+    border-color: transparent;
+  }
+
   &.search-item {
     border-color: #ffffff;
     background-color: #EDEDED;
@@ -40,8 +44,7 @@ ion-item {
     position: relative;
     display: flex;
     flex-direction: column;
-    flex-grow: 1;
-    padding-bottom: 67px;
+    height: 100%;
   }
 }
 .slide {
@@ -50,6 +53,7 @@ ion-item {
   height: 100%;
   width: 100%;
   text-align: left;
+  overflow: auto;
 }
 
 ion-radio-group {
@@ -77,12 +81,14 @@ ion-radio-group {
 }
 
 .button-wrapper {
-  position: fixed;
+  position: sticky;
   bottom: 0;
   left: 0;
   background: white;
   width: 100%;
-  padding: 16px 16px 0px;
+  padding: 16px 0px;
+  margin-top: auto;
+  z-index: 100;
 
   .slide-btn {
     letter-spacing: 3px;

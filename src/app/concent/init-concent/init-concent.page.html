@@ -57,11 +57,12 @@
             </ion-textarea>
           </ion-item>
 
-          <ion-button type="submit" size="large" expand="block" class="slide-btn" color="primary">
-            Next
-            <ion-icon slot="end" ios="ios-arrow-forward"></ion-icon>
-          </ion-button>
-
+          <div class="button-wrapper">
+            <ion-button type="submit" size="large" expand="block" class="slide-btn" color="primary">
+              Next
+              <ion-icon slot="end" name="arrow-forward"></ion-icon>
+            </ion-button>
+          </div>
         </form>
 
       </div>
@@ -115,32 +116,33 @@
               <ion-label color="primary">Other:</ion-label>
               <ion-checkbox [(ngModel)]="initConcentSaveRequest.IsOther" name="IsOther"></ion-checkbox>
             </ion-item>
-
-            <ion-item class="ion-padding-bottom" no-padding *ngIf="initConcentSaveRequest.IsOther">
-              <ion-label position="stacked" color="secondary">If yes, please specify</ion-label>
-              <ion-textarea rows="1" class="ion-text-start" type="text"
-                [(ngModel)]="initConcentSaveRequest.OtherDiseases" name="OtherDiseases" #OtherDiseases="ngModel"
-                required></ion-textarea>
+            <div class="ion-padding-bottom">
+              <ion-item no-padding *ngIf="initConcentSaveRequest.IsOther">
+                <ion-label position="stacked" color="secondary">If yes, please specify</ion-label>
+                <ion-textarea rows="1" class="ion-text-start" type="text"
+                  [(ngModel)]="initConcentSaveRequest.OtherDiseases" name="OtherDiseases" #OtherDiseases="ngModel"
+                  required></ion-textarea>
+              </ion-item>
               <ion-label
                 *ngIf="initConcentFormSlideTwo.submitted && initConcentSaveRequest.IsOther && !initConcentSaveRequest.OtherDiseases"
                 class="error-msg" color="danger">* Other diseases are required.</ion-label>
-            </ion-item>
-
-
+            </div>
             <ion-item no-padding class="list-item">
               <ion-label color="primary">Surgical history?</ion-label>
               <ion-checkbox [(ngModel)]="initConcentSaveRequest.IsSurgical" name="IsSurgical"></ion-checkbox>
             </ion-item>
+            <div class="ion-padding-bottom">
+              <ion-item no-padding *ngIf="initConcentSaveRequest.IsSurgical">
+                <ion-label position="stacked" color="secondary">If yes, please specify</ion-label>
+                <ion-textarea rows="1" class="ion-text-start" type="text"
+                  [(ngModel)]="initConcentSaveRequest.SurgicalHistory" name="SurgicalHistory" #SurgicalHistory="ngModel"
+                  required></ion-textarea>
+              </ion-item>
 
-            <ion-item class="ion-padding-bottom" no-padding *ngIf="initConcentSaveRequest.IsSurgical">
-              <ion-label position="stacked" color="secondary">If yes, please specify</ion-label>
-              <ion-textarea rows="1" class="ion-text-start" type="text"
-                [(ngModel)]="initConcentSaveRequest.SurgicalHistory" name="SurgicalHistory" #SurgicalHistory="ngModel"
-                required></ion-textarea>
               <ion-label color="danger"
                 *ngIf="initConcentFormSlideTwo.submitted && initConcentSaveRequest.IsSurgical && !initConcentSaveRequest.SurgicalHistory"
                 class="error-msg">* Surgical history is required.</ion-label>
-            </ion-item>
+            </div>
 
             <ion-item class="ion-padding-vertical" no-padding>
               <ion-label position="stacked" color="primary">Current medication:</ion-label>
@@ -152,40 +154,41 @@
               <ion-label color="primary">Known allergies?</ion-label>
               <ion-checkbox [(ngModel)]="initConcentSaveRequest.IsAllergies" name="IsAllergies"></ion-checkbox>
             </ion-item>
-
-            <ion-item class="ion-padding-bottom" no-padding *ngIf="initConcentSaveRequest.IsAllergies">
-              <ion-label position="stacked" color="secondary">If yes, please specify</ion-label>
-              <ion-textarea rows="1" class="ion-text-start" type="text"
-                [(ngModel)]="initConcentSaveRequest.KnownAllergies" name="KnownAllergies" #KnownAllergies="ngModel"
-                required></ion-textarea>
+            <div class="ion-padding-bottom">
+              <ion-item no-padding *ngIf="initConcentSaveRequest.IsAllergies">
+                <ion-label position="stacked" color="secondary">If yes, please specify</ion-label>
+                <ion-textarea rows="1" class="ion-text-start" type="text"
+                  [(ngModel)]="initConcentSaveRequest.KnownAllergies" name="KnownAllergies" #KnownAllergies="ngModel"
+                  required></ion-textarea>
+              </ion-item>
               <ion-label
                 *ngIf="initConcentFormSlideTwo.submitted && initConcentSaveRequest.IsAllergies && !initConcentSaveRequest.KnownAllergies"
                 class="error-msg" color="danger">* Known allergies are required.</ion-label>
-            </ion-item>
-
+            </div>
             <ion-item no-padding class="list-item">
               <ion-label color="primary">Any menstrual abnormalities?</ion-label>
               <ion-checkbox [(ngModel)]="initConcentSaveRequest.IsMenstrualAbnormalities"
                 name="IsMenstrualAbnormalities">
               </ion-checkbox>
             </ion-item>
-
-            <ion-item class="ion-padding-bottom" no-padding *ngIf="initConcentSaveRequest.IsMenstrualAbnormalities">
-              <ion-label position="stacked" color="secondary">If yes, please specify</ion-label>
-              <ion-textarea rows="1" class="ion-text-start" type="text"
-                [(ngModel)]="initConcentSaveRequest.MenstrualAbnormalities" name="MenstrualAbnormalities"
-                #MenstrualAbnormalities="ngModel" required></ion-textarea>
+            <div class="ion-padding-bottom">
+              <ion-item no-padding *ngIf="initConcentSaveRequest.IsMenstrualAbnormalities">
+                <ion-label position="stacked" color="secondary">If yes, please specify</ion-label>
+                <ion-textarea rows="1" class="ion-text-start" type="text"
+                  [(ngModel)]="initConcentSaveRequest.MenstrualAbnormalities" name="MenstrualAbnormalities"
+                  #MenstrualAbnormalities="ngModel" required></ion-textarea>
+              </ion-item>
               <ion-label
                 *ngIf="initConcentFormSlideTwo.submitted && initConcentSaveRequest.IsMenstrualAbnormalities && !initConcentSaveRequest.MenstrualAbnormalities"
                 class="error-msg" color="danger">* Menstrual abnormalities are required.</ion-label>
-            </ion-item>
+            </div>
           </ion-list>
-
-          <ion-button type="submit" size="large" expand="block" class="slide-btn" color="primary">
-            Next
-            <ion-icon slot="end" ios="ios-arrow-forward"></ion-icon>
-          </ion-button>
-
+          <div class="button-wrapper">
+            <ion-button type="submit" size="large" expand="block" class="slide-btn" color="primary">
+              Next
+              <ion-icon slot="end" name="arrow-forward"></ion-icon>
+            </ion-button>
+          </div>
         </form>
 
       </div>
@@ -303,12 +306,12 @@
           <ion-label
             *ngIf="initConcentFormSlideThree.submitted && initConcentSaveRequest.IsAnySkinTreatment && !initConcentSaveRequest.PreviousSkinTreatments"
             color="danger" class="error-msg">* Previous Skin Treatments are required.</ion-label>
-
-          <ion-button type="submit" size="large" expand="block" class="slide-btn" color="primary">
-            Next
-            <ion-icon slot="end" ios="ios-arrow-forward"></ion-icon>
-          </ion-button>
-
+          <div class="button-wrapper">
+            <ion-button type="submit" size="large" expand="block" class="slide-btn" color="primary">
+              Next
+              <ion-icon slot="end" name="arrow-forward"></ion-icon>
+            </ion-button>
+          </div>
         </form>
 
       </div>
@@ -428,12 +431,12 @@
           <ion-label color="danger" class="error-msg"
             *ngIf="initConcentFormSlideFour.submitted && !initConcentSaveRequest.IsDoctorSinged">
             * Medical Officer's Agreement is required.</ion-label>
-
-          <ion-button type="submit" size="large" expand="block" class="slide-btn" color="primary">
-            Complete
-            <ion-icon slot="end" ios="ios-arrow-forward"></ion-icon>
-          </ion-button>
-
+          <div class="button-wrapper">
+            <ion-button type="submit" size="large" expand="block" class="slide-btn" color="primary">
+              Complete
+              <ion-icon slot="end" name="checkmark-circle-outline"></ion-icon>
+            </ion-button>
+          </div>
         </form>
 
       </div>

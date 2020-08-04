@@ -60,7 +60,7 @@
           <div class="button-wrapper">
             <ion-button type="submit" size="large" expand="block" class="slide-btn" color="primary">
               Next
-              <ion-icon slot="end" ios="ios-arrow-forward"></ion-icon>
+              <ion-icon slot="end" name="arrow-forward"></ion-icon>
             </ion-button>
           </div>
 
@@ -139,7 +139,7 @@
           <div class="button-wrapper">
             <ion-button type="submit" size="large" expand="block" class="slide-btn" color="primary">
               Next
-              <ion-icon slot="end" ios="ios-arrow-forward"></ion-icon>
+              <ion-icon slot="end" name="arrow-forward"></ion-icon>
             </ion-button>
           </div>
         </form>
@@ -163,7 +163,7 @@
             <ion-img [src]="customerInfo?.SignatureURL"></ion-img>
           </ion-item>
 
-          <ion-item no-padding lines="none">
+          <ion-item no-padding class="checkbox-item">
             <ion-label color="primary">Customer agreed:</ion-label>
             <ion-checkbox [(ngModel)]="dailyConcentSaveRequest.IsClientSigned" name="custAgreed" #custAgreed="ngModel"
               required>
@@ -172,8 +172,6 @@
           <ion-label color="danger" class="error-msg"
             *ngIf="dailyConcentFormSlideThree.submitted && custAgreed.invalid">*
             Customer's Agreement is required.</ion-label>
-
-          <ion-item no-padding></ion-item>
 
           <ion-text class="ion-padding-top" color="danger">
             <h6>* For Office Use Only</h6>
@@ -209,7 +207,7 @@
             Signature is
             required.</ion-label>
 
-          <ion-item no-padding lines="none" *ngIf="!isEmpSignatureNA">
+          <ion-item no-padding class="checkbox-item" *ngIf="!isEmpSignatureNA">
             <ion-label color="primary">Therapist Agreed:</ion-label>
             <ion-checkbox [(ngModel)]="dailyConcentSaveRequest.IsTherapistSigned" name="empAgreed" #empAgreed="ngModel"
               required>
@@ -251,7 +249,7 @@
             signature
             is required.</ion-label>
 
-          <ion-item no-padding lines="none" *ngIf="!isUserSignatureNA">
+          <ion-item no-padding class="checkbox-item" *ngIf="!isUserSignatureNA">
             <ion-label color="primary">Medical officer agreed:</ion-label>
             <ion-checkbox [(ngModel)]="dailyConcentSaveRequest.IsDoctorSinged" name="userAgreed" #userAgreed="ngModel"
               required>
@@ -264,7 +262,7 @@
           <div class="button-wrapper">
             <ion-button type="submit" size="large" expand="block" class="slide-btn" color="primary">
               Complete
-              <ion-icon slot="end" ios="ios-arrow-forward"></ion-icon>
+              <ion-icon slot="end" name="checkmark-circle-outline"></ion-icon>
             </ion-button>
           </div>
         </form>

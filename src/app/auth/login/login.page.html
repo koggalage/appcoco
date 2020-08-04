@@ -8,21 +8,21 @@
           <h1>Welcome back!</h1>
           <p class="ion-no-margin ion-margin-bottom">Login below to get started.</p>
         </ion-text>
-      
-        <ion-item  class="ion-no-padding ion-margin-bottom">
+
+        <ion-item class="ion-no-padding ion-margin-bottom">
           <ion-label position="floating" color="primary">Username</ion-label>
           <ion-input name="username" type="text" [(ngModel)]="login.Username" required color="dark"></ion-input>
         </ion-item>
 
-        <ion-item  class="ion-no-padding ion-margin-bottom ion-padding-bottom">
+        <ion-item class="ion-no-padding ion-margin-bottom">
           <ion-label position="floating" color="primary">Password</ion-label>
           <ion-input name="password" type="password" [(ngModel)]="login.Password" required color="dark"></ion-input>
         </ion-item>
 
-        
-        <ion-button size="large" (click)="signIn()" expand="block" class="login-btn" color="dark">Login</ion-button>
-        <ion-label *ngIf="isInvalidLogin" color="danger">Invalid Credentials. Please try again!</ion-label>
-        
+        <div class="ion-padding-top">
+          <ion-button size="large" (click)="signIn()" expand="block" class="login-btn " color="dark">Login</ion-button>
+          <ion-label *ngIf="isInvalidLogin" color="danger">Invalid Credentials. Please try again!</ion-label>
+        </div>
 
       </ion-col>
 

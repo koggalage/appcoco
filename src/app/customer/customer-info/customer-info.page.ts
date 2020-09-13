@@ -6,7 +6,7 @@ import { CustomerInfo } from '../customer-model';
 import { CustomerDataService } from '../customer-data-service';
 import { Router } from '@angular/router';
 import { SignaturePad } from 'angular2-signaturepad/signature-pad';
-import { environment } from 'src/environments/environment';
+import { environment } from 'src/environments/environment.prod';
 import * as EmailValidator from 'email-validator';
 import { ToastController } from '@ionic/angular';
 

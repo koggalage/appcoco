@@ -8,7 +8,7 @@ import { InitConcentSaveRequest } from '../concent-model';
 import { CustomerUIService } from '../../customer/customer-ui.service';
 //import { ConstantPool } from '@angular/compiler';
 import { Router } from '@angular/router';
-import { environment } from 'src/environments/environment';
+import { environment } from 'src/environments/environment.prod';
 import { SignaturePad } from 'angular2-signaturepad/signature-pad';
 import { EmployeeDataService } from 'src/app/employee/employee-data-service';
 import { EmployeeListInfo } from 'src/app/employee/employee-model';

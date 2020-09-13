@@ -7,7 +7,7 @@ import { SignaturePad } from 'angular2-signaturepad/signature-pad';
 import { Router } from '@angular/router';
 import { CustomerUIService } from '../customer-ui.service';
 import { ToastController } from '@ionic/angular';
-import { environment } from 'src/environments/environment';
+import { environment } from 'src/environments/environment.prod';
 import { IonSlides } from '@ionic/angular';
 import * as EmailValidator from 'email-validator';
 

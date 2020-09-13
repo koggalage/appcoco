@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CustomerUIService } from '../customer-ui.service';
 import { CustomerInfo } from '../customer-model';
 import { Router } from '@angular/router';
-import { environment } from 'src/environments/environment';
+import { environment } from 'src/environments/environment.prod';
 
 @Component({
   selector: 'app-customer-serch-result',

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { environment } from 'src/environments/environment';
+import { environment } from 'src/environments/environment.prod';
 import { Subject } from 'rxjs';
 import { HistoryUIService } from '../history-ui.service';
 import { takeUntil } from 'rxjs/operators';

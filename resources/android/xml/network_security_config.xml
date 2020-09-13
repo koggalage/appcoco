@@ -6,6 +6,6 @@
         </trust-anchors>
     </base-config>
     <domain-config cleartextTrafficPermitted="true">
-        <domain>api.mydomain.in</domain>
+        <domain>http://161.97.91.160:8086/</domain>
     </domain-config>
 </network-security-config>

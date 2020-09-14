@@ -6,6 +6,10 @@
     font-weight: 400;
     font-size: 16px;
   }
+
+  ion-button {
+    --box-shadow: none;
+  }
 }
 
 ion-item {
@@ -51,7 +55,7 @@ ion-item {
 .slide {
   display: flex;
   flex-direction: column;
-  height: 100%;
+  padding-bottom: 120px;
   width: 100%;
   text-align: left;
 }

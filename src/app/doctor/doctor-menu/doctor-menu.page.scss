@@ -7,11 +7,15 @@
         font-size: 18px;
         letter-spacing: 1px;
     }
+
+    ion-button {
+        --box-shadow: none;
+    }
 }
 
 .doc-btn {
 
     ion-icon {
-      margin-left: auto;
+        margin-left: auto;
     }
 }

@@ -7,6 +7,10 @@
     font-size: 18px;
     letter-spacing: 1px;
   }
+
+  ion-button {
+    --box-shadow: none;
+  }
 }
 
 ion-item {

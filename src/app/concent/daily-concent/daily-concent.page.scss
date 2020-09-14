@@ -6,6 +6,10 @@
     font-weight: 400;
     font-size: 16px;
   }
+
+  ion-button {
+    --box-shadow: none;
+  }
 }
 
 .secondary-text {
@@ -23,11 +27,11 @@ ion-item {
   }
 
   &.checkbox-item {
-    border-color: transparent;
+    --border-color: transparent;
   }
 
   &.search-item {
-    border-color: #ffffff;
+    --border-color: #ffffff;
     background-color: #EDEDED;
   }
 }
@@ -47,10 +51,11 @@ ion-item {
     height: 100%;
   }
 }
+
 .slide {
   display: flex;
   flex-direction: column;
-  height: 100%;
+  padding-bottom: 120px;
   width: 100%;
   text-align: left;
   overflow: auto;
@@ -81,13 +86,11 @@ ion-radio-group {
 }
 
 .button-wrapper {
-  position: sticky;
+  position: fixed;
   bottom: 0;
-  left: 0;
   background: white;
-  width: 100%;
-  padding: 16px 0px;
-  margin-top: auto;
+  width: calc(100% - 32px);
+  padding: 30px 0px;
   z-index: 100;
 
   .slide-btn {
@@ -96,7 +99,7 @@ ion-radio-group {
     font-weight: 500;
     font-size: 18px;
     margin: 0;
-  
+
     ion-icon {
       margin-left: auto;
     }
@@ -112,4 +115,10 @@ ion-footer {
   .toolbar-background {
     border: none;
   }
+}
+
+.set-wrapper {
+  border: 1px solid #FDA2C6;
+  padding: 0 10px;
+  margin-top: 20px;
 }

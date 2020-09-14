@@ -6,6 +6,10 @@
     font-weight: 400;
     font-size: 16px;
   }
+
+  ion-button {
+    --box-shadow: none;
+  }
 }
 
 .sign-pad-wrapper {

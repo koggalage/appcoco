@@ -113,7 +113,7 @@ export class InitConcentPage implements OnInit {
   }
 
   private getEmployeeList() {
-    this.employeeDataService.getEmployeeList(6)
+    this.employeeDataService.getEmployeeList(8)
       .pipe(takeUntil(this.ngUnsubscription))
       .subscribe((employeeListResponse: EmployeeListInfo[]) => {
         this.empList = employeeListResponse;
@@ -122,12 +122,18 @@ export class InitConcentPage implements OnInit {
   };
 
   private getUserList() {
-    this.employeeDataService.getUserList('Doctor')
+    this.employeeDataService.getEmployeeList(15)
       .pipe(takeUntil(this.ngUnsubscription))
-      .subscribe((userListResponse: EmployeeListInfo[]) => {
-        this.userList = userListResponse;
-        this.userListConstant = userListResponse;
+      .subscribe((employeeListResponse: EmployeeListInfo[]) => {
+        this.userList = employeeListResponse;
+        this.userListConstant = employeeListResponse;
       })
+    // this.employeeDataService.getUserList('Doctor')
+    //   .pipe(takeUntil(this.ngUnsubscription))
+    //   .subscribe((userListResponse: EmployeeListInfo[]) => {
+    //     this.userList = userListResponse;
+    //     this.userListConstant = userListResponse;
+    //   })
   };
 
   onSearchEmp(ev: any) {

@@ -7,17 +7,22 @@ export const environment = {
   // api: 'http://02e65c5571bf.ngrok.io/api/',
   //api: 'http://1b53a9ddefa8.ngrok.io/api/',
 
-  api: 'http://161.97.91.160:8086/api/',
 
   //api: 'http://192.168.100.148:8068/api/',
   //api: 'http://localhost:57045/api/',
   // host: 'http://02e65c5571bf.ngrok.io'
   //host: 'http://1b53a9ddefa8.ngrok.io/'
 
-  host: 'http://161.97.91.160:8086/'
+
 
   //host: 'http://localhost:57045/'
   //host: 'http://192.168.100.148:8068/'
+
+  api: 'http://195.201.104.76:8052/api/',
+  host: 'http://195.201.104.76:8052/'
+
+  //api: 'http://192.168.100.148:8078/api/',
+  //host: 'http://192.168.100.148:8078/'
 };
 
 

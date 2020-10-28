@@ -89,12 +89,12 @@
           <ion-label color="danger" *ngIf="cusRegFormSLideOne.submitted && gender.invalid">
             <span class="error-msg">* Gender is required.</span>
           </ion-label>
-
-          <ion-button type="submit" size="large" expand="block" class="slide-btn" color="primary">
-            Next
-            <ion-icon slot="end" name="arrow-forward"></ion-icon>
-          </ion-button>
-
+          <div class="button-wrapper">
+            <ion-button type="submit" size="large" expand="block" class="slide-btn" color="primary">
+              Next
+              <ion-icon slot="end" name="arrow-forward"></ion-icon>
+            </ion-button>
+          </div>
         </form>
 
       </div>
@@ -164,12 +164,12 @@
           <ion-label color="danger" *ngIf="cusRegFormSlideTwo.submitted && Address.invalid">
             <span class="error-msg">* Address is required.</span>
           </ion-label>
-
-          <ion-button type="submit" size="large" expand="block" class="slide-btn" color="primary">
-            Next
-            <ion-icon slot="end" name="arrow-forward"></ion-icon>
-          </ion-button>
-
+          <div class="button-wrapper">
+            <ion-button type="submit" size="large" expand="block" class="slide-btn" color="primary">
+              Next
+              <ion-icon slot="end" name="arrow-forward"></ion-icon>
+            </ion-button>
+          </div>
         </form>
       </div>
 
@@ -213,11 +213,12 @@
             *ngIf="cusRegFormSlideThree.submitted && !customerInfo.SignatureURL">
             <span class="error-msg">* Signature is required.</span>
           </ion-label>
-
-          <ion-button type="submit" size="large" expand="block" class="slide-btn" color="primary">
-            Complete
-            <ion-icon slot="end" name="checkmark-circle-outline"></ion-icon>
-          </ion-button>
+          <div class="button-wrapper">
+            <ion-button type="submit" size="large" expand="block" class="slide-btn" color="primary">
+              Complete
+              <ion-icon slot="end" name="checkmark-circle-outline"></ion-icon>
+            </ion-button>
+          </div>
         </form>
 
       </div>

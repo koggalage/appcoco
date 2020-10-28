@@ -25,13 +25,15 @@ ion-item {
   height: 100%;
 
   ion-slide {
+    overflow-y: auto;
     align-items: flex-start;
   }
 
   form {
+    position: relative;
     display: flex;
     flex-direction: column;
-    flex-grow: 1;
+    height: 100%;
   }
 }
 
@@ -61,15 +63,34 @@ ion-item {
 }
 
 
-.slide-btn {
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  font-weight: 500;
-  font-size: 18px;
-  margin-top: auto;
+.button-wrapper {
+  position: fixed;
+  bottom: 0;
+  background: white;
+  width: calc(100% - 32px);
+  padding: 30px 0px;
+  z-index: 100;
 
-  ion-icon {
-    margin-left: auto;
+  .slide-btn {
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: 18px;
+    margin: 0;
+
+    ion-icon {
+      margin-left: auto;
+    }
+  }
+}
+
+ion-footer {
+  position: fixed;
+  bottom: 0;
+  width: calc(100% - 30px);
+
+  .toolbar-background {
+    border: none;
   }
 }
 

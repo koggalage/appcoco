@@ -32,14 +32,19 @@ ion-item {
   }
 }
 
-ion-slides {
-  height: 100%;
-}
-
 .slide-wrapper {
+  height: 100%;
 
   ion-slide {
+    overflow-y: auto;
     align-items: flex-start;
+  }
+
+  form {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
   }
 }
 
@@ -50,12 +55,6 @@ ion-slides {
   width: 100%;
   text-align: left;
   overflow: auto;
-}
-
-form {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
 }
 
 ion-radio-group {
@@ -111,4 +110,10 @@ ion-footer {
   .toolbar-background {
     border: none;
   }
+}
+
+.set-wrapper {
+  border: 1px solid #FDA2C6;
+  padding: 0 10px;
+  margin-top: 20px;
 }

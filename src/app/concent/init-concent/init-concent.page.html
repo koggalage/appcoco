@@ -14,7 +14,7 @@
 
 <ion-content padding fullscreen>
 
-  <ion-slides no-padding class="slide-wrapper" [options]="slideOptions" class="swiper-no-swiping" #slides>
+  <ion-slides no-padding class="slide-wrapper swiper-no-swiping" [options]="slideOptions" #slides>
 
     <ion-slide no-padding>
 
@@ -327,110 +327,117 @@
 
         <form (ngSubmit)="initConcentFormSlideFour.form.valid && onAddNewInitConcent()"
           #initConcentFormSlideFour="ngForm">
+          <div class="set-wrapper">
+            <ion-item no-padding lines="none">
+              <ion-label position="stacked" color="primary">Customer signature</ion-label>
+              <ion-img [src]="customerInfo?.SignatureURL"></ion-img>
+            </ion-item>
 
-          <ion-item no-padding lines="none">
-            <ion-label position="stacked" color="primary">Customer signature</ion-label>
-            <ion-img [src]="customerInfo?.SignatureURL"></ion-img>
-          </ion-item>
+            <ion-item no-padding lines="none">
+              <ion-label color="primary">Customer agreed:</ion-label>
+              <ion-checkbox [(ngModel)]="initConcentSaveRequest.IsClientSigned" name="custAgreed" #custAgreed="ngModel"
+                required>
+              </ion-checkbox>
+            </ion-item>
 
-          <ion-item no-padding lines="none">
-            <ion-label color="primary">Customer agreed:</ion-label>
-            <ion-checkbox [(ngModel)]="initConcentSaveRequest.IsClientSigned" name="custAgreed" #custAgreed="ngModel"
-              required>
-            </ion-checkbox>
-          </ion-item>
-
-          <ion-label color="danger" class="error-msg" *ngIf="initConcentFormSlideFour.submitted && custAgreed.invalid">*
-            Customer's Agreement is required.</ion-label>
-
-          <ion-item no-padding></ion-item>
+            <ion-label color="danger" class="error-msg"
+              *ngIf="initConcentFormSlideFour.submitted && custAgreed.invalid">*
+              Customer's Agreement is required.</ion-label>
+          </div>
 
           <ion-text class="ion-padding-top" color="danger">
             <h6>* For Office Use Only</h6>
           </ion-text>
+          <div class="set-wrapper">
+            <ion-text color="secondary" no-padding class="ion-text-start">
+              <h5>Therapist's Agreement:</h5>
+            </ion-text>
 
-          <ion-text color="secondary" no-padding class="ion-text-start">
-            <h5>Therapist's Agreement:</h5>
-          </ion-text>
+            <ion-grid no-padding class="search-grid">
+              <ion-row>
+                <ion-col>
+                  <ion-searchbar no-padding name="empSearch" [(ngModel)]="empSearchText"
+                    (ionInput)="onSearchEmp($event)">
+                  </ion-searchbar>
+                  <ion-list *ngIf='showEmployeeList'>
+                    <ion-item class="ion-padding-start" lines="none" no-padding *ngFor="let emp of empList">
+                      <ion-chip (click)="setEmployeeSignature(emp)">Name: {{ emp.EmpName }} | Id: {{emp.EmpNo}}
+                      </ion-chip>
+                    </ion-item>
+                  </ion-list>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
 
-          <ion-grid no-padding class="search-grid">
-            <ion-row>
-              <ion-col>
-                <ion-searchbar no-padding name="empSearch" [(ngModel)]="empSearchText" (ionInput)="onSearchEmp($event)">
-                </ion-searchbar>
-                <ion-list *ngIf='showEmployeeList'>
-                  <ion-item class="ion-padding-start" lines="none" no-padding *ngFor="let emp of empList">
-                    <ion-chip (click)="setEmployeeSignature(emp)">Name: {{ emp.EmpName }} | Id: {{emp.EmpNo}}</ion-chip>
-                  </ion-item>
-                </ion-list>
-              </ion-col>
-            </ion-row>
-          </ion-grid>
+            <ion-label color="danger" class="error-msg" *ngIf="isEmpSignatureNA">* No signature is assigned to this
+              user.
+            </ion-label>
 
-          <ion-label color="danger" class="error-msg" *ngIf="isEmpSignatureNA">* No signature is assigned to this user.
-          </ion-label>
+            <ion-item no-padding lines="none" *ngIf="!isEmpSignatureNA">
+              <ion-label position="stacked" color="primary">Therapist's signature:</ion-label>
+              <ion-img [src]="empSignatureUrl"></ion-img>
+            </ion-item>
 
-          <ion-item no-padding lines="none" *ngIf="!isEmpSignatureNA">
-            <ion-label position="stacked" color="primary">Therapist's signature:</ion-label>
-            <ion-img [src]="empSignatureUrl"></ion-img>
-          </ion-item>
+            <ion-label color="danger" class="ion-padding-bottom error-msg"
+              *ngIf="initConcentFormSlideFour.submitted && !isEmpSignatureNA && !empSignatureUrl">
+              * Therapist's Signature is required.</ion-label>
 
-          <ion-label color="danger" class="ion-padding-bottom error-msg"
-            *ngIf="initConcentFormSlideFour.submitted && !isEmpSignatureNA && !empSignatureUrl">
-            * Therapist's Signature is required.</ion-label>
+            <ion-item no-padding lines="none" *ngIf="!isEmpSignatureNA">
+              <ion-label color="primary">Therapist Agreed:</ion-label>
+              <ion-checkbox [(ngModel)]="initConcentSaveRequest.IsTherapistSigned" name="empAgreed" #empAgreed="ngModel"
+                required>
+              </ion-checkbox>
+            </ion-item>
 
-          <ion-item no-padding lines="none" *ngIf="!isEmpSignatureNA">
-            <ion-label color="primary">Therapist Agreed:</ion-label>
-            <ion-checkbox [(ngModel)]="initConcentSaveRequest.IsTherapistSigned" name="empAgreed" #empAgreed="ngModel"
-              required>
-            </ion-checkbox>
-          </ion-item>
+            <ion-label color="danger" class="error-msg"
+              *ngIf="initConcentFormSlideFour.submitted && !initConcentSaveRequest.IsTherapistSigned">* Therapist's
+              Agreement is
+              required.</ion-label>
+          </div>
+          <div class="set-wrapper">
+            <ion-text color="secondary" no-padding class="ion-text-start ion-padding-top">
+              <h5>Medical Officer's Agreement:</h5>
+            </ion-text>
 
-          <ion-label color="danger" class="error-msg"
-            *ngIf="initConcentFormSlideFour.submitted && !initConcentSaveRequest.IsTherapistSigned">* Therapist's
-            Agreement is
-            required.</ion-label>
+            <ion-grid no-padding class="search-grid">
+              <ion-row>
+                <ion-col>
+                  <ion-searchbar no-padding name="userSearch" [(ngModel)]="userSearchText"
+                    (ionInput)="onSearchUser($event)">
+                  </ion-searchbar>
+                  <ion-list *ngIf='showUserList'>
+                    <ion-item class="ion-padding-start" lines="none" no-padding *ngFor="let user of userList">
+                      <ion-chip (click)="setUserSignature(user)">Name: {{ user.EmpName }} | Id: {{user.EmpNo}}
+                      </ion-chip>
+                    </ion-item>
+                  </ion-list>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
 
-          <ion-text color="secondary" no-padding class="ion-text-start ion-padding-top">
-            <h5>Medical Officer's Agreement:</h5>
-          </ion-text>
+            <ion-label color="danger" class="error-msg" *ngIf="isUserSignatureNA">* No signature is assigned to this
+              user.
+            </ion-label>
 
-          <ion-grid no-padding class="search-grid">
-            <ion-row>
-              <ion-col>
-                <ion-searchbar no-padding name="userSearch" [(ngModel)]="userSearchText"
-                  (ionInput)="onSearchUser($event)">
-                </ion-searchbar>
-                <ion-list *ngIf='showUserList'>
-                  <ion-item class="ion-padding-start" lines="none" no-padding *ngFor="let user of userList">
-                    <ion-chip (click)="setUserSignature(user)">Name: {{ user.EmpName }} | Id: {{user.EmpNo}}</ion-chip>
-                  </ion-item>
-                </ion-list>
-              </ion-col>
-            </ion-row>
-          </ion-grid>
+            <ion-item no-padding lines="none" *ngIf="!isUserSignatureNA">
+              <ion-label position="stacked" color="primary">Medical officer's signature</ion-label>
+              <ion-img [src]="userSignatureUrl"></ion-img>
+            </ion-item>
+            <ion-label color="danger" class="ion-padding-bottom  error-msg"
+              *ngIf="initConcentFormSlideFour.submitted && !isUserSignatureNA && !userSignatureUrl">* Medical officer's
+              signature
+              is required.</ion-label>
 
-          <ion-label color="danger" class="error-msg" *ngIf="isUserSignatureNA">* No signature is assigned to this user.
-          </ion-label>
-
-          <ion-item no-padding lines="none" *ngIf="!isUserSignatureNA">
-            <ion-label position="stacked" color="primary">Medical officer's signature</ion-label>
-            <ion-img [src]="userSignatureUrl"></ion-img>
-          </ion-item>
-          <ion-label color="danger" class="ion-padding-bottom  error-msg"
-            *ngIf="initConcentFormSlideFour.submitted && !isUserSignatureNA && !userSignatureUrl">* Medical officer's
-            signature
-            is required.</ion-label>
-
-          <ion-item no-padding lines="none" *ngIf="!isUserSignatureNA">
-            <ion-label color="primary">Medical officer agreed:</ion-label>
-            <ion-checkbox [(ngModel)]="initConcentSaveRequest.IsDoctorSinged" name="userAgreed" #userAgreed="ngModel"
-              required>
-            </ion-checkbox>
-          </ion-item>
-          <ion-label color="danger" class="error-msg"
-            *ngIf="initConcentFormSlideFour.submitted && !initConcentSaveRequest.IsDoctorSinged">
-            * Medical Officer's Agreement is required.</ion-label>
+            <ion-item no-padding lines="none" *ngIf="!isUserSignatureNA">
+              <ion-label color="primary">Medical officer agreed:</ion-label>
+              <ion-checkbox [(ngModel)]="initConcentSaveRequest.IsDoctorSinged" name="userAgreed" #userAgreed="ngModel"
+                required>
+              </ion-checkbox>
+            </ion-item>
+            <ion-label color="danger" class="error-msg"
+              *ngIf="initConcentFormSlideFour.submitted && !initConcentSaveRequest.IsDoctorSinged">
+              * Medical Officer's Agreement is required.</ion-label>
+          </div>
           <div class="button-wrapper">
             <ion-button type="submit" size="large" expand="block" class="slide-btn" color="primary">
               Complete

@@ -1,3 +1,9 @@
+ion-header {
+  &::after {
+      background: none;
+  }
+}
+
 .header-toolbar {
   border-bottom-right-radius: 20px;
   border-bottom-left-radius: 20px;
@@ -38,6 +44,7 @@ ion-item {
   ion-slide {
     overflow-y: auto;
     align-items: flex-start;
+    position: relative;
   }
 
   form {
@@ -49,12 +56,10 @@ ion-item {
 }
 
 .slide {
-  display: flex;
-  flex-direction: column;
-  padding-bottom: 120px;
   width: 100%;
   text-align: left;
   overflow: auto;
+  max-height: calc(100vh - 200px);
 }
 
 ion-radio-group {
@@ -70,6 +75,10 @@ ion-radio-group {
   .radio-icon {
     border-color: #FDA2C6;
   }
+}
+
+.radio-input {
+  margin-right: 10px;
 }
 
 .radio-btn-label {

@@ -1,3 +1,9 @@
+ion-header {
+  &::after {
+      background: none;
+  }
+}
+
 .header-toolbar {
   border-bottom-right-radius: 20px;
   border-bottom-left-radius: 20px;
